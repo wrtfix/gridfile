@@ -1,4 +1,2 @@
 #labels Featured,Phase-Design,Phase-Requirements
-= Links =
-
 http://www.geocities.com/ResearchTriangle/System/6129/trabajos.htm
