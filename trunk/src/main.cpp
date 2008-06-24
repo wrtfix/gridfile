@@ -3,13 +3,14 @@
 #include <fstream>
 #include <stdio.h>
 #include <stdlib.h>
+
 using namespace std;
     
 
 
 int main(int argc, char *argv[])
 {
-    ifstream f("./datos_medicamentos.dat");
+    ifstream f("C:/Users/jorge/Desktop/Estructura/datos_medicamentos.dat");
     if(!f)
         cout << "fallo\n";
 
@@ -34,16 +35,23 @@ int main(int argc, char *argv[])
     nro_registro = atoi(a);
     cout << nro_registro << endl;
 
+    i++;
+    int j =0;
+    
     while(cadena[i] !=';')
     {
-        a[i]= cadena[i];
+        a[j]= cadena[i];
         i++;
+        j++;
     }
     
-    char descripcion[100];
+
+
+    char *d = new char;
     
+    d = a;
     
-    cout << descripcion<<endl;
+    cout << d <<endl;
     
     f.close();
     
