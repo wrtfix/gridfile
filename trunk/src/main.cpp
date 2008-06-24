@@ -6,7 +6,12 @@
 
 using namespace std;
     
-
+void copiar(char a[100];char b[100]){
+	for (int i=0;i<100;i++)
+	{
+		b[i] = a[i];
+	}
+}
 
 int main(int argc, char *argv[])
 {
@@ -37,7 +42,7 @@ int main(int argc, char *argv[])
 
     i++;
     int j =0;
-    
+
     while(cadena[i] !=';')
     {
         a[j]= cadena[i];
@@ -45,7 +50,6 @@ int main(int argc, char *argv[])
         j++;
     }
     
-    char *d = new char;
     d = a;
 
     j = 0;
@@ -56,6 +60,7 @@ int main(int argc, char *argv[])
         i++;
         j++;
     }
+    
     char *g = new char;
     g = a;
 
