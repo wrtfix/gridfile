@@ -10,7 +10,7 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    ifstream f("C:/Users/jorge/Desktop/Estructura/datos_medicamentos.dat");
+    ifstream f("./datos_medicamentos.dat");
     if(!f)
         cout << "fallo\n";
 
