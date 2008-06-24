@@ -45,13 +45,28 @@ int main(int argc, char *argv[])
         j++;
     }
     
-
-
     char *d = new char;
-    
     d = a;
+
+    j = 0;
+    i++;
+    while(cadena[i] !=';')
+    {
+        a[j]= cadena[i];
+        i++;
+        j++;
+    }
+    char *g = new char;
+    g = a;
+
+
+
     
     cout << d <<endl;
+    
+    
+    
+    
     
     f.close();
     
