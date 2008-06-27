@@ -3,102 +3,12 @@
 #include <fstream>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 using namespace std;
 
-void copiar(char a[100],char b[100]){
-	int i=1;
-	int j=0;
-	while((a[i] !='"') && (a[i] !=';'))
-	{
-		b[j] = a[i];
-		i++;
-		j++;
-	}
-}
-
-int main(int argc, char *argv[])
+struct regMedicamento
 {
-	//Abrimos el archivo
-    ifstream f("./datos_medicamentos.dat");
-    if (!f)
-        cout << "fallo\n";
-
-    /* Declaramos un array con suficiente tamaño para leer las líneas */
-    char cadena[256];
-    
-    /* Leemos */
-    char a[100];
-
-    /* Leemos la siguiente línea */
-    f.getline(cadena,sizeof(cadena));
-    cout << cadena<<"\n";
-    int i = 0;
-
-    
-    while(cadena[i] !=';')
-    {
-        a[i]= cadena[i];
-        i++;
-    }
-    
-    int nro_registro;
-    nro_registro = atoi(a);
-	cout << "numero de registro:";
-    cout << nro_registro << endl;
-
-	
-	//Descripcion
-	int j = 0;
-    i++;
-    while(cadena[i] !=';')
-    {
-        a[j]= cadena[i];
-        i++;
-        j++;
-    }
-    
-<<<<<<< .mine
-    char d[100];
-    copiar(a,d);
-    
-    cout<< "Descripcion del medicamento:";
-    cout << d <<endl;
-    
-    
-    //Laboratior
-    i=i+1;
-    j=0;
-=======
-    j = 0;
-    i++;
->>>>>>> .r17
-    while(cadena[i] !=';')
-    {
-        a[j]= cadena[i];
-        i++;
-        j++;
-    }
-    
-<<<<<<< .mine
-    char k[100];
-    copiar(a,k);
-=======
-    char *g = new char;
-    g = a;
-
-    f.close();    
->>>>>>> .r17
-    
-<<<<<<< .mine
-    cout<< "Caca:";
-    cout << k <<endl;
-=======
-    system("pause");
-    return EXIT_SUCCESS;
-
-	struct regMedicamento
-	{
 		//una secuencia de hasta 8 caracteres numéricos. (0 a 99999999)
 		int nro_registro;
 
@@ -122,33 +32,76 @@ int main(int argc, char *argv[])
 
 		//una secuencia de hasta 3 caracteres numéricos, una coma decimal y 2 caracteres numéricos más.
 		float precio;
-	};
->>>>>>> .r17
+};
     
-<<<<<<< .mine
-    //forma
-    i=i+1;
-    j=0;
-    cout << cadena[i];
-    while(cadena[i] !=';')
+int main(int argc, char *argv[])
+{
+	//Abrimos el archivo
+    ifstream f("./datos_medicamentos.dat");
+    if (!f)
+        cout << "fallo\n";
+
+    /* Declaramos un array con suficiente tamaño para leer las líneas */
+    char cadena[256];
+    
+   
+    /* Leemos la siguiente línea */
+    f.clear();
+    
+    while (!f.eof())
     {
-        a[j]= cadena[i];
-        i++;
-        j++;
-    }
     
-    char x[100];
-    copiar(a,x);
+    f.getline(cadena,sizeof(cadena));
     
-    cout<< "forma:";
-    cout << x << endl;
     
-        
+    char string[] = "";
+	for (int i = 0; i<100;i++){
+		string[i] = cadena[i];
+	}
+	
+	char seps[] = ";";
+	char *token0; 
+	char *token1; 
+	char *token2; 
+	char *token3; 
+	char *token4; 
+	char *token5; 
+	char *token6; 
+	char *token7; 
+	regMedicamento med;
+    /* Establish string and get the first token: */
+	token0 = strtok( string, seps );
+	med.nro_registro = atoi(token0);
+	
+	token1 = strtok( NULL, seps );
+	for (int i = 0; i<100;i++)
+		med.descripcion[i] = token1[i];
+	
+		
+	token2 = strtok( NULL, seps );
+	for (int i = 0; i<100;i++)
+		med.laboratorio[i] = token2[i];
+	
+	token3 = strtok( NULL, seps );
+	med.accion_medicamento = atoi(token3);		
+	
+	token4 = strtok( NULL, seps );
+	med.forma_medicamento = atoi(token4);
+	
+	token5 = strtok( NULL, seps );
+	med.tamanio_medicamento = atoi(token5);
+		
+	
+	token6 = strtok( NULL, seps );
+	med.via_administracion = atoi(token6);
+	printf( " %d\n", med.via_administracion);
+	
+	token7 = strtok( NULL, seps );
+	med.precio = atof(token7);
+	
+	}
+	  
     f.close();
-    
     
    	return EXIT_SUCCESS;
 }
-=======
-}
->>>>>>> .r17
