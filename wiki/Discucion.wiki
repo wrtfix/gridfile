@@ -7,10 +7,10 @@ La idea de esto seria expresar mas o menos en la forma en que va a ser encarada 
 
 =Alternativa 1:=
 Supongo que requeriremos una clase llamada Gridfile en la que tendremos una matriz de 2x2x2(de puntero a list) un list seria un espercie de balde el cual sera redimencionado cada vez que exista un overfloat.
-Supongo que tambien existira una clase llamada Rango e la cual definire por ejemplo:\\
+Supongo que tambien existira una clase llamada Rango e la cual definire por ejemplo:
 para la posicion 0 de valor 54
 para la posicion 1 los de valor del 55 a la 60 
-y esto me sera util para la obetencion de datos dentro de la matriz en el griedfile por ejemplo:\\
+y esto me sera util para la obetencion de datos dentro de la matriz en el griedfile por ejemplo:
 cuando quiero agregar un elemnto le paso el RegMedicamento y lo inserto en la posicion de la matriz que el la clase Rango diga.
 
 =list o vector?=
