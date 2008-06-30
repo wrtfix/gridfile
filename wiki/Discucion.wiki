@@ -19,6 +19,7 @@ Talves en vez de usa un list podemos usar un vector debido a que es mas facil ob
 =Alternativa 2:=
 
 === Clase s===
+
 3 clases.
  * Gridfile: para un grid file de 3 atributos, la clase podria tener otro nombre... "Gridfile3".
  * Balde: Eso, contiene punteros al archivo
@@ -28,10 +29,29 @@ Talves en vez de usa un list podemos usar un vector debido a que es mas facil ob
 
 El GridFile no es mas que una matriz de 3 dimensiones, con punteros a Balde. Su tamaño no varía, se crea con cierto tamaño y asi se mantiene durante toda la ejecución.
 
-Los Baldes son, internamente, simples arreglos de enteros.
+Los Baldes son, internamente, simples arreglos de enteros. Nada de templates para no complicarnos. Los Baldes tienen ints que se corresponden con un numero de registro (o posición) del archivo. Se pueden usan arrays comunes o vectores de STL, pero no listas ya que la capacidad de los Baldes es fija.
+
+La estruc
 
 La clase Rango tiene la mayor funcionalidad. Ya que marca COMO esta dividida el grid.
 
 === Ejemplo ===
-Tenemos un GridFile. Como dijimos, se trata de una matriz de tamaño estático, suponamos de 128 x 128 x 128
 
+Tenemos un GridFile. Como dijimos, se trata de una matriz de tamaño estático, supongamos de 128 x 128 x 128.
+
+Inicialmente hay pocos elementos, asi que, gracias a las Zonas, "desde afuera" sólo se ve una matriz de... digamos 2 x 2 x 2. Es decir que tengo punteros a 8 Baldes. (Un balde por cada Zona). De esta forma no se tiene redundancia respecto a la información que hay en los baldes...
+Al GridFile se accede através de las Zonas.
+
+INTERNAMENTE, todos las celdas de la matriz que pertencen a una Zona, apuntan a un mismo balde (y todas las celdas pertenecen a una y solo una Zona) Es por esto que se accede a través de las Zonas, ya que esta clase es la unica que reconoce como esta distribuída la información dentro del Gridfile.
+
+Inserción de elementos:
+Algo como:
+{{{
+miGridfile.add(5,valorAtributo1,valorAtributo2,valorAtributo3);
+}}}
+La clase Gridfile necesita averiguar donde debe ser ubicado este valor. Es decir, en qué Zona. Luego si no hay lugar en la Zona, esta deberá encargarse de dividirse para dar espacio al nuevo valor.
+Faltan definir un par de cosas aqui.
+
+=== A definir ===
+*¿Como se almacenan las Zonas de un GridFile?*
+*¿Que estructura de datos se utilizaría para las Zonas?*
