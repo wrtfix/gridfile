@@ -23,7 +23,7 @@
 #ifndef GRIDFILE_H
 #define GRIDFILE_H
 #include <matrix.h>
-
+#define N=2;
 class Gridfile
 {
 	public:
@@ -31,7 +31,7 @@ class Gridfile
 		virtual ~Gridfile();
 	
 	private:
-		
+	RegMedicamento *M[N][N][N];
 };
 
 #endif // GRIDFILE_H
