@@ -1,5 +1,5 @@
 /*
- *      gridfile.h
+ *      rango.cpp
  *      
  *      Copyright 2008 Jorge <wrtfix@wrtfix-laptop>
  *      
@@ -20,17 +20,12 @@
  */
 
 
-#ifndef GRIDFILE_H
-#define GRIDFILE_H
-#define N=2;
-class Gridfile
-{
-	public:
-		Gridfile();
-		virtual ~Gridfile();
-	
-	private:
-	list *M[N][N][N];
-};
+#include "rango.h"
 
-#endif // GRIDFILE_H
+
+Rango::Rango()
+{
+	
+}
+
+

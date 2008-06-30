@@ -1,5 +1,5 @@
 /*
- *      gridfile.h
+ *      rango.h
  *      
  *      Copyright 2008 Jorge <wrtfix@wrtfix-laptop>
  *      
@@ -20,17 +20,16 @@
  */
 
 
-#ifndef GRIDFILE_H
-#define GRIDFILE_H
-#define N=2;
-class Gridfile
+#ifndef RANGO_H
+#define RANGO_H
+
+class Rango
 {
 	public:
-		Gridfile();
-		virtual ~Gridfile();
-	
+		Rango();
+			
 	private:
-	list *M[N][N][N];
+		// add your private declarations
 };
 
-#endif // GRIDFILE_H
+#endif // RANGO_H
