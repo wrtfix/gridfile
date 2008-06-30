@@ -10,7 +10,7 @@ using namespace std;
 struct regMedicamento
 {
 		//una secuencia de hasta 8 caracteres numéricos. (0 a 99999999)
-		int nro_registro;
+		long int nro_registro;
 
 		//puede contener un máximo de 256 caracteres (letras y números).
 		char descripcion[100];
@@ -43,65 +43,62 @@ int main(int argc, char *argv[])
 
     /* Declaramos un array con suficiente tamaño para leer las líneas */
     char cadena[256];
-    
-   
-    /* Leemos la siguiente línea */
-    f.clear();
-    
+
     while (!f.eof())
-    {
-    
-    f.getline(cadena,sizeof(cadena));
-    
-    
-    char string[] = "";
-	for (int i = 0; i<100;i++){
-		string[i] = cadena[i];
-	}
-	
-	char seps[] = ";";
-	char *token0; 
-	char *token1; 
-	char *token2; 
-	char *token3; 
-	char *token4; 
-	char *token5; 
-	char *token6; 
-	char *token7; 
-	regMedicamento med;
-    /* Establish string and get the first token: */
-	token0 = strtok( string, seps );
-	med.nro_registro = atoi(token0);
-	
-	token1 = strtok( NULL, seps );
-	for (int i = 0; i<100;i++)
-		med.descripcion[i] = token1[i];
-	
+    {		
+		f.getline(cadena,sizeof(cadena));
+		char sd[256] = "";
+		for (int i = 0; i<256;i++)
+			sd[i] = cadena[i];
 		
-	token2 = strtok( NULL, seps );
-	for (int i = 0; i<100;i++)
-		med.laboratorio[i] = token2[i];
+		char seps[] = ";";
+		char *token0; 
+		char *token1; 
+		char *token2; 
+		char *token3; 
+		char *token4; 
+		char *token5; 
+		char *token6; 
+		char *token7; 
+		regMedicamento med;
+
+		token0 = strtok( sd, seps );
+		med.nro_registro = atol(token0);
+		printf( " %li\n", med.nro_registro);
 	
-	token3 = strtok( NULL, seps );
-	med.accion_medicamento = atoi(token3);		
-	
-	token4 = strtok( NULL, seps );
-	med.forma_medicamento = atoi(token4);
-	
-	token5 = strtok( NULL, seps );
-	med.tamanio_medicamento = atoi(token5);
+		token1 = strtok( NULL, seps );
+		for (int i = 0; i<100;i++)
+			med.descripcion[i] = token1[i];
 		
-	
-	token6 = strtok( NULL, seps );
-	med.via_administracion = atoi(token6);
-	printf( " %d\n", med.via_administracion);
-	
-	token7 = strtok( NULL, seps );
-	med.precio = atof(token7);
+		printf( " %s\n", med.descripcion);
+			
+		token2 = strtok( NULL, seps );
+		for (int i = 0; i<16;i++)
+			med.laboratorio[i] = token2[i];
+		printf( " %s\n", med.laboratorio);
+		
+		token3 = strtok( NULL, seps );
+		med.accion_medicamento = atoi(token3);		
+		printf( " %i\n", med.accion_medicamento);
+		
+		
+		token4 = strtok( NULL, seps );
+		med.forma_medicamento = atoi(token4);
+		printf( " %i\n", med.forma_medicamento);
+		
+		token5 = strtok( NULL, seps );
+		med.tamanio_medicamento = atoi(token5);
+		printf( " %d\n", med.tamanio_medicamento);
+			
+		token6 = strtok( NULL, seps );
+		med.via_administracion = atoi(token6);
+		printf( " %d\n", med.via_administracion);
+		
+		token7 = strtok( NULL, seps );
+		med.precio = atof(token7);
+		printf( " %f\n", med.precio);
 	
 	}
-	  
     f.close();
-    
    	return EXIT_SUCCESS;
 }
