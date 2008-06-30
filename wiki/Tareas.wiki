@@ -1,0 +1,7 @@
+= Tareas a realizar =
+
+|| *Prioridad* || *Tarea* || *Tipo* || *Estado* ||
+|| Alta || Diagrama de clases ||  Diseño ||  ||
+|| Media || Matriz dinamica || Programacion || En progreso ||
+|| Alta || Cargar elementos de archivo en un struct || Programacion || En progreso ||
+|| - || || || ||
