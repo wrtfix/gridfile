@@ -18,7 +18,7 @@ Talves en vez de usa un list podemos usar un vector debido a que es mas facil ob
 
 =Alternativa 2:=
 
-=== Clase s===
+=== Clases===
 
 3 clases.
  * Gridfile: para un grid file de 3 atributos, la clase podria tener otro nombre... "Gridfile3".
@@ -52,6 +52,27 @@ miGridfile.add(5,valorAtributo1,valorAtributo2,valorAtributo3);
 La clase Gridfile necesita averiguar donde debe ser ubicado este valor. Es decir, en qué Zona. Luego si no hay lugar en la Zona, esta deberá encargarse de dividirse para dar espacio al nuevo valor.
 Faltan definir un par de cosas aqui.
 
+
+=== Ejemplo 2 ===
+¿Qué tamaño de matriz usar? ¿es mucho 128 x 128 x 128? ¿qué valor "N" elegir?
+Supongmaos que queremos almacenar alrededor de 1000 datos.
+Si cada Balde puede almacenar 10 datos (M = 10), En tal caso, necesitaremos 100 baldes para almacenar toda la información (ene ste ejemplo no se considera espacio para futuras inserciones).
+¿Cuanto vale N? 
+Una matriz de 5x5x5 (N = 5), implica 125 celdas, lo cual alcanza y sobra para almacenar nuestra información. 
+
+Tengamos en cuenta que podemos variar tambien el tamaño de los Baldes. Con Baldes de 20 elementos, basta con N = 4 para almacenar más de 1200 valores.
+
+*"formalmente":*
+
+Si la matriz es de NxNxN, entonces, el Grid soporta hasta N^3^ Baldes. Tengamos en cuenta que cada balde puede almacenar un maximo de M elementos y que la idea principal de la estructura es distribuir los datos de modo de poder acceder rápido a ellos.
+
+Entonces: 
+
+N = funcionTecho((Cantidad de elementos / M)^1/3^)
+
+
+
 === A definir ===
 *¿Como se almacenan las Zonas de un GridFile?*
+
 *¿Que estructura de datos se utilizaría para las Zonas?*
