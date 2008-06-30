@@ -1,0 +1,14 @@
+= Datos =
+Descripción de los datos a almacenar en el Grid File.
+
+
+== Atributos ==
+Los atributos por los cuales se deben ordenar los medicamentos son:
+
+ * *Acción terapeutica*
+ * *Forma*
+ * *Intervalo de precio*
+
+== Distribución ==
+
+Breve análisis de cómo estan distribuídos los 1000 datos a almacenar. Trataremos de usar algun tipo de gráfico.
