@@ -1,4 +1,4 @@
-==En discucion==
+==En discusion==
 
 = Introduccion =
 
@@ -6,7 +6,7 @@ La idea de esto seria expresar mas o menos en la forma en que va a ser encarada 
 
 
 =Alternativa 1:=
-Supongo que requeriremos una clase llamada Griedfile en la que tendremos una matriz de 2x2x2(de puntero a list) un list seria un espercie de balde el cual sera redimencionado cada vez que exista un overfloat.
+Supongo que requeriremos una clase llamada Gridfile en la que tendremos una matriz de 2x2x2(de puntero a list) un list seria un espercie de balde el cual sera redimencionado cada vez que exista un overfloat.
 Supongo que tambien existira una clase llamada Rango e la cual definire por ejemplo:\\
 para la posicion 0 de valor 54
 para la posicion 1 los de valor del 55 a la 60 
@@ -17,4 +17,21 @@ cuando quiero agregar un elemnto le paso el RegMedicamento y lo inserto en la po
 Talves en vez de usa un list podemos usar un vector debido a que es mas facil obtener su temaño y recorrerlo.
 
 =Alternativa 2:=
-....
+
+=== Clase s===
+3 clases.
+ * Gridfile: para un grid file de 3 atributos, la clase podria tener otro nombre... "Gridfile3".
+ * Balde: Eso, contiene punteros al archivo
+ * Zona: para delimitar las distintas zonas de la enroscada matriz. Supongo que es lo mismo que Rango en la alternativa 1.
+
+=== Estructuras ===
+
+El GridFile no es mas que una matriz de 3 dimensiones, con punteros a Balde. Su tamaño no varía, se crea con cierto tamaño y asi se mantiene durante toda la ejecución.
+
+Los Baldes son, internamente, simples arreglos de enteros.
+
+La clase Rango tiene la mayor funcionalidad. Ya que marca COMO esta dividida el grid.
+
+=== Ejemplo ===
+Tenemos un GridFile. Como dijimos, se trata de una matriz de tamaño estático, suponamos de 128 x 128 x 128
+
