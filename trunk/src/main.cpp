@@ -96,8 +96,7 @@ int main(int argc, char *argv[])
 		
 		token7 = strtok( NULL, seps );
 		med.precio = atof(token7);
-		printf( " %f\n", med.precio);
-	
+		printf( " %f\n", med.precio);	
 	}
     f.close();
    	return EXIT_SUCCESS;
