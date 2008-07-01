@@ -28,19 +28,24 @@ Balde* Gridfile::get(int x,int y,int z){
 	
 	}
 	
-//agrega resultados al 
-//alpha
+//agrega resultados al grid.
+//alpha. Todavia no tiene en cuenta Zonas.
 void Gridfile::add(short int accion,short int forma,float precio,int valor){
 	
 	int accion2 = (int) accion;
 	int forma2 = (int) forma;
 	int precio2 = (int) precio;
-	
-	cout << "accion2: " << accion2 << endl;
-	cout << "forma2: " << forma2 << endl;
-	cout << "precio2: " << precio2 << endl;
-	
+
+			cout << "Gridfile.cpp: accion2: " << accion2 << endl;
+			cout << "Gridfile.cpp: forma2: " << forma2 << endl;
+			cout << "Gridfile.cpp: precio2: " << precio2 << endl;
+
 	Balde *b = this->get(accion2, forma2, precio2);
-	b->add(valor);
 	
+	if (!b->full())
+		b->add(valor);
+	/*
+	* else
+	* 	DIVIDIR
+	*/
 };
