@@ -14,7 +14,7 @@ Balde::~Balde() {
 
 bool Balde::add(int a) {
 	
-	elementos.push_back(a);
+	//elementos.push_back(a);
 	return 0;
 }
 
