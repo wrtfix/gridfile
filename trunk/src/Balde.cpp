@@ -13,8 +13,9 @@ Balde::~Balde() {
 }
 
 bool Balde::add(int a) {
-	//if (elementos.size())
+	
 	elementos.push_back(a);
+	return 0;
 }
 
 int Balde::get(int i) {
