@@ -35,20 +35,17 @@ struct regMedicamento
 		//una secuencia de hasta 3 caracteres numéricos, una coma decimal y 2 caracteres numéricos más.
 		float precio;
 };
-    
-int main(int argc, char *argv[])
+vector<regMedicamento> pasarArchivo()
 {
-	//Abrimos el archivo
     ifstream f("./datos_medicamentos.dat");
     if (!f)
         cout << "fallo\n";
-
-    // Declaramos un array con suficiente tamaño para leer las líneas.
+	// Declaramos un array con suficiente tamaño para leer las líneas.
     char cadena[256];
 
 	regMedicamento med;
 	vector<regMedicamento> medicamentos;
-	
+    
     while (!f.eof())
     {		
 		f.getline(cadena,sizeof(cadena));
@@ -108,7 +105,16 @@ int main(int argc, char *argv[])
 		}
 	}
     f.close();
-
+	return medicamentos;    
+}	
+    
+int main(int argc, char *argv[])
+{
+	//Abrimos el archivo
+    
+    vector<regMedicamento> medicamentos;
+    medicamentos = pasarArchivo();
+	
 	Balde b;
 	b.add(4);
 	cout << "get(0): " << b.get(0) << endl;
