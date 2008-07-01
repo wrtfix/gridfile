@@ -20,7 +20,23 @@ void Gridfile::cargarBIN(){
 		
 }
 
+//retorna el puntero a Balde en (x,y,z) del grid.
+//beta
+Balde* Gridfile::get(int x,int y,int z){
+	
+	return this->grid[x][y][z];
+	
+	}
+	
+//agrega resultados al 
+//alpha
 void Gridfile::add(short int accion,short int forma,float precio,int valor){
 	
-	return;
+	int accion2 = (int) accion;
+	int forma2 = (int) forma;
+	int precio2 = (int) precio;
+	
+	Balde b = *(this->get(accion2, forma2, precio2));
+	b.add(valor);
+	
 };
