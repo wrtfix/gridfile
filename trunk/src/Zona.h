@@ -31,11 +31,31 @@ class Zona
 	public:
 		Zona(int,int,int,int,int,int,Balde*);
 		~Zona();
-		Zona* dividir();
+		
+		void set_x1(int);
+		void set_y1(int);
+		void set_z1(int);
+		void set_x2(int);
+		void set_y2(int);
+		void set_z2(int);
+		
+		int get_x1();
+		int get_y1();
+		int get_z1();
+		int get_x2();
+		int get_y2();
+		int get_z2();
+	
+		Zona* dividirX();
 	
 	private:
 		//Desde (x1,y1) hasta (x2,y2)
-		int x1,y1,z1,x2,y2,z2;
+		int x1;
+		int y1;
+		int z1;
+		int x2;
+		int y2;
+		int z2;
 		
 		//Balde al que apunta la Zona
 		Balde* balde;
