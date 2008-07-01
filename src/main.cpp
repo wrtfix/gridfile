@@ -115,10 +115,6 @@ int main(int argc, char *argv[])
     vector<regMedicamento> medicamentos;
     const char *dir = "./datos_medicamentos.dat";
     medicamentos = pasarArchivo(dir);
-	
-	Balde b;
-	b.add(4);
-	cout << "get(0): " << b.get(0) << endl;
 
    	return EXIT_SUCCESS;
 }
