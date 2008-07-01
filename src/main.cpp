@@ -147,11 +147,10 @@ int main(int argc, char *argv[])
 	Gridfile *g = new Gridfile();
 	g->add(2,2,2,45);
 	Balde *b = g->get(2,2,2);
-	cout << "balde unico por ahora:" << endl;
-	cout << "size: " << b->size() << endl << endl;
-	
+	cout << endl << "balde unico por ahora:" << endl;
+	cout << "size: " << b->size() << endl;	
 	b->imprimir();
-		
+	
    	return EXIT_SUCCESS;
 }
 
