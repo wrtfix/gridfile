@@ -141,10 +141,9 @@ int main(int argc, char *argv[])
 	my.close();
 	
 	//guardarArchivo(pos,medicamentos);
-	Balde b;
-	b.add(4);
-	cout << "get(0): " << b.get(0) << endl;
-
+	
+	
+		
    	return EXIT_SUCCESS;
 }
 

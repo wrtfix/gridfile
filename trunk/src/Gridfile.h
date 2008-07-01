@@ -16,6 +16,7 @@ public:
 	~Gridfile();
 	void cargarBIN();
 	void add(short int,short int,float,int);
+	Balde* get(int,int,int);
 };
 
 #endif /* GRIDFILE_H_ */
