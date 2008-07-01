@@ -7,8 +7,6 @@
 #include <vector>
 #include "Balde.h"
 
-#include "Balde.h"
-
 using namespace std;
 
 struct regMedicamento
@@ -40,7 +38,7 @@ struct regMedicamento
     
 int main(int argc, char *argv[])
 {
-/*
+
 	//Abrimos el archivo
     ifstream f("./datos_medicamentos.dat");
     if (!f)
@@ -59,7 +57,7 @@ int main(int argc, char *argv[])
 		for (int i = 0; i<256;i++)
 			sd[i] = cadena[i];
 		
-		char seps[] = ";";
+		char seps[] = ";\n\t";
 		char *token0; 
 		char *token1; 
 		char *token2; 
@@ -70,52 +68,53 @@ int main(int argc, char *argv[])
 		char *token7; 
 	
 		token0 = strtok( sd, seps );
-		med.nro_registro = atol(token0);
-		printf( " %li\n", med.nro_registro);
-	
-		token1 = strtok( NULL, seps );
-		for (int i = 0; i<100;i++)
-			med.descripcion[i] = token1[i];
-		
-		printf( " %s\n", med.descripcion);
+		if (token0 !=NULL){
 			
-		token2 = strtok( NULL, seps );
-		for (int i = 0; i<16;i++)
-			med.laboratorio[i] = token2[i];
-		printf( " %s\n", med.laboratorio);
+			med.nro_registro = atol(token0);
+			printf( " %li\n", med.nro_registro);
 		
-		token3 = strtok( NULL, seps );
-		med.accion_medicamento = atoi(token3);		
-		printf( " %i\n", med.accion_medicamento);
-		
-		
-		token4 = strtok( NULL, seps );
-		med.forma_medicamento = atoi(token4);
-		printf( " %i\n", med.forma_medicamento);
-		
-		token5 = strtok( NULL, seps );
-		med.tamanio_medicamento = atoi(token5);
-		printf( " %d\n", med.tamanio_medicamento);
+			token1 = strtok( NULL, seps );
+			for (int i = 0; i<100;i++)
+				med.descripcion[i] = token1[i];
 			
-		token6 = strtok( NULL, seps );
-		med.via_administracion = atoi(token6);
-		printf( " %d\n", med.via_administracion);
-		
+			printf( " %s\n", med.descripcion);
 				
-		token7 = strtok( NULL, seps );
-		med.precio = atof(token7);
-		printf( " %f\n", med.precio);	
-
-		medicamentos.push_back(med);
-		
+			token2 = strtok( NULL, seps );
+			for (int i = 0; i<16;i++)
+				med.laboratorio[i] = token2[i];
+			printf( " %s\n", med.laboratorio);
+			
+			token3 = strtok( NULL, seps );
+			med.accion_medicamento = atoi(token3);		
+			printf( " %i\n", med.accion_medicamento);
+			
+			
+			token4 = strtok( NULL, seps );
+			med.forma_medicamento = atoi(token4);
+			printf( " %i\n", med.forma_medicamento);
+			
+			token5 = strtok( NULL, seps );
+			med.tamanio_medicamento = atoi(token5);
+			printf( " %d\n", med.tamanio_medicamento);
+				
+			token6 = strtok( NULL, seps );
+			med.via_administracion = atoi(token6);
+			printf( " %d\n", med.via_administracion);
+			
+					
+			token7 = strtok( NULL, seps);	
+			if (token7 != NULL )
+				med.precio = atof(token7);
+			printf(" %f\n", med.precio);
+			medicamentos.push_back(med);
+		}
 	}
     f.close();
-*/
 
-	cout << "puto" << endl;
+/*	cout << "puto" << endl;
 	Balde b;
 	b.add(4);
-	cout << "get(0): " << b.get(0) << endl;
+	cout << "get(0): " << b.get(0) << endl;*/
 
    	return EXIT_SUCCESS;
 }
