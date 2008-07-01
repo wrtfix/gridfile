@@ -8,7 +8,7 @@ Balde::~Balde() {
 }
 
 bool Balde::add(int a) {
-	if (this->elementos.size() < CAPACIDAD_BALDE) {
+	if (!this->full()) {
 		this->elementos.push_back(a);
 		return true;
 	}
@@ -24,7 +24,13 @@ int Balde::size() {
 	return this->elementos.size();
 }
 
+bool Balde::full() {
+	
+	return (this->size() >= CAPACIDAD_BALDE);
+	
+	}
 void Balde::imprimir() {
+	
 	for (int i=0;i<this->size();i++)
 		cout << "b" << i << ": " << this->get(i) << endl;
 

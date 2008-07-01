@@ -18,6 +18,7 @@ class Balde {
 		bool add(int);
 		int get(int);
 		int size();
+		bool full();
 		void imprimir();
 };
 

@@ -145,10 +145,11 @@ int main(int argc, char *argv[])
 	
 	cout << "Fin parte wrtfix" << endl << endl;
 	Gridfile *g = new Gridfile();
-	g->add(3,2,2,2);
-	Balde *b = g->get(3,2,2);
+	g->add(2,2,2,45);
+	Balde *b = g->get(2,2,2);
 	cout << "balde unico por ahora:" << endl;
 	cout << "size: " << b->size() << endl << endl;
+	
 	b->imprimir();
 		
    	return EXIT_SUCCESS;

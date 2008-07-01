@@ -9,7 +9,6 @@
 class Gridfile {
 private:
 	Balde* grid[MAX_X][MAX_Y][MAX_Z];
-	
 
 public:
 	Gridfile();
