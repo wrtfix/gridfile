@@ -7,6 +7,8 @@
 #include <vector>
 #include "Balde.h"
 
+#include "Balde.h"
+
 using namespace std;
 
 struct regMedicamento
@@ -38,7 +40,7 @@ struct regMedicamento
     
 int main(int argc, char *argv[])
 {
-
+/*
 	//Abrimos el archivo
     ifstream f("./datos_medicamentos.dat");
     if (!f)
@@ -108,6 +110,7 @@ int main(int argc, char *argv[])
 		
 	}
     f.close();
+*/
 
 	cout << "puto" << endl;
 	Balde b;
