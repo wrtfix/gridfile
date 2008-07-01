@@ -1,5 +1,4 @@
 #include "Balde.h"
-#include <iostream>
 
 Balde::Balde() {
 	
@@ -24,3 +23,9 @@ int Balde::get(int i) {
 int Balde::size() {
 	return this->elementos.size();
 }
+
+void Balde::imprimir() {
+	for (int i=0;i<this->size();i++)
+		cout << "b" << i << ": " << this->get(i) << endl;
+
+	}

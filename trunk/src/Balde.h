@@ -1,6 +1,7 @@
 #ifndef BALDE_H_
 #define BALDE_H_
 
+#include <iostream>
 #include <vector>
 
 //Este numero debe ser mayor o igual a 10.
@@ -17,6 +18,7 @@ class Balde {
 		bool add(int);
 		int get(int);
 		int size();
+		void imprimir();
 };
 
 #endif /* BALDE_H_ */
