@@ -2,9 +2,9 @@
 #define GRIDFILE_H_
 
 #include "Balde.h"
-#define MAX_X 10
-#define MAX_Y 10
-#define MAX_Z 10
+#define MAX_X 16
+#define MAX_Y 16
+#define MAX_Z 16
 
 class Gridfile {
 private:
@@ -13,7 +13,7 @@ private:
 public:
 	Gridfile();
 	~Gridfile();
-	void cargarBIN();
+	void cargarBIN();	
 	void add(short int,short int,float,int);
 	Balde* get(int,int,int);
 };

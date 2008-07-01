@@ -1,11 +1,14 @@
-gridfile: main.o Balde.o Gridfile.o
-	g++ main.o Balde.o Gridfile.o -o gridfile 
+gridfile: main.o Balde.o Gridfile.o Zona.o
+	g++  -o gridfile main.o Balde.o Gridfile.o
 	
 Balde.o: Balde.h Balde.cpp
-	g++ -c Balde.cpp -o Balde.o
+	g++ -o Balde.o -c Balde.cpp
 
 Gridfile.o: Gridfile.h Gridfile.cpp
-	g++ -c Gridfile.cpp -o Gridfile.o
+	g++ -o Gridfile.o -c Gridfile.cpp
+	
+Zona.o: Zona.h Zona.cpp
+	g++ -o Zona.o -c Zona.cpp 
 
 main.o: main.cpp Balde.h Gridfile.h
-	g++ -c main.cpp -o main.o
+	g++ -o main.o -c main.cpp
