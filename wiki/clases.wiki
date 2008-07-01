@@ -1,0 +1,17 @@
+En esta pagina se almacenarán la informacion respecto a cada una de las clases del proyecto.
+
+== Balde ==
+Esta clase no es sólo un vector de números enteros. La clase Balde controla el alta, baja y modificación de sus elementos respetando el concepto de Balde de un Gridfile.
+
+Los elementos de un Balde son los elementos del Grid File, es decir que un elementos se encuentra almacenado en un Balde y no en otro debido a la posición de dicho Balde en la grilla del Grid File y a los valores de sus propios atributos.
+Estos elementos internos son, basicamente, números enteros que referencian a *posiciones del archivo* de registros de Medicamentos.
+
+A la hora de dividir un Balde y separar sus elementos, el Balde no sabría cuáles son los valores de los atributos de sus elementos, ya que son simplemente enteros. Por lo tanto debería acceder al archivo tantas veces como elementos contenga (cantidad máxima de elementos, ya que se encuentra lleno).
+Es aqui donde surge la alternativa de agregar a los elementos del Balde, los valores de los 3 atributos de indexación. De esta forma, se disminuyen notablemente los accesos a disco aunque el sistema ocuparía mas espacio en memoria principal y en el archivo de indice.
+
+
+== Clase ==
+Descripcion
+
+== Clase ==
+Descripcion
