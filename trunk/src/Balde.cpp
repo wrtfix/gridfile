@@ -2,18 +2,14 @@
 #include <iostream>
 
 Balde::Balde() {
-
-	// TODO Auto-generated constructor stub
+	
 }
 
-Balde::~Balde() {
-	// TODO Auto-generated destructor stub
+Balde::~Balde() {	
 }
 
 bool Balde::add(int a) {
-	
-	if (this->elementos.size() < CAPACIDAD_BALDE)
-	{
+	if (this->elementos.size() < CAPACIDAD_BALDE) {
 		this->elementos.push_back(a);
 		return true;
 	}
@@ -21,8 +17,10 @@ bool Balde::add(int a) {
 		return false;
 }
 
-bool Balde::get(int i) {
-	return 0;
+int Balde::get(int i) {
+	return this->elementos[i];	
 }
 
-
+int Balde::size() {
+	return this->elementos.size();
+}

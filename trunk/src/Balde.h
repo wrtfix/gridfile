@@ -15,7 +15,8 @@ class Balde {
 		Balde();
 		~Balde();
 		bool add(int);
-		bool get(int);
+		int get(int);
+		int size();
 };
 
 #endif /* BALDE_H_ */
