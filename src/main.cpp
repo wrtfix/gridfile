@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
     if (!f)
         cout << "fallo\n";
 
-    /* Declaramos un array con suficiente tamaño para leer las líneas */
+    // Declaramos un array con suficiente tamaño para leer las líneas.
     char cadena[256];
 
     while (!f.eof())
