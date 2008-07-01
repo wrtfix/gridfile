@@ -29,7 +29,7 @@
 class Zona
 {
 	public:
-		Zona(int,int,int,int,int,int,Balde*);
+		Zona(int,int,int,int,int,int);
 		~Zona();
 		
 		void set_x1(int);
@@ -46,6 +46,8 @@ class Zona
 		int get_y2();
 		int get_z2();
 	
+		Balde* getBalde();
+		void setBalde(Balde*);
 		Zona* dividirX();
 	
 	private:
