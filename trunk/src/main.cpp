@@ -102,8 +102,7 @@ int main(int argc, char *argv[])
 			
 					
 			token7 = strtok( NULL, seps);	
-			if (token7 != NULL )
-				med.precio = atof(token7);
+			med.precio = atof(token7);
 			printf(" %f\n", med.precio);
 			medicamentos.push_back(med);
 		}
