@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "Balde.h"
+//#include "Balde.h"
 
 using namespace std;
 
@@ -97,14 +97,16 @@ int main(int argc, char *argv[])
 		printf( " %d\n", med.via_administracion);
 		
 		token7 = strtok( NULL, seps );
-		med.precio = atof(token7);
-		printf( " %f\n", med.precio);	
+		//med.precio = atof(token7);
+		//printf( " %f\n", med.precio);	
 	}
-	
+    f.close();
+
+/*
+	cout << "puto" << endl;
 	Balde b;
 	b.add(4);
 	cout << "get(0): " << b.get(0) << endl;
-
-    f.close();
+*/
    	return EXIT_SUCCESS;
 }
