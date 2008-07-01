@@ -4,11 +4,11 @@ gridfile: main.o Balde.o Gridfile.o Zona.o
 Balde.o: Balde.h Balde.cpp
 	g++ -o Balde.o -c Balde.cpp
 
-Gridfile.o: Gridfile.h Gridfile.cpp
+Gridfile.o: Gridfile.h Gridfile.cpp Balde.h
 	g++ -o Gridfile.o -c Gridfile.cpp
 	
-Zona.o: Zona.h Zona.cpp
+Zona.o: Zona.h Zona.cpp Balde.h
 	g++ -o Zona.o -c Zona.cpp 
 
-main.o: main.cpp Balde.h Gridfile.h
+main.o: main.cpp Balde.h Gridfile.h Zona.h
 	g++ -o main.o -c main.cpp
