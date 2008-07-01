@@ -23,14 +23,12 @@
 #include "Zona.h"
 
 
-Zona::Zona(int x1,int y1,int z1, int x2,int y2,int z2,Balde *balde) {
+Zona::Zona(int x1,int y1,int z1, int x2,int y2,int z2) {
 	
 	//desde			//hasta
 	this->set_x1(x1);	this->set_z2(x2);
 	this->set_y1(y1);	this->set_z2(y2);
-	this->set_z1(z1);	this->set_z2(z2);
-	
-	this->balde = balde;
+	this->set_z1(z1);	this->set_z2(z2);	
 }
 
 void Zona::set_x1(int x){
@@ -81,28 +79,43 @@ int Zona::get_z2(){
 	return this->z2;
 }
 
+Balde* Zona::getBalde() {
+	return this->balde;
+}
+
+void Zona::setBalde(Balde* balde) {
+	this->balde = balde;
+}
+		
+
 Zona::~Zona() {
 	
 }
 
+//divide la Zona respecto a la variable X
+//alpha
 Zona* Zona::dividirX() {
 	int x3 = (this->get_x2() + this->get_x1())/2;
 	//int y = (this->get_y2() + this->get_y1())/2;
 	//int z = (this->get_z2() + this->get_z1())/2;
 	
-	Balde *bNuevo = new Balde();
-	Zona *zNueva = new Zona(x3,
+	//creo un nuevo Balde
+	Balde *bn = new Balde();
+	
+	//creo una nueva Zona
+	Zona *zn = new Zona(x3,
 							this->get_y1(),
 							this->get_z1(),
 							
 							this->get_x2(),
 							this->get_y2(),
-							this->get_z2(),
-							bNuevo);
+							this->get_z2());
+	
+	zn->setBalde(bn);
 	
 	this->set_x2(x3-1);
 	
-	return zNueva;
+	return zn;
 }
 
 
