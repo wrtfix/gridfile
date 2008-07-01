@@ -6,7 +6,6 @@
 #include <string.h>
 
 #include "Balde.h"
-#include "Gridfile.h"
 
 using namespace std;
 
@@ -106,13 +105,13 @@ vector<regMedicamento> pasarArchivo(const char *dir)
 		}
 	}
     f.close();
-	return medicamentos;  
+	return medicamentos;    
 }	
     //paso copia o paso punteros aca?
-/*void guardarArchivo(const char *dir, vector<regMedicamento> *medicamentos)
+/*void guardarArchivo(const char *dir, std::vector<regMedicamento> *medicamentos)
 {
 
-	ofstream my(dir);
+	ofstream my(dir,, ios::out | ios::binary);
 	for(int i=0;i<medicamentos->size();i++)
 	{
 		my<<medicamentos[i];
@@ -127,11 +126,24 @@ int main(int argc, char *argv[])
     const char *dir = "./datos_medicamentos.dat";
     medicamentos = pasarArchivo(dir);
 
-	//const char *pos = "./putoarchivo.flexible";
-	//guardarArchivo(pos,medicamentos);
+	ofstream my("./putoarchivo.flexible", ios::app);
+	for(int i=0;i<medicamentos.size();i++)
+	{
+		my<<medicamentos[i].nro_registro;
+		my<<medicamentos[i].descripcion;
+		my<<medicamentos[i].laboratorio;
+		my<<medicamentos[i].accion_medicamento;
+		my<<medicamentos[i].forma_medicamento;
+		my<<medicamentos[i].tamanio_medicamento;
+		my<<medicamentos[i].via_administracion;
+		my<<medicamentos[i].precio;
+	}
+	my.close();
 	
-	Gridfile g;
-
+	//guardarArchivo(pos,medicamentos);
+	Balde b;
+	b.add(4);
+	cout << "get(0): " << b.get(0) << endl;
 
    	return EXIT_SUCCESS;
 }
