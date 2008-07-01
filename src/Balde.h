@@ -1,19 +1,21 @@
 #ifndef BALDE_H_
 #define BALDE_H_
 
-//#include <vector.h>
+#include <vector>
 
 //Este numero debe ser mayor o igual a 10.
 #define CAPACIDAD_BALDE 25
 
+using namespace std;
+
 class Balde {
 	private:
-		//vector<int> elementos;
+		vector<int> elementos;
 	public:
 		Balde();
-		virtual ~Balde();
+		~Balde();
 		bool add(int);
-		int get(int);
+		bool get(int);
 };
 
 #endif /* BALDE_H_ */

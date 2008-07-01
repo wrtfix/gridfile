@@ -1,8 +1,6 @@
 #include "Balde.h"
 #include <iostream>
 
-using namespace std;
-
 Balde::Balde() {
 
 	// TODO Auto-generated constructor stub
@@ -14,12 +12,17 @@ Balde::~Balde() {
 
 bool Balde::add(int a) {
 	
-	//elementos.push_back(a);
-	return 0;
+	if (this->elementos.size() < CAPACIDAD_BALDE)
+	{
+		this->elementos.push_back(a);
+		return true;
+	}
+	else
+		return false;
 }
 
-int Balde::get(int i) {
-	return 3;
+bool Balde::get(int i) {
+	return 0;
 }
 
 
