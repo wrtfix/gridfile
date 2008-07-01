@@ -107,7 +107,17 @@ vector<regMedicamento> pasarArchivo(const char *dir)
     f.close();
 	return medicamentos;    
 }	
-    
+    //paso copia o paso punteros aca?
+void guardarArchivo(const char *dir, vector<regMedicamento> *medicamentos)
+{
+
+	ofstream<regMedicamento> my(dir);
+	for(int i=0;i<medicamentos->size();i++)
+	{
+		my<<medicamentos[i];
+	}
+	my.close();
+}
 int main(int argc, char *argv[])
 {
 	//Abrimos el archivo
@@ -115,6 +125,12 @@ int main(int argc, char *argv[])
     vector<regMedicamento> medicamentos;
     const char *dir = "./datos_medicamentos.dat";
     medicamentos = pasarArchivo(dir);
+
+	const char *pos = "./putoarchivo.flexible";
+	guardarArchivo(pos,
+	Balde b;
+	b.add(4);
+	cout << "get(0): " << b.get(0) << endl;
 
    	return EXIT_SUCCESS;
 }
