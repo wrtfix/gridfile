@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <vector>
+
 #include "Balde.h"
 
 using namespace std;
@@ -38,7 +38,6 @@ struct regMedicamento
     
 int main(int argc, char *argv[])
 {
-
 	//Abrimos el archivo
     ifstream f("./datos_medicamentos.dat");
     if (!f)
@@ -111,10 +110,10 @@ int main(int argc, char *argv[])
 	}
     f.close();
 
-/*	cout << "puto" << endl;
 	Balde b;
 	b.add(4);
 	cout << "get(0): " << b.get(0) << endl;*/
 
    	return EXIT_SUCCESS;
 }
+
