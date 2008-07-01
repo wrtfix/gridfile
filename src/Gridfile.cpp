@@ -1,7 +1,12 @@
 #include "Gridfile.h"
 
 Gridfile::Gridfile() {
-	// TODO Auto-generated constructor stub
+	
+	Balde* b = new Balde;
+	for (int i=0;i<MAX_X;i++)
+		for (int j=0;j<MAX_Y;j++)
+			for (int k=0;k<MAX_Z;k++)
+				this->grid[i][j][k];	
 
 }
 

@@ -6,6 +6,7 @@
 #include <string.h>
 
 #include "Balde.h"
+#include "Gridfile.h"
 
 using namespace std;
 
@@ -105,7 +106,7 @@ vector<regMedicamento> pasarArchivo(const char *dir)
 		}
 	}
     f.close();
-	return medicamentos;    
+	return medicamentos;  
 }	
     //paso copia o paso punteros aca?
 /*void guardarArchivo(const char *dir, vector<regMedicamento> *medicamentos)
@@ -128,9 +129,9 @@ int main(int argc, char *argv[])
 
 	//const char *pos = "./putoarchivo.flexible";
 	//guardarArchivo(pos,medicamentos);
-	Balde b;
-	b.add(4);
-	cout << "get(0): " << b.get(0) << endl;
+	
+	Gridfile g;
+
 
    	return EXIT_SUCCESS;
 }
