@@ -35,9 +35,9 @@ struct regMedicamento
 		//una secuencia de hasta 3 caracteres numéricos, una coma decimal y 2 caracteres numéricos más.
 		float precio;
 };
-vector<regMedicamento> pasarArchivo()
+vector<regMedicamento> pasarArchivo(const char *dir)
 {
-    ifstream f("./datos_medicamentos.dat");
+    ifstream f(dir);
     if (!f)
         cout << "fallo\n";
 	// Declaramos un array con suficiente tamaño para leer las líneas.
@@ -113,7 +113,8 @@ int main(int argc, char *argv[])
 	//Abrimos el archivo
     
     vector<regMedicamento> medicamentos;
-    medicamentos = pasarArchivo();
+    const char *dir = "./datos_medicamentos.dat";
+    medicamentos = pasarArchivo(dir);
 	
 	Balde b;
 	b.add(4);
