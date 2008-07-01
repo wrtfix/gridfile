@@ -36,15 +36,22 @@ struct regMedicamento
 		//una secuencia de hasta 3 caracteres numéricos, una coma decimal y 2 caracteres numéricos más.
 		float precio;
 };
+
+//esta funcion debuelbe toda la info de un archivo de texto en un vector de tipo regMedicamento
 vector<regMedicamento> pasarArchivo(const char *dir)
 {
+    // creo un flujo de datos con una nombre (dir)
     ifstream f(dir);
     if (!f)
         cout << "fallo\n";
-	// Declaramos un array con suficiente tamaño para leer las líneas.
+	
+	// Declaramos un array con suficiente tamaño para leer las líneas del archivo
     char cadena[256];
 
+	//variable auxiliar para ir cargando los dato que seran guardado en un vector
 	regMedicamento med;
+	
+	//vector que retornare una vez cargados los datos
 	vector<regMedicamento> medicamentos;
     
     while (!f.eof())
@@ -54,7 +61,10 @@ vector<regMedicamento> pasarArchivo(const char *dir)
 		for (int i = 0; i<256;i++)
 			sd[i] = cadena[i];
 		
+		//arreglo con los elementos que divide la informacion en este caso ;
 		char seps[] = ";\n\t";
+		
+		//elementos en donde guardo la informacion mientras la voy dividiendo
 		char *token0; 
 		char *token1; 
 		char *token2; 
@@ -64,6 +74,7 @@ vector<regMedicamento> pasarArchivo(const char *dir)
 		char *token6; 
 		char *token7; 
 	
+		//divido el reglo por hasta llegar a un null y guardo en el registro
 		token0 = strtok( sd, seps );
 		if (token0 !=NULL){
 			
@@ -102,46 +113,33 @@ vector<regMedicamento> pasarArchivo(const char *dir)
 			token7 = strtok( NULL, seps);	
 			med.precio = atof(token7);
 			printf(" %f\n", med.precio);
+
+			//agrego el registro med en el vector medicamentos
 			medicamentos.push_back(med);
 		}
 	}
     f.close();
 	return medicamentos;    
 }	
-    //paso copia o paso punteros aca?
-/*void guardarArchivo(const char *dir, std::vector<regMedicamento> *medicamentos)
+//paso copia o paso punteros aca?
+void guardarArchivo(const char *pos,vector<regMedicamento> &medicamentos)
 {
-
-	ofstream my(dir,, ios::out | ios::binary);
-	for(int i=0;i<medicamentos->size();i++)
-	{
-		my<<medicamentos[i];
-	}
+	regMedicamento aux;
+	//creo flujo de datos para almacenar en memoria con un nombre especifico
+	ofstream my(pos,ios::out | ios::binary);
+	for(int i=0;i<medicamentos.size();i++)
+		my.write(reinterpret_cast<char *>(&medicamentos[i]), medicamentos.size());
+	
 	my.close();
-}*/
+}
 int main(int argc, char *argv[])
 {
-	//Abrimos el archivo
-    
-    vector<regMedicamento> medicamentos;
+	vector<regMedicamento> medicamentos;
     const char *dir = "./datos_medicamentos.dat";
     medicamentos = pasarArchivo(dir);
-
-	ofstream my("./putoarchivo.flexible", ios::app);
-	for(int i=0;i<medicamentos.size();i++)
-	{
-		my<<medicamentos[i].nro_registro;
-		my<<medicamentos[i].descripcion;
-		my<<medicamentos[i].laboratorio;
-		my<<medicamentos[i].accion_medicamento;
-		my<<medicamentos[i].forma_medicamento;
-		my<<medicamentos[i].tamanio_medicamento;
-		my<<medicamentos[i].via_administracion;
-		my<<medicamentos[i].precio;
-	}
-	my.close();
 	
-	//guardarArchivo(pos,medicamentos);
+	const char *pos = "./unicen.gridfile";
+    guardarArchivo(pos,medicamentos);
 	
 	cout << "Fin parte wrtfix" << endl << endl;
 	Gridfile *g = new Gridfile();
@@ -150,7 +148,6 @@ int main(int argc, char *argv[])
 	cout << endl << "balde unico por ahora:" << endl;
 	cout << "size: " << b->size() << endl;	
 	b->imprimir();
-	
    	return EXIT_SUCCESS;
 }
 
