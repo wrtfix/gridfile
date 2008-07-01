@@ -6,6 +6,7 @@
 #include <string.h>
 
 #include "Balde.h"
+#include "Gridfile.h"
 
 using namespace std;
 
@@ -142,7 +143,13 @@ int main(int argc, char *argv[])
 	
 	//guardarArchivo(pos,medicamentos);
 	
-	
+	cout << "Fin parte wrtfix" << endl << endl;
+	Gridfile *g = new Gridfile();
+	g->add(3,2,2,2);
+	Balde *b = g->get(3,2,2);
+	cout << "balde unico por ahora:" << endl;
+	cout << "size: " << b->size() << endl << endl;
+	b->imprimir();
 		
    	return EXIT_SUCCESS;
 }

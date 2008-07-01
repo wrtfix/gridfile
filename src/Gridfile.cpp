@@ -6,7 +6,7 @@ Gridfile::Gridfile() {
 	for (int i=0;i<MAX_X;i++)
 		for (int j=0;j<MAX_Y;j++)
 			for (int k=0;k<MAX_Z;k++)
-				this->grid[i][j][k];	
+				this->grid[i][j][k] = b;	
 
 }
 
@@ -36,7 +36,11 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
 	int forma2 = (int) forma;
 	int precio2 = (int) precio;
 	
-	Balde b = *(this->get(accion2, forma2, precio2));
-	b.add(valor);
+	cout << "accion2: " << accion2 << endl;
+	cout << "forma2: " << forma2 << endl;
+	cout << "precio2: " << precio2 << endl;
+	
+	Balde *b = this->get(accion2, forma2, precio2);
+	b->add(valor);
 	
 };
