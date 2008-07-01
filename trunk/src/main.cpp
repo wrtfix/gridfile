@@ -112,7 +112,7 @@ int main(int argc, char *argv[])
 
 	Balde b;
 	b.add(4);
-	cout << "get(0): " << b.get(0) << endl;*/
+	cout << "get(0): " << b.get(0) << endl;
 
    	return EXIT_SUCCESS;
 }
