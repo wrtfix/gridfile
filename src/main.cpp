@@ -4,7 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include "Balde.h"
+#include <vector>
+#include "Balde.h"
 
 using namespace std;
 
@@ -46,6 +47,9 @@ int main(int argc, char *argv[])
     // Declaramos un array con suficiente tamaño para leer las líneas.
     char cadena[256];
 
+	regMedicamento med;
+	vector<regMedicamento> medicamentos;
+	
     while (!f.eof())
     {		
 		f.getline(cadena,sizeof(cadena));
@@ -62,8 +66,7 @@ int main(int argc, char *argv[])
 		char *token5; 
 		char *token6; 
 		char *token7; 
-		regMedicamento med;
-
+	
 		token0 = strtok( sd, seps );
 		med.nro_registro = atol(token0);
 		printf( " %li\n", med.nro_registro);
@@ -96,17 +99,20 @@ int main(int argc, char *argv[])
 		med.via_administracion = atoi(token6);
 		printf( " %d\n", med.via_administracion);
 		
+				
 		token7 = strtok( NULL, seps );
-		//med.precio = atof(token7);
-		//printf( " %f\n", med.precio);	
+		med.precio = atof(token7);
+		printf( " %f\n", med.precio);	
+
+		medicamentos.push_back(med);
+		
 	}
     f.close();
 
-/*
 	cout << "puto" << endl;
 	Balde b;
 	b.add(4);
 	cout << "get(0): " << b.get(0) << endl;
-*/
+
    	return EXIT_SUCCESS;
 }
