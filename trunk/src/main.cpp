@@ -77,42 +77,32 @@ vector<regMedicamento> pasarArchivo(const char *dir)
 		//divido el reglo por hasta llegar a un null y guardo en el registro
 		token0 = strtok( sd, seps );
 		if (token0 !=NULL){
-			
 			med.nro_registro = atol(token0);
-			printf( " %li\n", med.nro_registro);
 		
 			token1 = strtok( NULL, seps );
 			for (int i = 0; i<100;i++)
 				med.descripcion[i] = token1[i];
 			
-			printf( " %s\n", med.descripcion);
 				
 			token2 = strtok( NULL, seps );
 			for (int i = 0; i<16;i++)
 				med.laboratorio[i] = token2[i];
-			printf( " %s\n", med.laboratorio);
 			
 			token3 = strtok( NULL, seps );
 			med.accion_medicamento = atoi(token3);		
-			printf( " %i\n", med.accion_medicamento);
 			
 			
 			token4 = strtok( NULL, seps );
 			med.forma_medicamento = atoi(token4);
-			printf( " %i\n", med.forma_medicamento);
 			
 			token5 = strtok( NULL, seps );
 			med.tamanio_medicamento = atoi(token5);
-			printf( " %d\n", med.tamanio_medicamento);
 				
 			token6 = strtok( NULL, seps );
 			med.via_administracion = atoi(token6);
-			printf( " %d\n", med.via_administracion);
-			
 					
 			token7 = strtok( NULL, seps);	
 			med.precio = atof(token7);
-			printf(" %f\n", med.precio);
 
 			//agrego el registro med en el vector medicamentos
 			medicamentos.push_back(med);
