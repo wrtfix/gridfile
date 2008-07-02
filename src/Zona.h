@@ -49,6 +49,7 @@ class Zona
 		Balde* getBalde();
 		void setBalde(Balde*);
 		Zona* dividirX();
+		
 	
 	private:
 		//Desde (x1,y1) hasta (x2,y2)
@@ -61,6 +62,8 @@ class Zona
 		
 		//Balde al que apunta la Zona
 		Balde* balde;
+		
+		void dividirBaldeX(Balde* B,Balde*,short int);		
 };
 
 #endif // ZONA_H
