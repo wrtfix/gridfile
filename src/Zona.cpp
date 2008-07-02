@@ -118,6 +118,13 @@ Zona* Zona::dividirX() {
 //alpha
 void Zona::dividirBaldeX(Balde *b1,Balde *b2,short int valor) {
 	
+	/* 
+	 * Estancados.
+	 * para cada elemento del Balde1, tengo que buscar en el archivo
+	 * y obtener los datos necesarios para hacer la división, no?
+	 * 
+	 */
+	
 }
 
 
