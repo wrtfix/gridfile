@@ -103,19 +103,21 @@ Zona* Zona::dividirX() {
 	Balde *bn = new Balde();
 	
 	//creo una nueva Zona
-	Zona *zn = new Zona(x3,
-							this->get_y1(),
-							this->get_z1(),
-							
-							this->get_x2(),
-							this->get_y2(),
-							this->get_z2());
+	Zona *zn = new Zona(x3,this->get_y1(),this->get_z1(),this->get_x2(),this->get_y2(),this->get_z2());
 	
+	//dividirBaldeX();
 	zn->setBalde(bn);
 	
 	this->set_x2(x3-1);
 	
 	return zn;
+}
+
+//Funcion Privada
+//(todavia no) Mueve los elementos de b1 en b2, respecto a la variable valor
+//alpha
+void Zona::dividirBaldeX(Balde *b1,Balde *b2,short int valor) {
+	
 }
 
 

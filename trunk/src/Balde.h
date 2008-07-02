@@ -19,8 +19,7 @@ class Balde {
 		int get(int);
 		int size();
 		bool full();
-		void imprimir();
-		
+		void imprimir();		
 };
 
 #endif /* BALDE_H_ */
