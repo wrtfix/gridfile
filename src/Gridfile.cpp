@@ -61,4 +61,22 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
 	* else
 	* 	DIVIDIR
 	*/
-};
+}
+
+
+//Funcion Privada
+//Mueve los elementos de b1 en b2, respecto a la variable "accion"
+//alpha
+void Gridfile::divBaldeAccion(Balde *b1,Balde *b2,short int accion) {
+	
+	for(int i=0;i<b1->size();i++)
+	{
+		short int accionb1 = b1->getAccion(i);
+		if (accionb1 > accion) {
+			regBalde reg = b1->getReg(i);
+			b2->add(reg);
+			i--;
+		}
+	}
+	
+}

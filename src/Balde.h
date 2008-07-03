@@ -39,11 +39,11 @@ class Balde {
 		void setPrecio(int, float);
 		void setValor(int,int);
 		
-		int getAccion(int);
-		int getForma(int);
-		int getPrecio(int);
+		short int getAccion(int);
+		short int getForma(int);
+		float getPrecio(int);
 		int getValor(int);
-				
+		
 		void imprimir();
 		
 };

@@ -31,8 +31,6 @@ bool Balde::add(short int accion, short int forma, float precio, int filepos) {
 //Devuelve un registro.
 regBalde Balde::get(int pos) {
 	
-	//vector<regBalde>::iterator it = this->elementos.begin();
-	//it += pos;
 	return this->elementos[pos];
 	
 }
@@ -44,8 +42,6 @@ regBalde Balde::getReg(int pos) {
 	
 	vector<regBalde>::iterator it = this->elementos.begin();
 	it+= pos;
-	/*for (int i=0;i<pos;i++)
-		it++;*/
 	regBalde ret = this->get(pos);
 	this->elementos.erase(it);
 	
@@ -90,18 +86,18 @@ void Balde::setValor(int pos, int valor) {
 }
 
 
-int Balde::getAccion(int pos) {
+short int Balde::getAccion(int pos) {
 	
 	return this->elementos[pos].accion;
 	
 }
 
-int Balde::getForma(int pos) {
+short int Balde::getForma(int pos) {
 	
 	return this->elementos[pos].forma;
 }
 
-int Balde::getPrecio(int pos) {
+float Balde::getPrecio(int pos) {
 	
 	return this->elementos[pos].precio;
 	
