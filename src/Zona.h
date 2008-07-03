@@ -62,7 +62,7 @@ class Zona
 		//Balde al que apunta la Zona
 		Balde* balde;
 		
-		void divBaldeAccion(Balde*,Balde*,short int);		
+		void divBaldeAccion(Balde*,Balde*,short int);	
 };
 
 #endif // ZONA_H

@@ -92,8 +92,11 @@ Zona::~Zona() {
 	
 }
 
-//divide la Zona respecto a la variable X
-//alpha
+/*
+ * divide la Zona respecto a la variable X
+ *  DEPENDE DE DIVIDIR BALDE.
+ * alpha
+ */
 Zona* Zona::divAccion() {
 	int x3 = (this->get_x2() + this->get_x1())/2;
 	
@@ -103,9 +106,9 @@ Zona* Zona::divAccion() {
 	//creo una nueva Zona
 	Zona *zn = new Zona(x3,this->get_y1(),this->get_z1(),this->get_x2(),this->get_y2(),this->get_z2());
 	
+	
 	//dividirBaldeX();
 	zn->setBalde(bn);
-	
 	this->set_x2(x3-1);
 	
 	return zn;
