@@ -49,7 +49,6 @@ regBalde Balde::getReg(int pos) {
 	
 }
 		
-
 int Balde::size() {
 	return this->elementos.size();
 }
@@ -60,7 +59,6 @@ bool Balde::full() {
 	
 }
 	
-
 void Balde::setAccion(int pos, short int accion) {
 	
 	this->elementos[pos].accion = accion;
@@ -85,7 +83,6 @@ void Balde::setValor(int pos, int valor) {
 	
 }
 
-
 short int Balde::getAccion(int pos) {
 	
 	return this->elementos[pos].accion;
@@ -109,12 +106,31 @@ int Balde::getValor(int pos) {
 		
 }
 
+//Mueve los elementos de b1 en b2, respecto a la variable "accion"
+//alpha
+void Balde::divAccion(Balde *destino,short int accion) {
+	
+	for(int i=0;i<this->size();i++)
+	{
+		short int accionb1 = this->getAccion(i);
+		if (accionb1 > accion)
+		{
+			regBalde reg = this->getReg(i);
+			destino->add(reg);
+			i--;
+		}
+	}	
+}
 
 //auxiliar
 void Balde::imprimir() {
 	
-	cout << "size: " << this->size() << endl;
-	for (int i=0;i<this->size();i++)
-		cout << "  valor de balde[" << i << "] = " << this->getValor(i) << endl;	
+	int size = this->size();
+	cout << "size: " << size << endl;
+	if (size == 0)
+		cout << "Balde VACIO" << endl;
+	else
+		for (int i=0;i<size;i++)
+			cout << "balde[" << i << "]: v=" << this->getValor(i) << " a="<< this->getAccion(i) <<endl;	
 
 }
