@@ -48,7 +48,7 @@ class Zona
 	
 		Balde* getBalde();
 		void setBalde(Balde*);
-		Zona* divAccion();		
+		Zona* divAccion();
 	
 	private:
 		//Desde (x1,y1) hasta (x2,y2)
@@ -61,8 +61,6 @@ class Zona
 		
 		//Balde al que apunta la Zona
 		Balde* balde;
-		
-		void divBaldeAccion(Balde*,Balde*,short int);	
 };
 
 #endif // ZONA_H

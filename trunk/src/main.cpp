@@ -137,7 +137,6 @@ void guardarArchivo(const char *pos,vector<regMedicamento> &medicamentos)
 int main(int argc, char *argv[])
 {
 	
-	
 	vector<regMedicamento> medicamentos;
     const char *dir = "./datos_medicamentos.dat";
     medicamentos = pasarArchivo(dir);
@@ -183,7 +182,6 @@ int main(int argc, char *argv[])
 	short int escalaAccion[16] = {0,54,56,57,58,59,60,64,0,0,0,0,0,0,0,0};
 	short int escalaForma[16] = {0,1,2,3,4,5,11,0,0,0,0,0,0,0,0,0};
 	float escalaPrecio[16] = {0.43,9.96,19.97,29.91,39.98,49.91,59.51,69.0,102.36,199.95,269.81,335.38,493.56,590.61,786.5};
-
 	g->guardarEscalas(escalaAccion,escalaForma,escalaPrecio);
 
    	return EXIT_SUCCESS;

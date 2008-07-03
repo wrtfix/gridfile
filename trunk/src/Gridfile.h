@@ -18,6 +18,8 @@ class Gridfile {
 		short int escalaAccion[CAPACIDAD];
 		short int escalaForma[CAPACIDAD];
 		float escalaPrecio[CAPACIDAD];
+		void divBaldeAccion(Balde*,Balde*,short int);
+
 	public:
 		Gridfile();
 		~Gridfile();
