@@ -28,6 +28,9 @@ class Balde {
 		Balde();
 		~Balde();
 		bool add(regBalde);
+		bool add(short int, short int, float, int);
+		regBalde get(int);
+		regBalde getReg(int);
 		int size();
 		bool full();
 		
