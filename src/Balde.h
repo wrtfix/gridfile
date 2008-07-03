@@ -8,37 +8,38 @@
  * Este numero debe ser mayor o igual a 10.
  */
 #define CAPACIDAD_BALDE 25
+typedef	struct regBalde {
+			short int accion;
+			short int forma;
+			float precio;
+			int valor; //posicion en el archivo.
+		};
+
+
 
 using namespace std;
 
 class Balde {
 	private:
-		struct regBalde {
-			short int accion;
-			short int forma;
-			float int precio;
-			int valor; //posicion en el archivo.
-		};
-		
-		//Estaria bueno que este ordenado numero, no?
+		//Estaria bueno que este ordenado por "regBalde.valor", no?
 		vector<regBalde> elementos;
 		
 	public:
 		Balde();
 		~Balde();
-		bool add(int);
+		bool add(regBalde);
 		int size();
 		bool full();
 		
 		void setAccion(int, short int);
 		void setForma(int, short int);
 		void setPrecio(int, float);
-		void setPos(int,int);
+		void setValor(int,int);
 		
 		int getAccion(int);
 		int getForma(int);
 		int getPrecio(int);
-		int getPos(int);
+		int getValor(int);
 				
 		void imprimir();
 		

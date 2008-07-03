@@ -7,7 +7,7 @@ Balde::Balde() {
 Balde::~Balde() {	
 }
 
-bool Balde::add(int a) {
+bool Balde::add(regBalde a) {
 	if (!this->full()) {
 		this->elementos.push_back(a);
 		return true;
@@ -24,32 +24,62 @@ bool Balde::full() {
 	
 	return (this->size() >= CAPACIDAD_BALDE);
 	
-	}
+}
 	
-void setAccion(int valor, short int accion) {
+
+void Balde::setAccion(int pos, short int accion) {
 	
-	this->elementos[valor].accion = accion;
+	this->elementos[pos].accion = accion;
 	
 }
 
-void setForma(int, short int) {
+void Balde::setForma(int pos, short int forma) {
 	
-	this->elementos[valor].forma = forma;
+	this->elementos[pos].forma = forma;
 	
 }
 
-void setPrecio(int, float precio) {
+void Balde::setPrecio(int pos, float precio) {
 	
-	this->elementos[valor].precio 
+	this->elementos[pos].precio = precio;
+	
 }
 
-int getAccion(int);
-int getForma(int);
-int getPrecio(int);	
+void Balde::setValor(int pos, int valor) {
 	
+	this->elementos[pos].valor = valor;
+	
+}
+
+
+int Balde::getAccion(int pos) {
+	
+	return this->elementos[pos].accion;
+	
+}
+
+int Balde::getForma(int pos) {
+	
+	return this->elementos[pos].forma;
+}
+
+int Balde::getPrecio(int pos) {
+	
+	return this->elementos[pos].precio;
+	
+}
+	
+int Balde::getValor(int pos) {
+		
+	return this->elementos[pos].valor;
+		
+}
+
+
+//auxiliar
 void Balde::imprimir() {
 	
 	for (int i=0;i<this->size();i++)
-		cout << "b" << i << ": " << this->get(i) << endl;
+		cout << "b" << i << ": valor: " << this->getValor(i) << endl;	
 
-	}
+}
