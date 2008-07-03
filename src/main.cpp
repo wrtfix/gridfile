@@ -36,7 +36,7 @@ struct regMedicamento
 		//una secuencia de hasta 3 caracteres numéricos, una coma decimal y 2 caracteres numéricos más.
 		float precio;
 };
-
+/*
 regMedicamento obtenerDato(const char *dir, int pos)
 {
 	
@@ -46,7 +46,7 @@ regMedicamento obtenerDato(const char *dir, int pos)
 	fread(aux,sizeof(regMedicamento),1,f);
     return aux;
 }
-
+*/
 //esta funcion debuelbe toda la info de un archivo de texto en un vector de tipo regMedicamento
 vector<regMedicamento> pasarArchivo(const char *dir)
 {
