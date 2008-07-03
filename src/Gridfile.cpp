@@ -42,6 +42,8 @@ void Gridfile::guardarEscalas(short int a[CAPACIDAD],short int f[CAPACIDAD], flo
 //alpha. Todavia no tiene en cuenta Zonas.
 void Gridfile::add(short int accion,short int forma,float precio,int valor){
 	
+
+	regBalde reg;
 	int accion2 = (int) accion;
 	int forma2 = (int) forma;
 	int precio2 = (int) precio;
@@ -52,8 +54,13 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
 
 	Balde *b = this->get(accion2, forma2, precio2);
 	
+	reg.precio = accion;
+	reg.forma = forma;
+	reg.precio = precio;
+	reg.valor = valor;
+
 	if (!b->full())
-		b->add(valor);
+		b->add(reg);
 	/*
 	* else
 	* 	DIVIDIR
