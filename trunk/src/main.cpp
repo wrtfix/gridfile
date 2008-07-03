@@ -36,17 +36,19 @@ struct regMedicamento
 		//una secuencia de hasta 3 caracteres numéricos, una coma decimal y 2 caracteres numéricos más.
 		float precio;
 };
-/*
+
 regMedicamento obtenerDato(const char *dir, int pos)
 {
-	
-  	ifstream in(dir, ios::in | ios::binary);
-	fseek(f,(long int)pos,SEEK_END);
+
+ 	ifstream fentrada(dir, ios::in | ios::binary);
+	fentrada.seekg(pos);
 	regMedicamento aux;
-	fread(aux,sizeof(regMedicamento),1,f);
-    return aux;
+	fentrada.read(reinterpret_cast<char *>(&aux),sizeof(regMedicamento));
+   	fentrada.close();
+	cout << aux.descripcion<<endl;
+	return aux;
 }
-*/
+
 //esta funcion debuelbe toda la info de un archivo de texto en un vector de tipo regMedicamento
 vector<regMedicamento> pasarArchivo(const char *dir)
 {
@@ -134,12 +136,16 @@ void guardarArchivo(const char *pos,vector<regMedicamento> &medicamentos)
 }
 int main(int argc, char *argv[])
 {
+	
+	
 	vector<regMedicamento> medicamentos;
     const char *dir = "./datos_medicamentos.dat";
     medicamentos = pasarArchivo(dir);
 	
 	const char *pos = "./unicen.gridfile";
     guardarArchivo(pos,medicamentos);
+	
+	obtenerDato(pos,100);
 	
 	cout << "Fin parte wrtfix" << endl << endl;
 	Gridfile *g = new Gridfile();
