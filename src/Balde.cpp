@@ -43,12 +43,12 @@ regBalde Balde::get(int pos) {
 regBalde Balde::getReg(int pos) {
 	
 	vector<regBalde>::iterator it = this->elementos.begin();
-	
-	//it+= pos;
-	for (int i=0;i<pos;i++)
-		it++;
+	it+= pos;
+	/*for (int i=0;i<pos;i++)
+		it++;*/
 	regBalde ret = this->get(pos);
 	this->elementos.erase(it);
+	
 	return ret;
 	
 }
@@ -117,7 +117,8 @@ int Balde::getValor(int pos) {
 //auxiliar
 void Balde::imprimir() {
 	
+	cout << "size: " << this->size() << endl;
 	for (int i=0;i<this->size();i++)
-		cout << "valor de balde[" << i << "] = " << this->getValor(i) << endl;	
+		cout << "  valor de balde[" << i << "] = " << this->getValor(i) << endl;	
 
 }
