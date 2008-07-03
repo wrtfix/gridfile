@@ -153,9 +153,6 @@ int main(int argc, char *argv[])
 	g->add(2,2,2,45);
 	Balde *b = g->get(2,2,2);
 	
-	b->imprimir();
-
-	
 	Balde *bb = new Balde();
 	bb->add(2,2,2,12);
 	bb->add(2,2,2,13);
@@ -175,14 +172,13 @@ int main(int argc, char *argv[])
 	bb-> imprimir();
 	
 	regBalde r3 = bb->getReg(posi);
-	cout << "posi = "<< posi << " valor " << r2.valor << endl;
+	cout << "posi = "<< posi << " valor " << r3.valor << endl;
 	bb-> imprimir();
 	
+	posi = 0;
 	regBalde r4 = bb->getReg(posi);
-	cout << "posi = " << posi << " valor " << r2.valor << endl;
+	cout << "posi = " << posi << " valor " << r4.valor << endl;
 	bb-> imprimir();
-	
-	
 	
 	short int escalaAccion[16] = {0,54,56,57,58,59,60,64,0,0,0,0,0,0,0,0};
 	short int escalaForma[16] = {0,1,2,3,4,5,11,0,0,0,0,0,0,0,0,0};
