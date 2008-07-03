@@ -1,8 +1,7 @@
 /*
- *      Zona.h
+ *      Regbalde.cpp
  *      
- *      Copyright 2008 	Jorge Carlos Mendiola <wrtfix@gmail.com> &
- * 						Manuel Alonso <piratAttack@gmail.com>
+ *      Copyright 2008 Manuel Alonso <pirata@ubuntu>
  *      
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -21,48 +20,12 @@
  */
 
 
-#ifndef ZONA_H
-#define ZONA_H
+#include "Regbalde.h"
 
-#include "Balde.h"
 
-class Zona
+RegBalde::RegBalde()
 {
-	public:
-		Zona(int,int,int,int,int,int);
-		~Zona();
-		
-		void set_x1(int);
-		void set_y1(int);
-		void set_z1(int);
-		void set_x2(int);
-		void set_y2(int);
-		void set_z2(int);
-		
-		int get_x1();
-		int get_y1();
-		int get_z1();
-		int get_x2();
-		int get_y2();
-		int get_z2();
 	
-		Balde* getBalde();
-		void setBalde(Balde*);
-		Zona* divAccion();		
-	
-	private:
-		//Desde (x1,y1) hasta (x2,y2)
-		int x1;
-		int y1;
-		int z1;
-		int x2;
-		int y2;
-		int z2;
-		
-		//Balde al que apunta la Zona
-		Balde* balde;
-		
-		void divBaldeAccion(Balde*,Balde*,short int);		
-};
+}
 
-#endif // ZONA_H
+

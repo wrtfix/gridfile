@@ -94,10 +94,8 @@ Zona::~Zona() {
 
 //divide la Zona respecto a la variable X
 //alpha
-Zona* Zona::dividirX() {
+Zona* Zona::divAccion() {
 	int x3 = (this->get_x2() + this->get_x1())/2;
-	//int y = (this->get_y2() + this->get_y1())/2;
-	//int z = (this->get_z2() + this->get_z1())/2;
 	
 	//creo un nuevo Balde
 	Balde *bn = new Balde();
@@ -116,13 +114,14 @@ Zona* Zona::dividirX() {
 //Funcion Privada
 //(todavia no) Mueve los elementos de b1 en b2, respecto a la variable valor
 //alpha
-void Zona::dividirBaldeX(Balde *b1,Balde *b2,short int valor) {
+void Zona::divBaldeAccion(Balde *b1,Balde *b2,short int valor) {
 	
 	/* 
+	 * 
 	 * Estancados.
 	 * para cada elemento del Balde1, tengo que buscar en el archivo
 	 * y obtener los datos necesarios para hacer la división, no?
-	 * 
+	 *  
 	 */
 	
 }
