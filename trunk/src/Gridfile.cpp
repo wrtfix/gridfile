@@ -6,7 +6,7 @@ Gridfile::Gridfile() {
 	for (int i=0;i<CAPACIDAD;i++)
 		for (int j=0;j<CAPACIDAD;j++)
 			for (int k=0;k<CAPACIDAD;k++)
-				this->grid[i][j][k] = b;	
+				this->grid[i][j][k] = b;
 
 }
 
@@ -45,6 +45,8 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
 	
 
 	regBalde reg;
+	
+	//Estos ints hay que calcularlos con los valores de entradas y las escalas.
 	int accion2 = (int) accion;
 	int forma2 = (int) forma;
 	int precio2 = (int) precio;
@@ -60,7 +62,7 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
 		b->add(reg);
 	/*
 	* else
-	* 	DIVIDIR Zona
+	* 	DIVIDIR Zona (primero obtenerla a partir de )
 	* 	DIVIDIR Baldes
 	* 	Dividir punteros del grid
 	*/
@@ -81,4 +83,10 @@ void Gridfile::divBaldeAccion(Balde *b1,Balde *b2,short int accion) {
 			i--;
 		}
 	}	
+}
+
+int Gridfile::getPosAccion(short int accion) {
+	
+	for(int i=0;i<CAPACIDAD && this->escalaAccion[i]<accion;i++)
+	return i;
 }
