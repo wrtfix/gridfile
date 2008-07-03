@@ -36,15 +36,17 @@ struct regMedicamento
 		//una secuencia de hasta 3 caracteres numéricos, una coma decimal y 2 caracteres numéricos más.
 		float precio;
 };
-/*
-regMedicamento obtenerDato(int pos)
-{
-	ifstream f(dir,ios::int | ios::binary);
 
+regMedicamento obtenerDato(const char *dir, int pos)
+{
 	
-    
+  	ifstream in(dir, ios::in | ios::binary);
+	fseek(f,(long int)pos,SEEK_END);
+	regMedicamento aux;
+	fread(aux,sizeof(regMedicamento),1,f);
+    return aux;
 }
-*/
+
 //esta funcion debuelbe toda la info de un archivo de texto en un vector de tipo regMedicamento
 vector<regMedicamento> pasarArchivo(const char *dir)
 {
