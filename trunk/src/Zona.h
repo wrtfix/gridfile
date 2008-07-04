@@ -43,7 +43,7 @@ class Zona
 		int get_y1();
 		int get_z1();
 		int get_x2();
-		int get_y2();
+		int get_y2(); 
 		int get_z2();
 	
 		Balde* getBalde();

@@ -105,10 +105,21 @@ int Gridfile::getPosPrecio(float precio) {
 }
 
 /* A partir de una coordenada, retorna la Zona a la que pertenece.
- *  
- */ 
-Zona* Gridfile::getZona(int, int, int)
+ * alpha 
+ * 
+ * Las variables se llaman (x,y,z) por que son (int,int,int)
+ * 
+ * Las que son (a,f,p) son (short int,short int,float)
+ */  
+Zona* Gridfile::getZona(int x, int y, int z)
 {
-	for(int i=0;i<this->mascara.size();i++)
-		return this->mascara[i];
+	Zona *zonita = this->mascara[3];
+	
+	//bool querida = zonita->pertenece(x,y,z);
+	
+	return zonita;	
+	
+	/*for(int i=0 ; i<this->mascara.size() && !((this->mascara[i])->pertenece(x,y,z)); i++)
+		return this->mascara[i];		
+	*/
 }

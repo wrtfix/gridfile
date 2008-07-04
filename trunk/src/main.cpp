@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "Balde.h"
 #include "Gridfile.h"
 
 using namespace std;

@@ -4,7 +4,6 @@
 #include <iostream>
 #include <vector>
 
-#include "Balde.h"
 #include "Zona.h"
 
 #define CAPACIDAD 16
