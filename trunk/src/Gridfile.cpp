@@ -103,3 +103,12 @@ int Gridfile::getPosPrecio(float precio) {
 	for(int i=0;i<CAPACIDAD && this->escalaPrecio[i]<precio;i++)
 	return i;
 }
+
+/* A partir de una coordenada, retorna la Zona a la que pertenece.
+ *  
+ */ 
+Zona* Gridfile::getZona(int, int, int)
+{
+	for(int i=0;i<this->mascara.size();i++)
+		return this->mascara[i];
+}

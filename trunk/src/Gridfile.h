@@ -14,9 +14,11 @@ using namespace std;
 class Gridfile {
 	private:
 		Balde* grid[CAPACIDAD][CAPACIDAD][CAPACIDAD];
+		
+		//getters & setters? para mascara?
 		vector<Zona*> mascara;
 		
-		/* getter & setters? para las escalas?
+		/* getters & setters? para las escalas?
 		 */ 
 		short int escalaAccion[CAPACIDAD];
 		short int escalaForma[CAPACIDAD];
