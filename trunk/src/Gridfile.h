@@ -31,11 +31,17 @@ class Gridfile {
 		void cargarBIN();	
 		void add(short int,short int,float,int);
 		Balde* get(int,int,int);
+		
 		void addZona(Zona*);
+		
+		// obtengo una zona a partir de una posicion especifica en
 		Zona* getZona(int,int,int);
+
 		int getPosAccion(short int);
 		int getPosForma(short int);
 		int getPosPrecio(float);
+		
+		// para inicializar las escalas
 		void guardarEscalas(short int a[CAPACIDAD],short int f[CAPACIDAD], float p[CAPACIDAD]);
 		
 };
