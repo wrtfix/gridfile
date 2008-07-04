@@ -115,3 +115,21 @@ Zona* Zona::divAccion() {
 
 	return zn;
 }
+
+bool Zona::pertenece(int x,int y,int z) {
+	
+	bool ifx,ify,ifz;
+	
+	ifx = (x + this->get_x1()) < this->get_x2();
+	if (ifx)
+		bool ify = (y + this->get_y1()) < this->get_y2();
+			if (ify)
+				bool ifz = (z + this->get_z1()) < this->get_z2();
+					if (ifz)
+						return true;
+	return false;
+	
+	
+	
+}
+

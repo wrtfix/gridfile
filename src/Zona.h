@@ -49,6 +49,7 @@ class Zona
 		Balde* getBalde();
 		void setBalde(Balde*);
 		Zona* divAccion();
+		bool pertenece(int,int,int);
 	
 	private:
 		//Desde (x1,y1) hasta (x2,y2)
