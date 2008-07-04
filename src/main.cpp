@@ -38,13 +38,12 @@ struct regMedicamento
 
 regMedicamento obtenerDato(const char *dir, int pos)
 {
-
- 	ifstream fentrada(dir, ios::in | ios::binary);
+ 	ifstream fentrada(dir, ios::in|ios::binary);
 	fentrada.seekg(pos);
 	regMedicamento aux;
-	fentrada.read(reinterpret_cast<char *>(&aux),sizeof(regMedicamento));
+	fentrada.read((char*)&aux,sizeof(regMedicamento));
    	fentrada.close();
-	cout << aux.descripcion<<endl;
+	cout << aux.nro_registro << endl;
 	return aux;
 }
 
@@ -73,7 +72,7 @@ vector<regMedicamento> pasarArchivo(const char *dir)
 			sd[i] = cadena[i];
 		
 		//arreglo con los elementos que divide la informacion en este caso ;
-		char seps[] = ";\n\t";
+		char seps[] = ";\'";
 		
 		//elementos en donde guardo la informacion mientras la voy dividiendo
 		char *token0; 
@@ -108,7 +107,7 @@ vector<regMedicamento> pasarArchivo(const char *dir)
 			
 			token5 = strtok( NULL, seps );
 			med.tamanio_medicamento = atoi(token5);
-				
+			
 			token6 = strtok( NULL, seps );
 			med.via_administracion = atoi(token6);
 					
@@ -125,11 +124,10 @@ vector<regMedicamento> pasarArchivo(const char *dir)
 //paso copia o paso punteros aca?
 void guardarArchivo(const char *pos,vector<regMedicamento> &medicamentos)
 {
-	regMedicamento aux;
 	//creo flujo de datos para almacenar en memoria con un nombre especifico
 	ofstream my(pos,ios::out | ios::binary);
 	for(int i=0;i<medicamentos.size();i++)
-		my.write(reinterpret_cast<char *>(&medicamentos[i]), medicamentos.size());
+		my.write((const char*)(&medicamentos[i]), medicamentos.size());
 	
 	my.close();
 }
@@ -143,11 +141,14 @@ int main(int argc, char *argv[])
 	const char *pos = "./unicen.gridfile";
     guardarArchivo(pos,medicamentos);
 	
-	obtenerDato(pos,100);
+	regMedicamento pp;
+	pp = obtenerDato(pos,2);
 	
 	cout << "Fin parte wrtfix" << endl << endl;
 	
 	Gridfile *g = new Gridfile();
+	
+	//accion 2 forma 2 precio 2 
 	g->add(2,2,2,45);
 	Balde *b = g->get(2,2,2);
 	
@@ -185,7 +186,7 @@ int main(int argc, char *argv[])
 	g->guardarEscalas(escalaAccion,escalaForma,escalaPrecio);
 	*/
 	
-	cout << "bb: " << endl;
+/*	cout << "bb: " << endl;
 	bb->imprimir();
 	
 	short int accion;
@@ -197,7 +198,7 @@ int main(int argc, char *argv[])
 	bb->imprimir();
 	cout << "bb2: "	<< endl;
 	bb2->imprimir();
-
+*/
    	return EXIT_SUCCESS;
 }
 
