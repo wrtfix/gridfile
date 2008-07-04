@@ -40,24 +40,25 @@ void Gridfile::guardarEscalas(short int a[CAPACIDAD],short int f[CAPACIDAD], flo
 
 	
 //agrega resultados al grid.
-//alpha. Todavia no tiene en cuenta Zonas.
+//alpha.
 void Gridfile::add(short int accion,short int forma,float precio,int valor){
 	
+	//Obtenemos las posiciones en las respectivas escalas.
+	int a = getPosAccion(accion);
+	int f = getPosForma(forma);
+	int p = getPosPrecio(precio);
 
+	//Obtenemos el Balde donde tengo que agregar el valor.
+	Balde *b = this->get(a,f,p);
+
+	//regBalde a agregar al Balde.
 	regBalde reg;
-	
-	//Estos ints hay que calcularlos con los valores de entradas y las escalas.
-	int accion2 = (int) accion;
-	int forma2 = (int) forma;
-	int precio2 = (int) precio;
-
-	Balde *b = this->get(accion2, forma2, precio2);
-	
 	reg.precio = accion;
 	reg.forma = forma;
 	reg.precio = precio;
 	reg.valor = valor;
 
+	//El Balde está lleno?
 	if (!b->full())
 		b->add(reg);
 	/*
@@ -88,5 +89,17 @@ void Gridfile::divBaldeAccion(Balde *b1,Balde *b2,short int accion) {
 int Gridfile::getPosAccion(short int accion) {
 	
 	for(int i=0;i<CAPACIDAD && this->escalaAccion[i]<accion;i++)
+	return i;
+}
+
+int Gridfile::getPosForma(short int forma) {
+	
+	for(int i=0;i<CAPACIDAD && this->escalaForma[i]<forma;i++)
+	return i;
+}
+
+int Gridfile::getPosPrecio(float precio) {
+	
+	for(int i=0;i<CAPACIDAD && this->escalaPrecio[i]<precio;i++)
 	return i;
 }
