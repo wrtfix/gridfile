@@ -45,6 +45,7 @@ class Gridfile {
 		Zona* getZona(int);
 		
 		void asigBalde(Zona*,Balde*);
+		void imprimir();
 		
 };
 
