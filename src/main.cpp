@@ -158,8 +158,6 @@ int main(int argc, char *argv[])
 	g->guardarEscalas(escalaAccion,escalaForma,escalaPrecio);
 	
 	Zona *zonita0 = new Zona(0,0,0,7,7,15);
-	
-	
 	Zona *zonita1 = new Zona(8,0,0,15,7,15);
 	Zona *zonita2 = new Zona(0,8,0,7,15,15);
 	Zona *zonita3 = new Zona(8,8,0,15,15,15);
@@ -174,7 +172,7 @@ int main(int argc, char *argv[])
 	g->getZona(2)->imprimir();
 	g->getZona(3)->imprimir();
 
-   	system("PAUSE");
+    system("PAUSE");
     return EXIT_SUCCESS;
 }
 

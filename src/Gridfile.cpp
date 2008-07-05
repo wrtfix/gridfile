@@ -80,11 +80,6 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
         //recursion
         this->add(accion,forma,precio,valor);                          
      }
-	 	
-//   DIVIDIR Zona (primero obtenerla a partir de )
-	/* 	DIVIDIR Baldes
-	* 	Dividir punteros del grid
-	*/
 }
 
 
@@ -151,4 +146,16 @@ void Gridfile::asigBalde(Zona *z,Balde *b) {
         for(int j = z->get_y1();j<z->get_y2();j++)
             for(int k = z->get_z1();k<z->get_z2();k++)
                 this->grid[i][j][k];
+}
+
+void Gridfile::imprimir()
+{
+    for (int i=0;i<this->mascara.size();i++)
+    {
+        Zona *zona = this->getZona(i);
+        zona->imprimir();
+        Balde *balde = zona->getBalde();
+        for (int j=0;j<balde->size();j++)
+            balde->imprimir();
+    }
 }
