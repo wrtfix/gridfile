@@ -149,67 +149,31 @@ int main(int argc, char *argv[])
 	Gridfile *g = new Gridfile();
 	
 	//accion 2 forma 2 precio 2 
-	g->add(2,2,2,45);
-	Balde *b = g->get(2,2,2);
-	
-	Balde *bb = new Balde();
-	Balde *bb2 = new Balde();
-	bb->add(20,2,2,12);
-	bb->add(30,2,2,13);
-	bb->add(40,2,2,14);
-	bb->add(50,2,2,15);
-	
-    bb->imprimir();
-	
-	int posi = 3;
-	regBalde r1 = bb->getReg(posi);
-	cout << "posi = "<< posi << " valor " << r1.valor << endl;
-	bb-> imprimir();
-	
-	posi = 1;
-	regBalde r2 = bb->getReg(posi);
-	cout << "posi = "<< posi << " valor " << r2.valor << endl;
-	bb-> imprimir();
-	
-	regBalde r3 = bb->getReg(posi);
-	cout << "posi = "<< posi << " valor " << r3.valor << endl;
-	bb-> imprimir();
-	
-	posi = 0;
-	regBalde r4 = bb->getReg(posi);
-	cout << "posi = " << posi << " valor " << r4.valor << endl;
-	bb-> imprimir();
+	//g->add(2,2,2,45);
+	//Balde *b = g->get(2,2,2);
 	
 	short int escalaAccion[16] = {0,54,56,57,58,59,60,64,0,0,0,0,0,0,0,0};
 	short int escalaForma[16] = {0,1,2,3,4,5,11,0,0,0,0,0,0,0,0,0};
 	float escalaPrecio[16] = {0.0,9.96,19.97,29.91,39.98,49.91,59.51,69.0,102.36,199.95,269.81,335.38,493.56,590.61,786.5};
 	g->guardarEscalas(escalaAccion,escalaForma,escalaPrecio);
 	
+	Zona *zonita0 = new Zona(0,0,0,7,7,15);
 	
-/*	cout << "bb: " << endl;
-	bb->imprimir();
 	
-	short int accion;
-	cout << "ingrese ACCION: ";
-	cin >> accion;
-	bb->divAccion(bb2,accion);
+	Zona *zonita1 = new Zona(8,0,0,15,7,15);
+	Zona *zonita2 = new Zona(0,8,0,7,15,15);
+	Zona *zonita3 = new Zona(8,8,0,15,15,15);
 	
-	cout << "bb: " << endl;
-	bb->imprimir();
-	cout << "bb2: "	<< endl;
-	bb2->imprimir();
-*/
-   	
-   	Zona *zz = new Zona(1,1,1,14,14,14);
-   	cout << "zona: " << endl;
-   	cout << "Desde: " << zz->get_x1() << " " << zz->get_y1() << " " << zz->get_z1() << endl;
-   	cout << "Hasta: " << zz->get_x2() << " " << zz->get_y2() << " " << zz->get_z2() << endl;
-   	
-   	if (zz->pertenece(2,3,4))
-   	   cout << "pertenece" << endl;
-    else
-   	   cout << "NO pertenece" << endl;
-   	
+	g->addZona(zonita0);
+	g->addZona(zonita1);
+	g->addZona(zonita2);	
+	g->addZona(zonita3);
+	
+	g->getZona(0)->imprimir();
+	g->getZona(1)->imprimir();
+	g->getZona(2)->imprimir();
+	g->getZona(3)->imprimir();
+
    	system("PAUSE");
     return EXIT_SUCCESS;
 }

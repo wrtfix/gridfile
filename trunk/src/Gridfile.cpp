@@ -44,12 +44,12 @@ void Gridfile::guardarEscalas(short int a[CAPACIDAD],short int f[CAPACIDAD], flo
 void Gridfile::add(short int accion,short int forma,float precio,int valor){
 	
 	//Obtenemos las posiciones en las respectivas escalas.
-	int a = getPosAccion(accion);
-	int f = getPosForma(forma);
-	int p = getPosPrecio(precio);
+	int x = getPosAccion(accion);
+	int y = getPosForma(forma);
+	int z = getPosPrecio(precio);
 
 	//Obtenemos el Balde donde tengo que agregar el valor.
-	Balde *b = this->get(a,f,p);
+	Balde *b = this->get(x,y,z);
 
 	//regBalde a agregar al Balde.
 	regBalde reg;
@@ -61,10 +61,28 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
 	//El Balde está lleno?
 	if (!b->full())
 		b->add(reg);
-	/*
-	* else
-	* 	DIVIDIR Zona (primero obtenerla a partir de )
-	* 	DIVIDIR Baldes
+	 else
+	 {
+        //obtengo la Zona correspondiente al punto.
+        Zona *original = this->getZona(x,y,z);
+
+        //divido la Zona y obtengo la nueva.
+        Zona *nueva = original->divAccion();
+        
+        //obtengo los Baldes de cada Zona.
+        Balde *origen = original->getBalde();
+        Balde *destino = nueva->getBalde();
+        
+        //divido los elementos del 
+        origen->divAccion(destino,accion);
+        asigBalde(nueva,destino);
+
+        //recursion
+        this->add(accion,forma,precio,valor);                          
+     }
+	 	
+//   DIVIDIR Zona (primero obtenerla a partir de )
+	/* 	DIVIDIR Baldes
 	* 	Dividir punteros del grid
 	*/
 }
@@ -104,22 +122,33 @@ int Gridfile::getPosPrecio(float precio) {
 	return i;
 }
 
+void Gridfile::addZona(Zona* z){
+     
+     this->mascara.push_back(z);
+}
+     
+Zona* Gridfile::getZona(int i) {
+      
+      return this->mascara[i];
+}
+
 /* A partir de una coordenada, retorna la Zona a la que pertenece.
  * alpha 
  * 
  * Las variables se llaman (x,y,z) por que son (int,int,int)
- * 
  * Las que son (a,f,p) son (short int,short int,float)
  */  
 Zona* Gridfile::getZona(int x, int y, int z)
 {
-	Zona *zonita = this->mascara[3];
-	
-	//bool querida = zonita->pertenece(x,y,z);
-	
-	return zonita;	
-	
-	/*for(int i=0 ; i<this->mascara.size() && !((this->mascara[i])->pertenece(x,y,z)); i++)
-		return this->mascara[i];		
-	*/
+	for(int i=0 ; i<this->mascara.size() && !(this->getZona(i)->pertenece(x,y,z)); i++)
+		return this->mascara[i];
+}
+
+//Asigna ese balde a todas las celdas que pertenecen a la Zona.
+void Gridfile::asigBalde(Zona *z,Balde *b) {
+    
+    for(int i = z->get_x1();i<z->get_x2();i++)
+        for(int j = z->get_y1();j<z->get_y2();j++)
+            for(int k = z->get_z1();k<z->get_z2();k++)
+                this->grid[i][j][k];
 }

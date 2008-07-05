@@ -50,6 +50,8 @@ class Zona
 		void setBalde(Balde*);
 		Zona* divAccion();
 		bool pertenece(int,int,int);
+		
+		void imprimir();
 	
 	private:
 		//Desde (x1,y1) hasta (x2,y2)
