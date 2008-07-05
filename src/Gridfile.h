@@ -14,7 +14,6 @@ class Gridfile {
 	private:
 		Balde* grid[CAPACIDAD][CAPACIDAD][CAPACIDAD];
 		
-		//getters & setters? para mascara?
 		vector<Zona*> mascara;
 		
 		/* getters & setters? para las escalas?
@@ -31,9 +30,7 @@ class Gridfile {
 		void cargarBIN();	
 		void add(short int,short int,float,int);
 		Balde* get(int,int,int);
-		
-		void addZona(Zona*);
-		
+				
 		// obtengo una zona a partir de una posicion especifica en
 		Zona* getZona(int,int,int);
 
@@ -42,7 +39,12 @@ class Gridfile {
 		int getPosPrecio(float);
 		
 		// para inicializar las escalas
-		void guardarEscalas(short int a[CAPACIDAD],short int f[CAPACIDAD], float p[CAPACIDAD]);
+		void guardarEscalas(short int a[CAPACIDAD],short int f[CAPACIDAD], float p[CAPACIDAD]);	
+
+		void addZona(Zona*);
+		Zona* getZona(int);
+		
+		void asigBalde(Zona*,Balde*);
 		
 };
 

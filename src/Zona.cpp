@@ -130,3 +130,9 @@ bool Zona::pertenece(int x,int y, int z) {
 	return false;
 }
 
+void Zona::imprimir()
+{
+     cout << "Zona " << endl;
+     cout << " desde: " << x1 << "," << y1 << "," << z1 << endl;
+     cout << " hasta: " << x2 << "," << y2 << "," << z2 << endl;
+}
