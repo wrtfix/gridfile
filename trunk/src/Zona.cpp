@@ -26,8 +26,8 @@
 Zona::Zona(int x1,int y1,int z1, int x2,int y2,int z2) {
 	
 	//desde			//hasta
-	this->set_x1(x1);	this->set_z2(x2);
-	this->set_y1(y1);	this->set_z2(y2);
+	this->set_x1(x1);	this->set_x2(x2);
+	this->set_y1(y1);	this->set_y2(y2);
 	this->set_z1(z1);	this->set_z2(z2);	
 }
 
@@ -118,8 +118,6 @@ Zona* Zona::divAccion() {
 
 bool Zona::pertenece(int x,int y, int z) {
 	
-	return true;
-	/*
 	bool ifx,ify,ifz;
 	 
 	ifx = ((x + this->get_x1()) < this->get_x2());
@@ -130,7 +128,5 @@ bool Zona::pertenece(int x,int y, int z) {
 					if (ifz)
 						return true;
 	return false;
-	*/
-	
 }
 
