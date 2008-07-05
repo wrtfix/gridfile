@@ -137,7 +137,7 @@ void guardarArchivo(const char *pos,vector<regMedicamento> &medicamentos)
 }
 int main(int argc, char *argv[])
 {
-	vector<regMedicamento> medicamentos;
+/*	vector<regMedicamento> medicamentos;
     const char *dir = "C:/gridfile/src/datos_medicamentos.dat";
     medicamentos = pasarArchivo(dir);
 	
@@ -151,7 +151,7 @@ int main(int argc, char *argv[])
     }
 
 	cout << "Fin parte wrtfix" << endl << endl;
-	
+*/	
 	Gridfile *g = new Gridfile();
 /*	
 	//accion 2 forma 2 precio 2 
@@ -169,13 +169,14 @@ int main(int argc, char *argv[])
 	cout << "bb2: "	<< endl;
 	bb2->imprimir();
 */
-	Zona* c = new Zona(0,0,0,5,5,5);
+/*	Zona* c = new Zona(0,0,0,5,5,5);
     if (c->pertenece(6,6,6))
         cout << "pertenence" <<endl;
     else
         cout << "No pertenece"<< endl;
+    */
     
-	Zona *zonita0 = new Zona(8,0,0,15,7,15);
+  	Zona *zonita0 = new Zona(0,0,0,7,7,15);
 	Zona *zonita1 = new Zona(8,0,0,15,7,15);
 	Zona *zonita2 = new Zona(0,8,0,7,15,15);
 	Zona *zonita3 = new Zona(8,8,0,15,15,15);
@@ -185,10 +186,8 @@ int main(int argc, char *argv[])
 	g->addZona(zonita2);	
 	g->addZona(zonita3);
 	
-	g->getZona(0)->imprimir();
-	g->getZona(1)->imprimir();
-	g->getZona(2)->imprimir();
-	g->getZona(3)->imprimir();
+	cout << "gridfile " << endl;
+    g->imprimir();
 
     system("PAUSE");
     return EXIT_SUCCESS;
