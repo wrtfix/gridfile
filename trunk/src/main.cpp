@@ -42,10 +42,12 @@ regMedicamento obtenerDato(const char *dir, long pos)
 {
     FILE *f = fopen(dir,"rb+");
 	regMedicamento aux;
-   	fseek(f, (pos*sizeof(struct regMedicamento)), SEEK_SET);
+   	fseek(f,(long)(pos*sizeof(struct regMedicamento)), SEEK_SET);
     fread(&aux, sizeof(struct regMedicamento), 1, f);
     cout << aux.accion_medicamento << " "<< aux.forma_medicamento << " " << aux.precio << "  "<<aux.laboratorio<< " "<< aux.descripcion <<endl;
+    fclose(f);
     return aux;
+
 }
 
 //esta funcion debuelbe toda la info de un archivo de texto en un vector de tipo regMedicamento
@@ -126,7 +128,10 @@ void guardarArchivo(const char *pos,vector<regMedicamento> &medicamentos)
     FILE *f = fopen(pos,"wb+");
     rewind(f);
 	for(int i=0;i<medicamentos.size();i++)
+	{
+        cout << medicamentos[i].descripcion<<endl;
         fwrite(&medicamentos[i], sizeof(regMedicamento), 1, f);
+    }
     fclose(f);
 
 }
@@ -139,16 +144,16 @@ int main(int argc, char *argv[])
 	const char *pos = "C:/gridfile/src/unicen.gridfile";
     guardarArchivo(pos,medicamentos);
     long i = 0;
-    while(i<499){
+    while(i<1000){
        cout << i << " ";
        	obtenerDato(pos,i);
        	i++;
     }
-/*
+
 	cout << "Fin parte wrtfix" << endl << endl;
 	
 	Gridfile *g = new Gridfile();
-	
+/*	
 	//accion 2 forma 2 precio 2 
 	//g->add(2,2,2,45);
 	//Balde *b = g->get(2,2,2);
@@ -170,6 +175,7 @@ int main(int argc, char *argv[])
     else
         cout << "No pertenece"<< endl;
     
+	Zona *zonita0 = new Zona(8,0,0,15,7,15);
 	Zona *zonita1 = new Zona(8,0,0,15,7,15);
 	Zona *zonita2 = new Zona(0,8,0,7,15,15);
 	Zona *zonita3 = new Zona(8,8,0,15,15,15);
