@@ -36,15 +36,16 @@ struct regMedicamento
 		float precio;
 };
 
-regMedicamento obtenerDato(const char *dir, int pos)
+
+
+regMedicamento obtenerDato(const char *dir, long pos)
 {
- 	ifstream fentrada(dir, ios::in|ios::binary);
-	fentrada.seekg(pos);
+    FILE *f = fopen(dir,"rb+");
 	regMedicamento aux;
-	fentrada.read((char*)&aux,sizeof(regMedicamento));
-   	fentrada.close();
-	cout << aux.nro_registro << endl;
-	return aux;
+   	fseek(f, (pos*sizeof(struct regMedicamento)), SEEK_SET);
+    fread(&aux, sizeof(struct regMedicamento), 1, f);
+    cout << aux.accion_medicamento << " "<< aux.forma_medicamento << " " << aux.precio << "  "<<aux.laboratorio<< " "<< aux.descripcion <<endl;
+    return aux;
 }
 
 //esta funcion debuelbe toda la info de un archivo de texto en un vector de tipo regMedicamento
@@ -90,14 +91,11 @@ vector<regMedicamento> pasarArchivo(const char *dir)
 			med.nro_registro = atol(token0);
 		
 			token1 = strtok( NULL, seps );
-			for (int i = 0; i<100;i++)
-				med.descripcion[i] = token1[i];
-			
-				
+            strcpy(med.descripcion,token1);
+
 			token2 = strtok( NULL, seps );
-			for (int i = 0; i<16;i++)
-				med.laboratorio[i] = token2[i];
-			
+            strcpy(med.laboratorio,token2);
+            
 			token3 = strtok( NULL, seps );
 			med.accion_medicamento = atoi(token3);		
 			
@@ -124,26 +122,29 @@ vector<regMedicamento> pasarArchivo(const char *dir)
 //paso copia o paso punteros aca?
 void guardarArchivo(const char *pos,vector<regMedicamento> &medicamentos)
 {
-	//creo flujo de datos para almacenar en memoria con un nombre especifico
-	ofstream my(pos,ios::out | ios::binary);
-	for(int i=0;i<medicamentos.size();i++)
-		my.write((const char*)(&medicamentos[i]), medicamentos.size());
 	
-	my.close();
+    FILE *f = fopen(pos,"wb+");
+    rewind(f);
+	for(int i=0;i<medicamentos.size();i++)
+        fwrite(&medicamentos[i], sizeof(regMedicamento), 1, f);
+    fclose(f);
+
 }
 int main(int argc, char *argv[])
 {
-	
 	vector<regMedicamento> medicamentos;
-    const char *dir = "./datos_medicamentos.dat";
+    const char *dir = "C:/gridfile/src/datos_medicamentos.dat";
     medicamentos = pasarArchivo(dir);
 	
-	const char *pos = "./unicen.gridfile";
+	const char *pos = "C:/gridfile/src/unicen.gridfile";
     guardarArchivo(pos,medicamentos);
-	
-	regMedicamento pp;
-	pp = obtenerDato(pos,2);
-	
+    long i = 0;
+    while(i<499){
+       cout << i << " ";
+       	obtenerDato(pos,i);
+       	i++;
+    }
+/*
 	cout << "Fin parte wrtfix" << endl << endl;
 	
 	Gridfile *g = new Gridfile();
@@ -158,6 +159,17 @@ int main(int argc, char *argv[])
 	g->guardarEscalas(escalaAccion,escalaForma,escalaPrecio);
 	
 	Zona *zonita0 = new Zona(0,0,0,7,7,15);
+	cout << "bb: " << endl;
+	bb->imprimir();
+	cout << "bb2: "	<< endl;
+	bb2->imprimir();
+*/
+	Zona* c = new Zona(0,0,0,5,5,5);
+    if (c->pertenece(6,6,6))
+        cout << "pertenence" <<endl;
+    else
+        cout << "No pertenece"<< endl;
+    
 	Zona *zonita1 = new Zona(8,0,0,15,7,15);
 	Zona *zonita2 = new Zona(0,8,0,7,15,15);
 	Zona *zonita3 = new Zona(8,8,0,15,15,15);
@@ -175,4 +187,3 @@ int main(int argc, char *argv[])
     system("PAUSE");
     return EXIT_SUCCESS;
 }
-
