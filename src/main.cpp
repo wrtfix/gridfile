@@ -159,7 +159,7 @@ int main(int argc, char *argv[])
 	bb->add(40,2,2,14);
 	bb->add(50,2,2,15);
 	
-	/*bb->imprimir();
+    bb->imprimir();
 	
 	int posi = 3;
 	regBalde r1 = bb->getReg(posi);
@@ -184,7 +184,7 @@ int main(int argc, char *argv[])
 	short int escalaForma[16] = {0,1,2,3,4,5,11,0,0,0,0,0,0,0,0,0};
 	float escalaPrecio[16] = {0.0,9.96,19.97,29.91,39.98,49.91,59.51,69.0,102.36,199.95,269.81,335.38,493.56,590.61,786.5};
 	g->guardarEscalas(escalaAccion,escalaForma,escalaPrecio);
-	*/
+	
 	
 /*	cout << "bb: " << endl;
 	bb->imprimir();
@@ -199,6 +199,18 @@ int main(int argc, char *argv[])
 	cout << "bb2: "	<< endl;
 	bb2->imprimir();
 */
-   	return EXIT_SUCCESS;
+   	
+   	Zona *zz = new Zona(1,1,1,14,14,14);
+   	cout << "zona: " << endl;
+   	cout << "Desde: " << zz->get_x1() << " " << zz->get_y1() << " " << zz->get_z1() << endl;
+   	cout << "Hasta: " << zz->get_x2() << " " << zz->get_y2() << " " << zz->get_z2() << endl;
+   	
+   	if (zz->pertenece(2,3,4))
+   	   cout << "pertenece" << endl;
+    else
+   	   cout << "NO pertenece" << endl;
+   	
+   	system("PAUSE");
+    return EXIT_SUCCESS;
 }
 
