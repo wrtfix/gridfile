@@ -155,7 +155,8 @@ void Gridfile::imprimir()
         Zona *zona = this->getZona(i);
         zona->imprimir();
         Balde *balde = zona->getBalde();
-        for (int j=0;j<balde->size();j++)
-            balde->imprimir();
+        if (balde)
+            for (int j=0;j<balde->size();j++)
+                balde->imprimir();
     }
 }
