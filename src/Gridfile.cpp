@@ -43,6 +43,7 @@ void Gridfile::guardarEscalas(short int a[CAPACIDAD],short int f[CAPACIDAD], flo
 //alpha.
 void Gridfile::add(short int accion,short int forma,float precio,int valor){
 	
+	cout << "add" << endl;
 	//Obtenemos las posiciones en las respectivas escalas.
 	int x = getPosAccion(accion);
 	int y = getPosForma(forma);

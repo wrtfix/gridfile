@@ -137,11 +137,11 @@ void guardarArchivo(const char *pos,vector<regMedicamento> &medicamentos)
 }
 int main(int argc, char *argv[])
 {
-/*	vector<regMedicamento> medicamentos;
-    const char *dir = "C:/gridfile/src/datos_medicamentos.dat";
+	vector<regMedicamento> medicamentos;
+    const char *dir = "C:/Documents and Settings/pirata/Escritorio/gridfile/src/datos_medicamentos.dat";
     medicamentos = pasarArchivo(dir);
 	
-	const char *pos = "C:/gridfile/src/unicen.gridfile";
+	const char *pos = "C:/Documents and Settings/pirata/Escritorio/gridfile/src/unicen.gridfile";
     guardarArchivo(pos,medicamentos);
     long i = 0;
     while(i<1000){
@@ -151,7 +151,7 @@ int main(int argc, char *argv[])
     }
 
 	cout << "Fin parte wrtfix" << endl << endl;
-*/	
+	
 	Gridfile *g = new Gridfile();
 /*	
 	//accion 2 forma 2 precio 2 
@@ -183,9 +183,18 @@ int main(int argc, char *argv[])
 	
 	g->addZona(zonita0);
 	g->addZona(zonita1);
-	g->addZona(zonita2);	
+	g->addZona(zonita2);
 	g->addZona(zonita3);
-	
+
+    while(i<10){
+       cout << i << " ";
+       	regMedicamento reg = obtenerDato(pos,i);
+       	cout << "reg.accion" << reg.accion_medicamento <<endl;
+       	cout << "reg.forma" << reg.forma_medicamento <<endl;
+       	cout << "reg.precio " << reg.precio <<endl;
+       	g->add(reg.accion_medicamento,reg.forma_medicamento,reg.precio,i);
+       	i++;
+    }
 	cout << "gridfile " << endl;
     g->imprimir();
 
