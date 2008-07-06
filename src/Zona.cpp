@@ -21,6 +21,7 @@
  */
 
 #include "Zona.h"
+#include <math.h>
 
 
 Zona::Zona(int x1,int y1,int z1, int x2,int y2,int z2) {
@@ -99,7 +100,7 @@ Zona::~Zona() {
  */
 Zona* Zona::divAccion() {
 	
-	int x3 = (int)(this->get_x2() + this->get_x1())/2;
+	int x3 = ceil((this->get_x2() + this->get_x1())/2);
 		
 	//creo una nueva Zona
 	Zona *zn = new Zona(x3+1,this->get_y1(),this->get_z1(),this->get_x2(),this->get_y2(),this->get_z2());
@@ -120,11 +121,11 @@ bool Zona::pertenece(int x,int y, int z) {
 	
 	bool ifx,ify,ifz;
 	 
-	ifx = ((x + this->get_x1()) < this->get_x2());
+	ifx = ((x + this->get_x1()) <= this->get_x2());
 	if (ifx)
-		ify = ((y + this->get_y1()) < this->get_y2());
+		ify = ((y + this->get_y1()) <= this->get_y2());
 			if (ify)
-				ifz = ((z + this->get_z1()) < this->get_z2());
+				ifz = ((z + this->get_z1()) <= this->get_z2());
 					if (ifz)
 						return true;
 	return false;

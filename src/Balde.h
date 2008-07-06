@@ -8,6 +8,7 @@
  * Este numero debe ser mayor o igual a 10.
  */
 #define CAPACIDAD_BALDE 25
+
 typedef	struct regBalde {
 			short int accion;
 			short int forma;
@@ -44,8 +45,8 @@ class Balde {
 		float getPrecio(int);
 		int getValor(int);
 		void divAccion(Balde*,short int);
+
 		void imprimir();
-		
 };
 
 #endif /* BALDE_H_ */
