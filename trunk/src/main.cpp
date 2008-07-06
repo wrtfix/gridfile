@@ -149,41 +149,58 @@ int main(int argc, char *argv[])
 	
 	Gridfile *g = new Gridfile();
 
-  	Zona *zonita0 = new Zona(0,0,0,3,7,15);
-	Zona *zonita1 = new Zona(4,0,0,15,7,15);
-	Zona *zonita2 = new Zona(0,8,0,3,15,15);
-	Zona *zonita3 = new Zona(4,8,0,15,15,15);
+/*  	Zona *zonita0 = new Zona(0,0,0,7,7,15);
+	Zona *zonita1 = new Zona(8,0,0,15,7,15);
+	Zona *zonita2 = new Zona(0,8,0,7,15,15);
+	Zona *zonita3 = new Zona(8,8,0,15,15,15);
+*/
+
+	Zona *z0 = new Zona(0,0,0,7,7,7);
+	Zona *z1 = new Zona(0,0,8,7,7,15);
+	Zona *z2 = new Zona(8,0,0,15,7,7);
+	Zona *z3 = new Zona(8,0,8,15,7,15);
+	Zona *z4 = new Zona(0,8,0,7,15,7);
+	Zona *z5 = new Zona(0,8,8,7,15,15);			
+	Zona *z6 = new Zona(8,8,0,15,15,7);
+	Zona *z7 = new Zona(8,8,8,15,15,15);
 	
 	Balde* baldex0 = new Balde();
 	Balde* baldex1 = new Balde();
    	Balde* baldex2 = new Balde();
 	Balde* baldex3 = new Balde();
+	Balde* baldex4 = new Balde();
+	Balde* baldex5 = new Balde();
+	Balde* baldex6 = new Balde();
+	Balde* baldex7 = new Balde();
 
-    zonita0->setBalde(baldex0);
-    zonita1->setBalde(baldex1);
-    zonita2->setBalde(baldex2);
-    zonita3->setBalde(baldex3);
-    
-    g->addZona(zonita0);
-	g->addZona(zonita1);
-	g->addZona(zonita2);
-	g->addZona(zonita3);
+    z0->setBalde(baldex0);
+    z1->setBalde(baldex1);
+    z2->setBalde(baldex2);
+    z3->setBalde(baldex3);
+    z4->setBalde(baldex4);
+    z5->setBalde(baldex5);
+    z6->setBalde(baldex6);
+    z7->setBalde(baldex7);
+
+    g->addZona(z0);
+	g->addZona(z1);
+	g->addZona(z2);
+	g->addZona(z3);
+	g->addZona(z4);
+	g->addZona(z5);
+	g->addZona(z6);
+	g->addZona(z7);
 	
-	g->asigBalde(zonita0);
-	g->asigBalde(zonita1);
-	g->asigBalde(zonita2);
-	g->asigBalde(zonita3);
 	
-//	short int escalaAccion[16] = {1,20,30,40,50,60,70,80,90,100,150,250,350,500,600,1000};
 	short int escalaAccion[16] = {1,20,30,40,50,60,70,80,90,100,150,250,350,500,600,1000};
 	short int escalaForma[16] = {55,55,55,55,55,55,55,55,55,55,55,57,59,58,61,65};
 	float escalaPrecio[16] = {0.0,9.96,19.97,29.91,39.98,49.91,59.51,69.0,102.36,199.95,269.81,335.38,493.56,590.61,777};
 
 	g->guardarEscalas(escalaAccion,escalaForma,escalaPrecio);
 
-    while(i<280){
-		cout << i << " ";
+    while(i<1000){
 		regMedicamento reg = obtenerDato(pos,i);
+		cout << i << " ";
 		cout << "a: " << reg.accion_medicamento;
 		cout << "  f: " << reg.forma_medicamento;
 		cout << "  p: " << reg.precio << endl;
