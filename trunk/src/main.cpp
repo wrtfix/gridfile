@@ -56,7 +56,7 @@ vector<regMedicamento> pasarArchivo(const char *dir)
     // creo un flujo de datos con una nombre (dir)
     ifstream f(dir);
     if (!f)
-        cout << "fallo\n";
+        cout << "fallo/n";
 	
 	// Declaramos un array con suficiente tamaño para leer las líneas del archivo
     char cadena[256];
@@ -75,7 +75,7 @@ vector<regMedicamento> pasarArchivo(const char *dir)
 			sd[i] = cadena[i];
 		
 		//arreglo con los elementos que divide la informacion en este caso ;
-		char seps[] = ";\'";
+		char seps[] = ";/'";
 		
 		//elementos en donde guardo la informacion mientras la voy dividiendo
 		char *token0; 
@@ -138,10 +138,10 @@ void guardarArchivo(const char *pos,vector<regMedicamento> &medicamentos)
 int main(int argc, char *argv[])
 {
 	vector<regMedicamento> medicamentos;
-    const char *dir = "C:/Documents and Settings/pirata/Escritorio/gridfile/src/datos_medicamentos.dat";
+    const char *dir = "C:/Users/jorge/Desktop/xjvpdjspfs/src/datos_medicamentos.dat";
     medicamentos = pasarArchivo(dir);
 	
-	const char *pos = "C:/Documents and Settings/pirata/Escritorio/gridfile/src/unicen.gridfile";
+	const char *pos = "C:/Users/jorge/Desktop/xjvpdjspfs/src/unicen.gridfile";
     guardarArchivo(pos,medicamentos);
     long i = 0;
     
@@ -193,8 +193,10 @@ int main(int argc, char *argv[])
 	
 	
 	short int escalaAccion[16] = {1,20,30,40,50,60,70,80,90,100,150,250,350,500,600,1000};
-	short int escalaForma[16] = {55,55,55,55,55,55,55,55,55,55,55,57,59,58,61,65};
-	float escalaPrecio[16] = {0.0,9.96,19.97,29.91,39.98,49.91,59.51,69.0,102.36,199.95,269.81,335.38,493.56,590.61,777};
+	short int escalaForma[8] = {54,56,57,58,59,60,63,64};
+	float escalaPrecio[64]={2.15,2.93,3.8,4.39,5.08,5.75,6.4,6.95,7.19,7.93,8.32,8.74,9.26,9.8,10.07,10.66,11.06,11.53,12.1,12.76,13.15,13.72,14.54,14.9,15.33,15.84,16.55,17.29,18.46,19.21,19.69,20.29,21.22,22.12,22.94,
+    23.83,24.53,25.12,25.6,26.32,27.35,28.7,29.79,30.8,32.19,33.7,35,36,37.9,38.5,42,45,48.14,50.42,52.86,58.15,62.8,71.97,81.58,95.01,117.11,157.25,234.86,999};
+
 
 	g->guardarEscalas(escalaAccion,escalaForma,escalaPrecio);
 

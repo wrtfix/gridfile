@@ -7,47 +7,49 @@
 
 #include "Zona.h"
 
-#define CAPACIDAD 16
+#define ZMAX 64
+#define XMAX 16
+#define YMAX 8
 
 using namespace std;
 
 class Gridfile {
 	private:
-		Balde* grid[CAPACIDAD][CAPACIDAD][CAPACIDAD];
-		
+		Balde* grid[XMAX][YMAX][ZMAX];
+
 		vector<Zona *> mascara;
-		
+
 		/* getters & setters? para las escalas?
-		 */ 
-		short int escalaAccion[CAPACIDAD];
-		short int escalaForma[CAPACIDAD];
-		float escalaPrecio[CAPACIDAD];
+		 */
+		short int escalaAccion[XMAX];
+		short int escalaForma[YMAX];
+		float escalaPrecio[ZMAX];
 
 	public:
 		Gridfile();
 		~Gridfile();
-		void cargarBIN();	
+		void cargarBIN();
 		void add(short int,short int,float,int);
 		Balde* get(int,int,int);
-				
+
 		// obtengo una zona a partir de una posicion especifica en
 		Zona* getZona(int,int,int);
 
 		int getPosAccion(short int);
 		int getPosForma(short int);
 		int getPosPrecio(float);
-		
+
 		short int getAccion(int);
 		float getPrecio(int);
-		
+
 		// para inicializar las escalas
-		void guardarEscalas(short int a[CAPACIDAD],short int f[CAPACIDAD], float p[CAPACIDAD]);	
+		void guardarEscalas(short int a[XMAX],short int f[YMAX], float p[ZMAX]);
 
 		void addZona(Zona*);
 		Zona* getZona(int);
 		void eliminarZona(Zona*);
 		void asigBalde(Zona*);
-		void imprimir();		
+		void imprimir();
 };
 
 #endif /* GRIDFILE_H_ */
