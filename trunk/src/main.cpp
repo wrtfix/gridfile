@@ -184,7 +184,7 @@ int main(int argc, char *argv[])
 	Balde* baldex0 = new Balde();
 	Balde* baldex1 = new Balde();
    	Balde* baldex2 = new Balde();
-	Balde* baldex3 = new Balde();            
+	Balde* baldex3 = new Balde();
 
     zonita0->setBalde(baldex0);
     zonita1->setBalde(baldex1);
@@ -196,27 +196,33 @@ int main(int argc, char *argv[])
 	g->addZona(zonita2);
 	g->addZona(zonita3);
 	
-	g->asigBalde(zonita0);
-	g->asigBalde(zonita1);
-	g->asigBalde(zonita2);
-	g->asigBalde(zonita3);			
-	
-	short int escalaAccion[16] = {0,54,56,57,58,59,60,64,65,66,67,68,69,70,71,72};
-	short int escalaForma[16] = {0,1,2,3,4,5,11,12,13,14,15,16,17,18,19,20};
-	float escalaPrecio[16] = {0.0,9.96,19.97,29.91,39.98,49.91,59.51,69.0,102.36,199.95,269.81,335.38,493.56,590.61,786.5};
+	short int escalaAccion[16] = {0,20,30,40,50,60,70,80,90,100,200,300,500,600,1000};
+	short int escalaForma[16] = {54,54,54,54,54,54,54,54,54,54,54,56,58,59,60,65};
+	float escalaPrecio[CAPACIDAD] = {0.0,9.96,19.97,29.91,39.98,49.91,59.51,69.0,102.36,199.95,269.81,335.38,493.56,590.61,786.5};
 	g->guardarEscalas(escalaAccion,escalaForma,escalaPrecio);
 
-    while(i<26){
-       cout << i << " ";
-       	regMedicamento reg = obtenerDato(pos,i);
-       	cout << "a: " << reg.accion_medicamento;
-       	cout << "  f: " << reg.forma_medicamento;
-       	cout << "  p: " << reg.precio <<endl;
-       	g->add(reg.accion_medicamento,reg.forma_medicamento,reg.precio,i);
-       	i++;
+	Balde *b = g->get(15,15,7);
+	b->imprimir();	
+	
+    while(i<48){
+		cout << i << " ";
+		regMedicamento reg = obtenerDato(pos,i);
+		cout << "a: " << reg.accion_medicamento;
+		cout << "  f: " << reg.forma_medicamento;
+		cout << "  p: " << reg.precio << endl;
+		g->add(reg.accion_medicamento,reg.forma_medicamento,reg.precio,i);
+		i++;
+		
+		cout << "BALDES x ZONA: " << endl;
+		zonita0->getBalde()->imprimir();
+		zonita1->getBalde()->imprimir();
+		zonita2->getBalde()->imprimir();
+		zonita3->getBalde()->imprimir();
+//		system("pause");
     }
     
-	cout << "gridfile " << endl;
+//    system("cls");
+	cout << " G R I D F I L E " << endl;
     g->imprimir();
 
 
