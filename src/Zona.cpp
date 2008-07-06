@@ -103,9 +103,9 @@ Zona* Zona::divAccion() {
 	int x3 = (int) ceil((this->get_x2() + this->get_x1())/2);
 		
 	//creo una nueva Zona
-	Zona *zn = new Zona(x3+1,this->get_y1(),this->get_z1(),this->get_x2(),this->get_y2(),this->get_z2());
+	Zona *zn = new Zona(x3,this->get_y1(),this->get_z1(),this->get_x2(),this->get_y2(),this->get_z2());
 	//this Zona se achica respecto a la variable X (accion)
-	this->set_x2(x3);
+	this->set_x2(x3-1);
 	return zn;
 }
 

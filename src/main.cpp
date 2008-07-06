@@ -172,7 +172,7 @@ int main(int argc, char *argv[])
 	g->asigBalde(zonita0);
 	g->asigBalde(zonita1);
 	g->asigBalde(zonita2);
-	g->asigBalde(zonita3);			
+	g->asigBalde(zonita3);
 	
 	short int escalaAccion[16] = {1,20,30,40,50,60,70,80,90,100,200,300,500,600,1000};
 	short int escalaForma[16] = {55,55,55,55,55,55,55,55,55,55,55,57,59,58,61,65};
@@ -180,7 +180,7 @@ int main(int argc, char *argv[])
 
 	g->guardarEscalas(escalaAccion,escalaForma,escalaPrecio);
 
-    while(i<48){
+    while(i<60){
 		cout << i << " ";
 		regMedicamento reg = obtenerDato(pos,i);
 		cout << "a: " << reg.accion_medicamento;

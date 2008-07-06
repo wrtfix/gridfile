@@ -38,6 +38,8 @@ class Gridfile {
 		int getPosForma(short int);
 		int getPosPrecio(float);
 		
+		short int getAccion(int pos);
+		
 		// para inicializar las escalas
 		void guardarEscalas(short int a[CAPACIDAD],short int f[CAPACIDAD], float p[CAPACIDAD]);	
 
