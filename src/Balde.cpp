@@ -126,8 +126,8 @@ void Balde::divPrecio(Balde *destino,float precio) {
 
 	for(int i=0;i<this->size();i++)
 	{
-		float preciob1 = this->getPrecio(i);
-		if (preciob1 > precio)
+		float miPrecio = this->getPrecio(i);
+		if (miPrecio > precio)
 		{
 			regBalde reg = this->getReg(i);
 			destino->add(reg);

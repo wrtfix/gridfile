@@ -84,7 +84,7 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
         Balde *origen = original->getBalde();
 
 		//divido los elementos del balde
-		short int mitadEscala = getPrecio(zmitad);
+		float mitadEscala = getPrecio(zmitad);
 		
         origen->divPrecio(bn,mitadEscala);
 

@@ -7,7 +7,7 @@
 /* segun la catedra
  * Este numero debe ser mayor o igual a 10.
  */
-#define CAPACIDAD_BALDE 50
+#define CAPACIDAD_BALDE 200
 
 typedef	struct regBalde {
 			short int accion;
