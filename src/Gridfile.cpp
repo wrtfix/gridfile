@@ -76,7 +76,9 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
         
         //divido los elementos del 
         origen->divAccion(destino,accion);
-        asigBalde(nueva,destino);
+        
+		//asigno el nuevo balde a todas las celdas de la Zona.
+		asigBalde(nueva,destino);
 
         //recursion
         this->add(accion,forma,precio,valor);                          
@@ -143,10 +145,10 @@ Zona* Gridfile::getZona(int x, int y, int z)
 //Asigna ese balde a todas las celdas que pertenecen a la Zona.
 void Gridfile::asigBalde(Zona *z,Balde *b) {
     
-    for(int i = z->get_x1();i<z->get_x2();i++)
-        for(int j = z->get_y1();j<z->get_y2();j++)
-            for(int k = z->get_z1();k<z->get_z2();k++)
-                this->grid[i][j][k];
+	for(int i = z->get_x1();i<z->get_x2();i++)
+		for(int j = z->get_y1();j<z->get_y2();j++)
+			for(int k = z->get_z1();k<z->get_z2();k++)
+				this->grid[i][j][k];
 }
 
 void Gridfile::imprimir()
@@ -157,7 +159,6 @@ void Gridfile::imprimir()
         zona->imprimir();
         Balde *balde = zona->getBalde();
         if (balde)
-            for (int j=0;j<balde->size();j++)
-                balde->imprimir();
+            balde->imprimir();
     }
 }
