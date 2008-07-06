@@ -44,7 +44,7 @@ regMedicamento obtenerDato(const char *dir, long pos)
 	regMedicamento aux;
    	fseek(f,(long)(pos*sizeof(struct regMedicamento)), SEEK_SET);
     fread(&aux, sizeof(struct regMedicamento), 1, f);
-    cout << aux.accion_medicamento << " "<< aux.forma_medicamento << " " << aux.precio << "  "<<aux.laboratorio<< " "<< aux.descripcion <<endl;
+    //cout << aux.accion_medicamento << " "<< aux.forma_medicamento << " " << aux.precio << "  "<<aux.laboratorio<< " "<< aux.descripcion <<endl;
     fclose(f);
     return aux;
 
@@ -144,11 +144,11 @@ int main(int argc, char *argv[])
 	const char *pos = "C:/Documents and Settings/pirata/Escritorio/gridfile/src/unicen.gridfile";
     guardarArchivo(pos,medicamentos);
     long i = 0;
-    while(i<1000){
+/*    while(i<1000){
        cout << i << " ";
        	obtenerDato(pos,i);
        	i++;
-    }
+    }*/
 
 	cout << "Fin parte wrtfix" << endl << endl;
 	
@@ -181,7 +181,17 @@ int main(int argc, char *argv[])
 	Zona *zonita2 = new Zona(0,8,0,7,15,15);
 	Zona *zonita3 = new Zona(8,8,0,15,15,15);
 	
-	g->addZona(zonita0);
+	Balde* baldex0 = new Balde();
+	Balde* baldex1 = new Balde();
+   	Balde* baldex2 = new Balde();
+	Balde* baldex3 = new Balde();            
+
+    zonita0->setBalde(baldex0);
+    zonita1->setBalde(baldex1);
+    zonita2->setBalde(baldex2);
+    zonita3->setBalde(baldex3);
+    
+    g->addZona(zonita0);
 	g->addZona(zonita1);
 	g->addZona(zonita2);
 	g->addZona(zonita3);
@@ -189,15 +199,20 @@ int main(int argc, char *argv[])
     while(i<10){
        cout << i << " ";
        	regMedicamento reg = obtenerDato(pos,i);
-       	cout << "reg.accion" << reg.accion_medicamento <<endl;
-       	cout << "reg.forma" << reg.forma_medicamento <<endl;
-       	cout << "reg.precio " << reg.precio <<endl;
+       	cout << "a: " << reg.accion_medicamento;
+       	cout << "  f: " << reg.forma_medicamento;
+       	cout << "  p: " << reg.precio <<endl;
        	g->add(reg.accion_medicamento,reg.forma_medicamento,reg.precio,i);
        	i++;
-    }
+    }    
+   
 	cout << "gridfile " << endl;
     g->imprimir();
 
+/*    
+    cout << "baldes" << endl;
+    zonita0->getBalde()->imprimir();
+*/
     system("PAUSE");
     return EXIT_SUCCESS;
 }
