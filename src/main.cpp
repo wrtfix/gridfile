@@ -138,10 +138,10 @@ void guardarArchivo(const char *pos,vector<regMedicamento> &medicamentos)
 int main(int argc, char *argv[])
 {
 	vector<regMedicamento> medicamentos;
-    const char *dir = "C:/Documents and Settings/pirata/Escritorio/gridfile/src/datos_medicamentos.dat";
+    const char *dir = "C:/Users/jorge/Desktop/new/src/datos_medicamentos.dat";
     medicamentos = pasarArchivo(dir);
 	
-	const char *pos = "C:/Documents and Settings/pirata/Escritorio/gridfile/src/unicen.gridfile";
+	const char *pos = "C:/Users/jorge/Desktop/new/src/unicen.gridfile";
     guardarArchivo(pos,medicamentos);
     long i = 0;
     
@@ -180,7 +180,7 @@ int main(int argc, char *argv[])
 
 	g->guardarEscalas(escalaAccion,escalaForma,escalaPrecio);
 
-    while(i<60){
+    while(i<150){
 		cout << i << " ";
 		regMedicamento reg = obtenerDato(pos,i);
 		cout << "a: " << reg.accion_medicamento;
@@ -189,7 +189,7 @@ int main(int argc, char *argv[])
 		g->add(reg.accion_medicamento,reg.forma_medicamento,reg.precio,i);
 		i++;
     }
-    
+    g->imprimir();
     system("PAUSE");
     return EXIT_SUCCESS;
 }
