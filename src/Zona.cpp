@@ -100,34 +100,21 @@ Zona::~Zona() {
  */
 Zona* Zona::divAccion() {
 	
-	int x3 = ceil((this->get_x2() + this->get_x1())/2);
+	int x3 = (int) ceil((this->get_x2() + this->get_x1())/2);
 		
 	//creo una nueva Zona
 	Zona *zn = new Zona(x3+1,this->get_y1(),this->get_z1(),this->get_x2(),this->get_y2(),this->get_z2());
-	
-	//creo un nuevo Balde
-	Balde *bn = new Balde();
-	
-	//Asigno el nuevo balde a la nueva zona
-	zn->setBalde(bn);
-	
-	//la Zona se achica respecto a la variable X (accion)
+	//this Zona se achica respecto a la variable X (accion)
 	this->set_x2(x3);
-
 	return zn;
 }
 
 bool Zona::pertenece(int x,int y, int z) {
 	
-	bool ifx,ify,ifz;
-	 
-	ifx = ((x + this->get_x1()) <= this->get_x2());
-	if (ifx)
-		ify = ((y + this->get_y1()) <= this->get_y2());
-			if (ify)
-				ifz = ((z + this->get_z1()) <= this->get_z2());
-					if (ifz)
-						return true;
+	if ((this->x1<=x) && (x<=this->x2))
+		if ((this->y1<=y) && (y<=this->y2))
+			if ((this->z1<=z) && (z<=this->z2))
+				return true;
 	return false;
 }
 

@@ -62,43 +62,25 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
 	{
         //obtengo la Zona correspondiente al punto.
         Zona *original = this->getZona(x,y,z);
+        
+		//divido la Zona y obtengo la nueva.
+	    Zona *nueva = original->divAccion();
+	    
+		//creo un nuevo Balde
+		Balde *bn = new Balde();
+		//Asigno el nuevo balde a la nueva zona
+		nueva->setBalde(bn);
 
-        //divido la Zona y obtengo la nueva.
-        Zona *nueva = original->divAccion();
-
-        //eliminar la zona anterior y agregar la dos nuevas;
- 		this->addZona(nueva);
-
-		//obtengo los Baldes de cada Zona.
+		//obtengo el Balde de la Zona original (el que tiene todos los elem)
         Balde *origen = original->getBalde();
-        Balde *destino = nueva->getBalde();
-        
 		//divido los elementos del balde
-        origen->divAccion(destino,accion);
+
+		//no es accion el factor de div.
+        origen->divAccion(bn,accion);
         
-        //recursion
+   	    //recursion
         this->add(accion,forma,precio,valor);
     }
-}
-
-
-//Mueve los elementos de b1 en b2, respecto a la variable "accion"
-//alpha
-void Gridfile::divBaldeAccion(Balde *b1,Balde *b2,short int accion) {
-	
-	for(int i=0;i<b1->size();i++)
-	{
-		short int accionb1 = b1->getAccion(i);
-		if (accionb1 > accion)
-		{
-			cout << "SIZE: " << b1->size() <<endl;
-			regBalde reg = b1->getReg(i);
-			cout << "SIZE: " << b1->size() <<endl;
-			system("pause");
-			b2->add(reg);
-			i--;
-		}
-	}	
 }
 
 void Gridfile::eliminarZona(Zona *z){
@@ -146,11 +128,8 @@ Zona* Gridfile::getZona(int i) {
 Zona* Gridfile::getZona(int x, int y, int z)
 {
 	for(int i=0 ; i<this->mascara.size(); i++)
-	{
-        if (this->getZona(i)->pertenece(x,y,z))
+		if (this->getZona(i)->pertenece(x,y,z))
     		return this->mascara[i];
-		this->mascara[i]->imprimir();
-	}
 	return NULL;
 }
 

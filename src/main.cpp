@@ -189,6 +189,7 @@ int main(int argc, char *argv[])
 		g->add(reg.accion_medicamento,reg.forma_medicamento,reg.precio,i);
 		i++;
     }
+    
     system("PAUSE");
     return EXIT_SUCCESS;
 }
