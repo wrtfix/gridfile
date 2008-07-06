@@ -21,8 +21,6 @@
  */
 
 #include "Zona.h"
-#include <math.h>
-
 
 Zona::Zona(int x1,int y1,int z1, int x2,int y2,int z2) {
 	
@@ -98,16 +96,28 @@ Zona::~Zona() {
  *  DEPENDE DE DIVIDIR BALDE.
  * alpha
  */
-Zona* Zona::divAccion() {
+Zona* Zona::divAccion(int x3) {
 	
-	int x3 = (int) ceil((this->get_x2() + this->get_x1())/2);
-		
 	//creo una nueva Zona
-	Zona *zn = new Zona(x3,this->get_y1(),this->get_z1(),this->get_x2(),this->get_y2(),this->get_z2());
+	Zona *zn = new Zona(x3+1,this->get_y1(),this->get_z1(),this->get_x2(),this->get_y2(),this->get_z2());
+
 	//this Zona se achica respecto a la variable X (accion)
-	this->set_x2(x3-1);
+	this->set_x2(x3);
+
 	return zn;
 }
+
+Zona* Zona::divPrecio(int z3) {
+	
+	//creo una nueva Zona
+	Zona *zn = new Zona(this->get_x1(),this->get_y1(),z3+1,this->get_x2(),this->get_y2(),this->get_z2());
+
+	//this Zona se achica respecto a la variable X (accion)
+	this->set_z2(z3);
+
+	return zn;
+}
+
 
 bool Zona::pertenece(int x,int y, int z) {
 	

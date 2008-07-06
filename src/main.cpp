@@ -138,10 +138,10 @@ void guardarArchivo(const char *pos,vector<regMedicamento> &medicamentos)
 int main(int argc, char *argv[])
 {
 	vector<regMedicamento> medicamentos;
-    const char *dir = "C:/Users/jorge/Desktop/new/src/datos_medicamentos.dat";
+    const char *dir = "C:/Documents and Settings/pirata/Escritorio/gridfile/src/datos_medicamentos.dat";
     medicamentos = pasarArchivo(dir);
 	
-	const char *pos = "C:/Users/jorge/Desktop/new/src/unicen.gridfile";
+	const char *pos = "C:/Documents and Settings/pirata/Escritorio/gridfile/src/unicen.gridfile";
     guardarArchivo(pos,medicamentos);
     long i = 0;
     
@@ -149,10 +149,10 @@ int main(int argc, char *argv[])
 	
 	Gridfile *g = new Gridfile();
 
-  	Zona *zonita0 = new Zona(0,0,0,7,7,15);
-	Zona *zonita1 = new Zona(8,0,0,15,7,15);
-	Zona *zonita2 = new Zona(0,8,0,7,15,15);
-	Zona *zonita3 = new Zona(8,8,0,15,15,15);
+  	Zona *zonita0 = new Zona(0,0,0,3,7,15);
+	Zona *zonita1 = new Zona(4,0,0,15,7,15);
+	Zona *zonita2 = new Zona(0,8,0,3,15,15);
+	Zona *zonita3 = new Zona(4,8,0,15,15,15);
 	
 	Balde* baldex0 = new Balde();
 	Balde* baldex1 = new Balde();
@@ -174,13 +174,14 @@ int main(int argc, char *argv[])
 	g->asigBalde(zonita2);
 	g->asigBalde(zonita3);
 	
-	short int escalaAccion[16] = {1,20,30,40,50,60,70,80,90,100,200,300,500,600,1000};
+//	short int escalaAccion[16] = {1,20,30,40,50,60,70,80,90,100,150,250,350,500,600,1000};
+	short int escalaAccion[16] = {1,20,30,40,50,60,70,80,90,100,150,250,350,500,600,1000};
 	short int escalaForma[16] = {55,55,55,55,55,55,55,55,55,55,55,57,59,58,61,65};
 	float escalaPrecio[16] = {0.0,9.96,19.97,29.91,39.98,49.91,59.51,69.0,102.36,199.95,269.81,335.38,493.56,590.61,777};
 
 	g->guardarEscalas(escalaAccion,escalaForma,escalaPrecio);
 
-    while(i<150){
+    while(i<280){
 		cout << i << " ";
 		regMedicamento reg = obtenerDato(pos,i);
 		cout << "a: " << reg.accion_medicamento;

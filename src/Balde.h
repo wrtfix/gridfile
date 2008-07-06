@@ -45,7 +45,7 @@ class Balde {
 		float getPrecio(int);
 		int getValor(int);
 		void divAccion(Balde*,short int);
-		void divPrecio(Balde*,short int);
+		void divPrecio(Balde*,float);
 		
 		void imprimir();
 };
