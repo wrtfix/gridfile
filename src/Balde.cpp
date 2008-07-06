@@ -115,7 +115,10 @@ void Balde::divAccion(Balde *destino,short int accion) {
 		short int accionb1 = this->getAccion(i);
 		if (accionb1 > accion)
 		{
+			cout << "SIZE: " << destino->size() <<endl;
 			regBalde reg = this->getReg(i);
+			cout << "SIZE: " << destino->size() <<endl;
+			system("pause");
 			destino->add(reg);
 			i--;
 		}
