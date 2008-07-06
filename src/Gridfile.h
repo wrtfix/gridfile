@@ -14,7 +14,7 @@ class Gridfile {
 	private:
 		Balde* grid[CAPACIDAD][CAPACIDAD][CAPACIDAD];
 		
-		vector<Zona*> mascara;
+		vector<Zona *> mascara;
 		
 		/* getters & setters? para las escalas?
 		 */ 
@@ -43,7 +43,7 @@ class Gridfile {
 
 		void addZona(Zona*);
 		Zona* getZona(int);
-		
+		void eliminarZona(Zona*);
 		void asigBalde(Zona*);
 		void imprimir();
 		
