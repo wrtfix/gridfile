@@ -37,9 +37,11 @@ void Gridfile::guardarEscalas(short int a[CAPACIDAD],short int f[CAPACIDAD], flo
 	
 //agrega resultados al grid.
 //alpha.
+
 void Gridfile::add(short int accion,short int forma,float precio,int valor){
 	
 	cout << "add" << endl;
+
 	//Obtenemos las posiciones en las respectivas escalas.
 	int x = this->getPosAccion(accion);
 	int y = this->getPosForma(forma);
@@ -50,22 +52,25 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
 	//Obtenemos el Balde donde tengo que agregar el valor.
 	Balde *b = this->get(x,y,z);
 
-	cout << "#elem balde: " << b->size() << endl;
-	
+
 	b->imprimir();
 	
-	//regBalde a agregar al Balde.
-	regBalde reg;
-	reg.accion = accion;
-	reg.forma = forma;
-	reg.precio = precio;
-	reg.valor = valor;
 
 	//El Balde esta lleno?
 	if (!b->full())
+	{
+    	//regBalde a agregar al Balde.
+    	regBalde reg;
+	    reg.accion = accion;
+    	reg.forma = forma;
+    	reg.precio = precio;
+    	reg.valor = valor;
+    	cout << "Agrego en el balde" << endl;
 		b->add(reg);
+    }
 	else
 	{
+
 		cout << "DIVISION" << endl;
         //obtengo la Zona correspondiente al punto.
         Zona *original = this->getZona(x,y,z);
@@ -77,11 +82,25 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
 
         //divido la Zona y obtengo la nueva.
         Zona *nueva = original->divAccion();
+
+        //eliminar la zona anterior y agregar la dos nuevas;
+        
+
+ 		this->addZona(nueva);
+
+
+    	cout << "Original ";
         this->addZona(nueva);
 		
 		cout << "dsp de div: "<< endl;
 		cout << "original ";
 		original->imprimir();
+
+		cout << "Nueva ";
+		nueva->imprimir();       
+  
+        
+        //obtengo los Baldes de cada Zona.
 		cout << "nueva ";
 		nueva->imprimir();
 		
@@ -96,7 +115,8 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
 
 		cout << "accion: "<< accion << endl;
         cout << "asi queda la cosa: " << endl;
-        //divido los elementos del 
+
+        //divido los elementos del balde
         origen->divAccion(destino,accion);
         
         origen->imprimir();
@@ -105,6 +125,7 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
 		
         //recursion
         this->add(accion,forma,precio,valor);
+        
     }
 }
 
@@ -125,6 +146,10 @@ void Gridfile::divBaldeAccion(Balde *b1,Balde *b2,short int accion) {
 	}	
 }
 
+void Gridfile::eliminarZona(Zona *z){
+
+//  mascara[i]->erase();
+}
 int Gridfile::getPosAccion(short int accion) {
 	
 	int i;
@@ -154,8 +179,7 @@ void Gridfile::addZona(Zona* z){
 }
 
 Zona* Gridfile::getZona(int i) {
-	
-	return this->mascara[i];
+        return this->mascara[i];
 }
 
 /* A partir de una coordenada, retorna la Zona a la que pertenece.
@@ -166,12 +190,15 @@ Zona* Gridfile::getZona(int i) {
  */  
 Zona* Gridfile::getZona(int x, int y, int z)
 {
+	for(int i=0 ; i<this->mascara.size(); i++)
 	cout << " getZona " << endl;
     cout << "x: " << x << " y: " << y <<" z: " << z << endl;
 	for(int i=0 ; i<this->mascara.size(); i++)
 	{
-		if (this->getZona(i)->pertenece(x,y,z))
-		return this->mascara[i];
+		cout << "           getZona " << endl;
+        if (this->getZona(i)->pertenece(x,y,z))
+    		return this->mascara[i];
+		this->mascara[i]->imprimir();
 	}
 	return NULL;
 }
