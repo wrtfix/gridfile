@@ -48,6 +48,7 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
 	//Obtenemos el Balde donde tengo que agregar el valor.
 	Balde *b = this->get(x,y,z);
 	//El Balde esta lleno?
+
 	if (!b->full())
 	{
     	//regBalde a agregar al Balde.
@@ -65,14 +66,24 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
         
 		//divido la Zona y obtengo la nueva.
 	    Zona *nueva = original->divAccion();
-	    
+
 		//creo un nuevo Balde
 		Balde *bn = new Balde();
+
 		//Asigno el nuevo balde a la nueva zona
 		nueva->setBalde(bn);
 
+    	cout << "Original ";
+        this->addZona(nueva);
+		
+       
+        //obtengo los Baldes de cada Zona.
+		cout << "nueva ";
+		nueva->imprimir();
+		
 		//obtengo el Balde de la Zona original (el que tiene todos los elem)
         Balde *origen = original->getBalde();
+        Balde *destino = nueva->getBalde();
 
 		//divido los elementos del balde
 		//no es accion el factor de div.
@@ -80,16 +91,12 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
 		int pos = original->get_x2();
 		short int mitadEscala = getAccion(pos);
         origen->divAccion(bn,mitadEscala);
-        
+
    	    //recursion
         this->add(accion,forma,precio,valor);
     }
 }
 
-void Gridfile::eliminarZona(Zona *z){
-
-//  mascara[i]->erase();
-}
 int Gridfile::getPosAccion(short int accion) {
 	
 	int i;
