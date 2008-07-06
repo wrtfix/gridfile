@@ -73,10 +73,13 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
 
 		//obtengo el Balde de la Zona original (el que tiene todos los elem)
         Balde *origen = original->getBalde();
-		//divido los elementos del balde
 
+		//divido los elementos del balde
 		//no es accion el factor de div.
-        origen->divAccion(bn,accion);
+		
+		int pos = original->get_x2();
+		short int mitadEscala = getAccion(pos);
+        origen->divAccion(bn,mitadEscala);
         
    	    //recursion
         this->add(accion,forma,precio,valor);
@@ -106,6 +109,12 @@ int Gridfile::getPosPrecio(float precio) {
 	int i;
 	for(i=0;i<CAPACIDAD && this->escalaPrecio[i]<precio;i++);
 	return i;
+}
+
+
+short int Gridfile::getAccion(int pos)
+{
+	return escalaAccion[pos];
 }
 
 //Agrega una Zona al Gridfile. Realiza la actualizacion de las celdas abarcadas diche Zona
