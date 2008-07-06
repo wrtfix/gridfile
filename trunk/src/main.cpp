@@ -138,44 +138,17 @@ void guardarArchivo(const char *pos,vector<regMedicamento> &medicamentos)
 int main(int argc, char *argv[])
 {
 	vector<regMedicamento> medicamentos;
-    const char *dir = "C:/Documents and Settings/pirata/Escritorio/gridfile/src/datos_medicamentos.dat";
+    const char *dir = "C:/Documents and Settings/Jorge/Desktop/new/src/datos_medicamentos.dat";
     medicamentos = pasarArchivo(dir);
 	
-	const char *pos = "C:/Documents and Settings/pirata/Escritorio/gridfile/src/unicen.gridfile";
+	const char *pos = "C:/Documents and Settings/Jorge/Desktop/new/src/unicen.gridfile";
     guardarArchivo(pos,medicamentos);
     long i = 0;
-/*    while(i<1000){
-       cout << i << " ";
-       	obtenerDato(pos,i);
-       	i++;
-    }*/
-
+    
 	cout << "Fin parte wrtfix" << endl << endl;
 	
 	Gridfile *g = new Gridfile();
-/*	
-	//accion 2 forma 2 precio 2 
-	//g->add(2,2,2,45);
-	//Balde *b = g->get(2,2,2);
-	
-	short int escalaAccion[16] = {0,54,56,57,58,59,60,64,0,0,0,0,0,0,0,0};
-	short int escalaForma[16] = {0,1,2,3,4,5,11,0,0,0,0,0,0,0,0,0};
-	float escalaPrecio[16] = {0.0,9.96,19.97,29.91,39.98,49.91,59.51,69.0,102.36,199.95,269.81,335.38,493.56,590.61,786.5};
-	g->guardarEscalas(escalaAccion,escalaForma,escalaPrecio);
-	
-	Zona *zonita0 = new Zona(0,0,0,7,7,15);
-	cout << "bb: " << endl;
-	bb->imprimir();
-	cout << "bb2: "	<< endl;
-	bb2->imprimir();
-*/
-/*	Zona* c = new Zona(0,0,0,5,5,5);
-    if (c->pertenece(6,6,6))
-        cout << "pertenence" <<endl;
-    else
-        cout << "No pertenece"<< endl;
-    */
-    
+
   	Zona *zonita0 = new Zona(0,0,0,7,7,15);
 	Zona *zonita1 = new Zona(8,0,0,15,7,15);
 	Zona *zonita2 = new Zona(0,8,0,7,15,15);
@@ -196,14 +169,17 @@ int main(int argc, char *argv[])
 	g->addZona(zonita2);
 	g->addZona(zonita3);
 	
-	short int escalaAccion[16] = {0,20,30,40,50,60,70,80,90,100,200,300,500,600,1000};
-	short int escalaForma[16] = {54,54,54,54,54,54,54,54,54,54,54,56,58,59,60,65};
-	float escalaPrecio[CAPACIDAD] = {0.0,9.96,19.97,29.91,39.98,49.91,59.51,69.0,102.36,199.95,269.81,335.38,493.56,590.61,786.5};
+	g->asigBalde(zonita0);
+	g->asigBalde(zonita1);
+	g->asigBalde(zonita2);
+	g->asigBalde(zonita3);			
+	
+	short int escalaAccion[16] = {1,20,30,40,50,60,70,80,90,100,200,300,500,600,1000};
+	short int escalaForma[16] = {55,55,55,55,55,55,55,55,55,55,55,57,59,58,61,65};
+	float escalaPrecio[16] = {0.0,9.96,19.97,29.91,39.98,49.91,59.51,69.0,102.36,199.95,269.81,335.38,493.56,590.61,777};
+
 	g->guardarEscalas(escalaAccion,escalaForma,escalaPrecio);
 
-	Balde *b = g->get(15,15,7);
-	b->imprimir();	
-	
     while(i<48){
 		cout << i << " ";
 		regMedicamento reg = obtenerDato(pos,i);
@@ -218,13 +194,11 @@ int main(int argc, char *argv[])
 		zonita1->getBalde()->imprimir();
 		zonita2->getBalde()->imprimir();
 		zonita3->getBalde()->imprimir();
-//		system("pause");
     }
     
-//    system("cls");
 	cout << " G R I D F I L E " << endl;
-    g->imprimir();
 
+    g->imprimir();
 
     system("PAUSE");
     return EXIT_SUCCESS;
