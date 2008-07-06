@@ -50,9 +50,11 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
 
 	//Obtenemos el Balde donde tengo que agregar el valor.
 	Balde *b = this->get(x,y,z);
-
-    cout << "x: "<<x << " y: "<<y<<" z: "<< z <<endl;
+    cout << "x: "<< x << " Y: " << y << " z: "<< z <<endl;
+    if (!b)
+    	cout << "balde = NULL" << endl;
 	//El Balde esta lleno?
+
 	if (!b->full())
 	{
     	//regBalde a agregar al Balde.
@@ -99,7 +101,7 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
 int Gridfile::getPosAccion(short int accion) {
 
 	int i;
-	for(i=0;i<XMAX && (this->escalaAccion[i]<accion);i++);
+	for(i=0;i<XMAX-1 && (this->escalaAccion[i]<accion);i++);
     return i;
 
 }
@@ -107,14 +109,14 @@ int Gridfile::getPosAccion(short int accion) {
 int Gridfile::getPosForma(short int forma) {
 
 	int i;
-	for(i=0;i<YMAX && (this->escalaForma[i]<forma);i++);
+	for(i=0;i<YMAX-1 && (this->escalaForma[i]<forma);i++);
     return i;
 }
 
 int Gridfile::getPosPrecio(float precio) {
 
 	int i;
-	for(i=0;i<ZMAX&&(this->escalaPrecio[i]<precio);i++);
+	for(i=0;(i<ZMAX-1)&&(this->escalaPrecio[i]<precio);i++);
    	return i;
 }
 
@@ -156,11 +158,12 @@ Zona* Gridfile::getZona(int x, int y, int z)
 }
 
 //Asigna ese balde a todas las celdas que pertenecen a la Zona.
-void Gridfile::asigBalde(Zona *z) {
-	for(int i = z->get_x1();i<=z->get_x2();i++)
-		for(int j = z->get_y1();j<=z->get_y2();j++)
-			for(int k = z->get_z1();k<=z->get_z2();k++)
-				this->grid[i][j][k] = z->getBalde();
+void Gridfile::asigBalde(Zona *zona) {
+
+	for(int i = zona->get_x1();i<zona->get_x2();i++)
+		for(int j = zona->get_y1();j<zona->get_y2();j++)
+			for(int k = zona->get_z1();k<zona->get_z2();k++)
+				this->grid[i][j][k] = zona->getBalde();
 }
 
 void Gridfile::imprimir()
