@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <math.h>
 
 #include "Zona.h"
 
@@ -21,7 +22,7 @@ class Gridfile {
 		short int escalaAccion[CAPACIDAD];
 		short int escalaForma[CAPACIDAD];
 		float escalaPrecio[CAPACIDAD];
-		
+
 	public:
 		Gridfile();
 		~Gridfile();
@@ -36,7 +37,8 @@ class Gridfile {
 		int getPosForma(short int);
 		int getPosPrecio(float);
 		
-		short int getAccion(int pos);
+		short int getAccion(int);
+		float getPrecio(int);
 		
 		// para inicializar las escalas
 		void guardarEscalas(short int a[CAPACIDAD],short int f[CAPACIDAD], float p[CAPACIDAD]);	

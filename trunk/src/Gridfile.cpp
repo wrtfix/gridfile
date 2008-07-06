@@ -45,8 +45,10 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
 	int y = this->getPosForma(forma);
 	int z = this->getPosPrecio(precio);
 	
+	
 	//Obtenemos el Balde donde tengo que agregar el valor.
 	Balde *b = this->get(x,y,z);
+
 	//El Balde esta lleno?
 
 	if (!b->full())
@@ -63,34 +65,28 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
 	{
         //obtengo la Zona correspondiente al punto.
         Zona *original = this->getZona(x,y,z);
+
+		int zmitad = (int) ceil((original->get_z2() + original->get_z1())/2);
         
 		//divido la Zona y obtengo la nueva.
-	    Zona *nueva = original->divAccion();
+	    Zona *nueva = original->divPrecio(zmitad);
 
 		//creo un nuevo Balde
 		Balde *bn = new Balde();
 
 		//Asigno el nuevo balde a la nueva zona
 		nueva->setBalde(bn);
-
-    	cout << "Original ";
+		
+		//agrego la nueva Zona a la mascara.        
         this->addZona(nueva);
-		
        
-        //obtengo los Baldes de cada Zona.
-		cout << "nueva ";
-		nueva->imprimir();
-		
 		//obtengo el Balde de la Zona original (el que tiene todos los elem)
         Balde *origen = original->getBalde();
-        Balde *destino = nueva->getBalde();
 
 		//divido los elementos del balde
-		//no es accion el factor de div.
+		short int mitadEscala = getPrecio(zmitad);
 		
-		int pos = original->get_x2();
-		short int mitadEscala = getAccion(pos);
-        origen->divAccion(bn,mitadEscala);
+        origen->divPrecio(bn,mitadEscala);
 
    	    //recursion
         this->add(accion,forma,precio,valor);
@@ -123,6 +119,12 @@ short int Gridfile::getAccion(int pos)
 {
 	return escalaAccion[pos];
 }
+
+float Gridfile::getPrecio(int pos)
+{
+	return escalaPrecio[pos];
+}
+
 
 //Agrega una Zona al Gridfile. Realiza la actualizacion de las celdas abarcadas diche Zona
 void Gridfile::addZona(Zona* z){

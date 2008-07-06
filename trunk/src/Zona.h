@@ -48,7 +48,8 @@ class Zona
 	
 		Balde* getBalde();
 		void setBalde(Balde*);
-		Zona* divAccion();
+		Zona* divAccion(int);
+		Zona* divPrecio(int);
 		bool pertenece(int,int,int);
 		
 		void imprimir();
