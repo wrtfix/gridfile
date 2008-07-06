@@ -131,6 +131,6 @@ void Balde::imprimir() {
 		cout << "Balde VACIO" << endl;
 	else
 		for (int i=0;i<size;i++)
-			cout << "balde[" << i << "]: v=" << this->getValor(i) << " a="<< this->getAccion(i) <<endl;	
+			cout << "balde[" << i << "]: v=" << this->getValor(i) << " a="<< this->getAccion(i) << " f=" << this->getForma(i) << " p=" << this->getPrecio(i) <<endl;	
 
 }

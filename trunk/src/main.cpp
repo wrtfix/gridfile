@@ -196,6 +196,11 @@ int main(int argc, char *argv[])
 	g->addZona(zonita2);
 	g->addZona(zonita3);
 
+	g->asigBalde(zonita0);
+	g->asigBalde(zonita1);
+	g->asigBalde(zonita2);
+	g->asigBalde(zonita3);			
+	
     while(i<10){
        cout << i << " ";
        	regMedicamento reg = obtenerDato(pos,i);
@@ -209,10 +214,7 @@ int main(int argc, char *argv[])
 	cout << "gridfile " << endl;
     g->imprimir();
 
-/*    
-    cout << "baldes" << endl;
-    zonita0->getBalde()->imprimir();
-*/
+
     system("PAUSE");
     return EXIT_SUCCESS;
 }

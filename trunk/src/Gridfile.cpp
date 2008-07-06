@@ -54,16 +54,21 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
 
 	//regBalde a agregar al Balde.
 	regBalde reg;
-	reg.precio = accion;
+	reg.accion = accion;
 	reg.forma = forma;
 	reg.precio = precio;
 	reg.valor = valor;
 
-	//El Balde está lleno?
+	//El Balde esta lleno?
 	if (!b->full())
+	{
+		cout << "agrego en el balde" << endl;
 		b->add(reg);
-	 else
-	 {
+		b->imprimir();
+		cout << endl;
+	}
+	else
+	{
         //obtengo la Zona correspondiente al punto.
         Zona *original = this->getZona(x,y,z);
 
@@ -78,11 +83,11 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
         origen->divAccion(destino,accion);
         
 		//asigno el nuevo balde a todas las celdas de la Zona.
-		asigBalde(nueva,destino);
+		asigBalde(nueva);
 
         //recursion
         this->add(accion,forma,precio,valor);                          
-     }
+    }
 }
 
 
@@ -143,12 +148,12 @@ Zona* Gridfile::getZona(int x, int y, int z)
 }
 
 //Asigna ese balde a todas las celdas que pertenecen a la Zona.
-void Gridfile::asigBalde(Zona *z,Balde *b) {
+void Gridfile::asigBalde(Zona *z) {
     
 	for(int i = z->get_x1();i<z->get_x2();i++)
 		for(int j = z->get_y1();j<z->get_y2();j++)
 			for(int k = z->get_z1();k<z->get_z2();k++)
-				this->grid[i][j][k];
+				this->grid[i][j][k] = z->getBalde();
 }
 
 void Gridfile::imprimir()
@@ -160,5 +165,6 @@ void Gridfile::imprimir()
         Balde *balde = zona->getBalde();
         if (balde)
             balde->imprimir();
+        cout << endl;
     }
 }
