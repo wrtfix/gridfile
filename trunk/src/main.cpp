@@ -195,13 +195,18 @@ int main(int argc, char *argv[])
 	g->addZona(zonita1);
 	g->addZona(zonita2);
 	g->addZona(zonita3);
-
+	
 	g->asigBalde(zonita0);
 	g->asigBalde(zonita1);
 	g->asigBalde(zonita2);
 	g->asigBalde(zonita3);			
 	
-    while(i<10){
+	short int escalaAccion[16] = {0,54,56,57,58,59,60,64,65,66,67,68,69,70,71,72};
+	short int escalaForma[16] = {0,1,2,3,4,5,11,12,13,14,15,16,17,18,19,20};
+	float escalaPrecio[16] = {0.0,9.96,19.97,29.91,39.98,49.91,59.51,69.0,102.36,199.95,269.81,335.38,493.56,590.61,786.5};
+	g->guardarEscalas(escalaAccion,escalaForma,escalaPrecio);
+
+    while(i<26){
        cout << i << " ";
        	regMedicamento reg = obtenerDato(pos,i);
        	cout << "a: " << reg.accion_medicamento;
@@ -209,8 +214,8 @@ int main(int argc, char *argv[])
        	cout << "  p: " << reg.precio <<endl;
        	g->add(reg.accion_medicamento,reg.forma_medicamento,reg.precio,i);
        	i++;
-    }    
-   
+    }
+    
 	cout << "gridfile " << endl;
     g->imprimir();
 

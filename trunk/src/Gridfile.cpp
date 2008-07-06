@@ -2,12 +2,11 @@
 
 Gridfile::Gridfile() {
 
-	Balde* b = new Balde;
+	//Balde* b = new Balde;
 	for (int i=0;i<CAPACIDAD;i++)
 		for (int j=0;j<CAPACIDAD;j++)
 			for (int k=0;k<CAPACIDAD;k++)
-				this->grid[i][j][k] = b;
-
+				this->grid[i][j][k] = NULL;
 }
 
 Gridfile::~Gridfile() {
@@ -37,7 +36,6 @@ void Gridfile::guardarEscalas(short int a[CAPACIDAD],short int f[CAPACIDAD], flo
 		this->escalaPrecio[i] = p[i];
 	}
 }
-
 	
 //agrega resultados al grid.
 //alpha.
@@ -45,9 +43,10 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
 	
 	cout << "add" << endl;
 	//Obtenemos las posiciones en las respectivas escalas.
-	int x = getPosAccion(accion);
-	int y = getPosForma(forma);
-	int z = getPosPrecio(precio);
+	int x = this->getPosAccion(accion);
+	int y = this->getPosForma(forma);
+	int z = this->getPosPrecio(precio);
+    cout << "x: " << x << " y: " << y <<" z: " << z << endl;
 
 	//Obtenemos el Balde donde tengo que agregar el valor.
 	Balde *b = this->get(x,y,z);
@@ -69,11 +68,22 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
 	}
 	else
 	{
+		cout << "DIVISION" << endl;
         //obtengo la Zona correspondiente al punto.
         Zona *original = this->getZona(x,y,z);
 
+		this->imprimir();
+
+        original->imprimir();
+
         //divido la Zona y obtengo la nueva.
         Zona *nueva = original->divAccion();
+		
+		cout << "Original ";
+		original->imprimir();
+
+		cout << "Nueva ";
+		nueva->imprimir();       
         
         //obtengo los Baldes de cada Zona.
         Balde *origen = original->getBalde();
@@ -144,7 +154,11 @@ Zona* Gridfile::getZona(int i) {
 Zona* Gridfile::getZona(int x, int y, int z)
 {
 	for(int i=0 ; i<this->mascara.size() && !(this->getZona(i)->pertenece(x,y,z)); i++)
+	{
+		cout << "           getZona " << endl;
+		this->mascara[i]->imprimir();
 		return this->mascara[i];
+	}
 }
 
 //Asigna ese balde a todas las celdas que pertenecen a la Zona.
@@ -160,8 +174,8 @@ void Gridfile::imprimir()
 {
     for (int i=0;i<this->mascara.size();i++)
     {
-        Zona *zona = this->getZona(i);
-        zona->imprimir();
+		Zona *zona = this->getZona(i);
+		zona->imprimir();
         Balde *balde = zona->getBalde();
         if (balde)
             balde->imprimir();
