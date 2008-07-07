@@ -197,8 +197,7 @@ void Menu(){
         cout << endl;
         cout << "----->Consultas<-----"<<endl;
         cout << "5 - Objetener un registro al azar"<<endl;
-        cout << "6 - Acceder a medicamentos a partir de una forma, una accion y un rango de Precios"<<endl;
-        cout << "7 - Acceder a medicamentos a partir de un cierto rango de acciones terapéuticas, y/o formas, y/o precio."<<endl;
+        cout << "6 - Acceder a medicamentos a partir de forma y/o accion y/o precios (rangos y valores exactos)"<<endl;
         cout << endl;
         cout << "9 - Salir"<<endl;
         cin >> op;
@@ -321,23 +320,31 @@ void Menu(){
 			}break;
             case 6:
             {
-                short int f,a;
+                short int a1,a2,f1,f2;
                 float p1, p2;
-                cout << "@  Consulta de elementos  por intervalo de precio y valores de  @"<<endl;
+                cout << "@  Consultas  @"<<endl;
+                cout << " Nota: - para buscar por un velor exacto, ingrese el mismo valor en 'desde' y 'hasta'" << endl;
+                cout << "       - Si no desea utilizar un criterio, ingrese desde=-1 y hasta=-1" << endl << endl;
 
-                cout << "Ingrese accion: ";
-                cin >> a;
+                cout << "Accion: " << endl;
+                cout << "desde: ";
+                cin >> a1;
+                cout << "hasta: ";
+                cin >> a2;
                 
-                cout << "Ingrese forma: ";
-                cin >> f;
+                cout << "Forma: " << endl;
+                cout << "desde: ";
+                cin >> f1;
+                cout << "hasta: ";
+                cin >> f2;
                
-                cout << "Ingrese rango precio: ";
-               	cout << "Desde: ";
+                cout << "Precio: " << endl;
+                cout << "desde: ";
                 cin >> p1;
-                cout << "Hasta: ";
+                cout << "hasta: ";
                 cin >> p2;
                 
-                vector<int> resultado = g->consulta3rangos(a,a,f,f,p1,p2);
+                vector<int> resultado = g->consulta3rangos(a1,a2,f1,f2,p1,p2);
                 regMedicamento aux;
                 
 				for (int i=0;i<resultado.size();i++)
