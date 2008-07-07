@@ -7,7 +7,7 @@
 /* segun la catedra
  * Este numero debe ser mayor o igual a 10.
  */
-#define CAPACIDAD_BALDE 20
+#define CAPACIDAD_BALDE 25
 
 typedef	struct regBalde {
 			short int accion;
@@ -15,8 +15,6 @@ typedef	struct regBalde {
 			float precio;
 			int valor; //posicion en el archivo.
 		};
-
-
 
 using namespace std;
 

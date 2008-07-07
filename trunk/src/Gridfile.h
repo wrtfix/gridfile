@@ -7,9 +7,9 @@
 
 #include "Zona.h"
 
-#define ZMAX 64
 #define XMAX 16
 #define YMAX 8
+#define ZMAX 64
 
 using namespace std;
 

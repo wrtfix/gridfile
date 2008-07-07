@@ -6,6 +6,46 @@ Gridfile::Gridfile() {
 		for (int j=0;j<YMAX;j++)
 			for (int k=0;k<ZMAX;k++)
 				this->grid[i][j][k] = NULL;
+
+	//Zonas iniciales. (2 divisiones por dimension);
+	Zona *z0 = new Zona(0,0,0,7,3,31);
+	Zona *z1 = new Zona(0,0,32,7,3,63);
+	Zona *z2 = new Zona(0,4,0,7,7,31);
+	Zona *z3 = new Zona(0,4,32,7,7,63);
+	Zona *z4 = new Zona(8,0,0,15,3,31);
+	Zona *z5 = new Zona(8,0,32,15,3,63);			
+	Zona *z6 = new Zona(8,4,0,15,7,31);
+	Zona *z7 = new Zona(8,4,32,15,7,63);
+
+	//Baldes iniciales (1 por Zona)	
+	Balde* baldex0 = new Balde();
+	Balde* baldex1 = new Balde();
+   	Balde* baldex2 = new Balde();
+	Balde* baldex3 = new Balde();
+	Balde* baldex4 = new Balde();
+	Balde* baldex5 = new Balde();
+	Balde* baldex6 = new Balde();
+	Balde* baldex7 = new Balde();
+
+	//Asignar baldes a las zonas
+    z0->setBalde(baldex0);
+    z1->setBalde(baldex1);
+    z2->setBalde(baldex2);
+    z3->setBalde(baldex3);
+    z4->setBalde(baldex4);
+    z5->setBalde(baldex5);
+    z6->setBalde(baldex6);
+    z7->setBalde(baldex7);
+
+	//Agregar las Zonas al Gridfile
+    this->addZona(z0);
+	this->addZona(z1);
+	this->addZona(z2);
+	this->addZona(z3);
+	this->addZona(z4);
+	this->addZona(z5);
+	this->addZona(z6);
+	this->addZona(z7);
 }
 
 Gridfile::~Gridfile() {
@@ -31,7 +71,6 @@ void Gridfile::guardarEscalas(short int a[XMAX],short int f[YMAX], float p[ZMAX]
 		this->escalaAccion[i] = a[i];
 	for (int i = 0; i<YMAX;i++)
 		this->escalaForma[i] = f[i];
-
 	for (int i = 0; i<ZMAX;i++)
 		this->escalaPrecio[i] = p[i];
 
@@ -50,9 +89,6 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
 
 	//Obtenemos el Balde donde tengo que agregar el valor.
 	Balde *b = this->get(x,y,z);
-    cout << "x: "<< x << " Y: " << y << " z: "<< z <<endl;
-    if (!b)
-    	cout << "balde = NULL" << endl;
 	//El Balde esta lleno?
 
 	if (!b->full())
@@ -67,8 +103,7 @@ void Gridfile::add(short int accion,short int forma,float precio,int valor){
     }
 	else
 	{
-
-        //obtengo la Zona correspondiente al punto.
+	   //obtengo la Zona correspondiente al punto.
         Zona *original = this->getZona(x,y,z);
 
 		int zmitad = (int) ceil((original->get_z2() + original->get_z1())/2);
@@ -160,9 +195,9 @@ Zona* Gridfile::getZona(int x, int y, int z)
 //Asigna ese balde a todas las celdas que pertenecen a la Zona.
 void Gridfile::asigBalde(Zona *zona) {
 
-	for(int i = zona->get_x1();i<zona->get_x2();i++)
-		for(int j = zona->get_y1();j<zona->get_y2();j++)
-			for(int k = zona->get_z1();k<zona->get_z2();k++)
+	for(int i = zona->get_x1();i<=zona->get_x2();i++)
+		for(int j = zona->get_y1();j<=zona->get_y2();j++)
+			for(int k = zona->get_z1();k<=zona->get_z2();k++)
 				this->grid[i][j][k] = zona->getBalde();
 }
 
@@ -170,6 +205,7 @@ void Gridfile::imprimir()
 {
     for (int i=0;i<this->mascara.size();i++)
     {
+		cout << "Z: "<< i << " "; 
 		Zona *zona = this->getZona(i);
 		zona->imprimir();
         Balde *balde = zona->getBalde();
