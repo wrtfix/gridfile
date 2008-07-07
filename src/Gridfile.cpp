@@ -201,6 +201,99 @@ void Gridfile::asigBalde(Zona *zona) {
 				this->grid[i][j][k] = zona->getBalde();
 }
 
+vector<int> Gridfile::consulta3rangos(short int a1, short int a2, short int f1, short int f2, float p1,float p2)
+{
+		vector<int> ret;
+		int x1,x2,y1,y2,z1,z2;
+
+		if (a1 == -1)
+			x1 = 0;
+		else
+			x1 = this->getPosAccion(a1);
+		
+		if (a2 == -1)
+			x2 = XMAX-1;
+		else
+		    x2 = this->getPosAccion(a2);
+		
+		if (f1 == -1)
+			y1 = 0;
+		else
+			y1 = this->getPosForma(f1);
+			
+		if (f2 == -1)
+			y2 = YMAX-1;
+		else
+		    y2 = this->getPosForma(f2);
+		
+		if (p1 == -1)
+			z1 = 0;
+		else
+			z1 = this->getPosPrecio(p1);
+			
+		if (p2 == -1)
+			z2 = ZMAX-1;
+		else
+			z2 = this->getPosPrecio(p2);
+
+        set<Balde*> conjunto;
+
+		for(int i=x1; i<=x2 ;i++)
+			for(int j = y1; j<=y2 ;j++)
+				for(int k = z1; k<=z2 ;k++)
+					conjunto.insert(this->get(i,j,k));
+		
+		set<Balde *>::iterator it = conjunto.begin();
+		set<Balde *>::iterator it2 = conjunto.end();
+
+		//Quito de los baldes los elementos que no corresponden
+		while (it != it2)
+        {
+			for(int i=0; i<(*it)->size();i++)
+				if(a1==-1 || (((*it)->getAccion(i) >= a1) && ((*it)->getAccion(i) <= a2)))
+					if(f1==-1 || (((*it)->getForma(i) >= f1) && ((*it)->getForma(i) <= f2)))
+						if(p1==-1 || (((*it)->getPrecio(i) >= p1) && ((*it)->getPrecio(i) <= p2)))
+							ret.push_back((*it)->getValor(i));
+			it++;
+		}
+		return ret;
+
+}
+
+vector<int> Gridfile::consultaPrecio(float p1,float p2)
+{
+		vector<int> ret;
+		int z1,z2;
+		z1 = this->getPosPrecio(p1);
+		z2 = this->getPosPrecio(p2);
+
+        set<Balde*> conjunto;
+
+		for(int i=0; i<XMAX ;i++)
+			for(int j = 0; j<YMAX ;j++)
+				for(int k = z1; k<=z2 ;k++)
+					conjunto.insert(this->get(i,j,k));
+		
+		set<Balde *>::iterator it = conjunto.begin();
+		set<Balde *>::iterator it2 = conjunto.end();
+
+		//Quito de los baldes los elementos que no corresponden
+		while (it != it2)
+        {
+			for(int i=0; i<(*it)->size();i++)
+				if(((*it)->getPrecio(i) >= p1) && ((*it)->getPrecio(i) <= p2))
+					ret.push_back((*it)->getValor(i));
+			it++;
+		}
+		return ret;
+	
+}
+
+vector<int> Gridfile::consultaAccForma(short int,short int,short int,short int)
+{
+	
+}
+
 void Gridfile::imprimir()
 {
     for (int i=0;i<this->mascara.size();i++)
