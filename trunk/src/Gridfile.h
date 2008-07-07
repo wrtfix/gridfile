@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <math.h>
+#include <set>
 
 #include "Zona.h"
 
@@ -50,6 +51,13 @@ class Gridfile {
 		Zona* getZona(int);
 		void eliminarZona(Zona*);
 		void asigBalde(Zona*);
+		
+		vector<int> consulta3rangos(short int,short int,short int,short int,float,float);
+
+		vector<int> consultaPrecio(float,float);
+
+		vector<int> consultaAccForma(short int,short int,short int,short int);
+		
 		void imprimir();
 
 };
