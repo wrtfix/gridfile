@@ -70,20 +70,6 @@ struct regMedicamento
 		float precio;
 };
 
-regMedicamento obtenerDato(const char *dir, int pos)
-{
- 	ifstream fentrada(dir, ios::in|ios::binary);
-	regMedicamento aux;
-	//fentrada.seekg((pos)*sizeof(regMedicamento),ios::beg);	
-	for (int i = 0; i<100; i++)
-	{
-		fentrada.read((char*)&aux,sizeof(regMedicamento));
-   		cout << aux.descripcion<<endl;
-   	}
-   	fentrada.close();
-	return aux;
-}
-
 //esta funcion debuelbe toda la info de un archivo de texto en un vector de tipo regMedicamento
 vector<regMedicamento> pasarArchivo(const char *dir)
 {
@@ -109,8 +95,8 @@ vector<regMedicamento> pasarArchivo(const char *dir)
 			sd[i] = cadena[i];
 
 		//arreglo con los elementos que divide la informacion en este caso ;
-		char seps[] = ";";
-		
+		char seps[] = ";/'";
+
 		//elementos en donde guardo la informacion mientras la voy dividiendo
 		char *token0;
 		char *token1;
@@ -157,41 +143,19 @@ vector<regMedicamento> pasarArchivo(const char *dir)
 	return medicamentos;
 }
 
->>>>>>> .r132
 void guardarArchivo(const char *pos,vector<regMedicamento> &medicamentos)
 {
-<<<<<<< .mine
-	//creo flujo de datos para almacenar en memoria con un nombre especifico
-	int cont = 0;
-	ofstream my(pos,ios::out|ios::binary);
-	for(int i = 0;i<1000;i++)
-	{
-		cout << medicamentos[i].descripcion<<endl;
-		cout << i<<endl;
-	}	
-=======
 
     FILE *f = fopen(pos,"wb+");
     rewind(f);
->>>>>>> .r132
 	for(int i=0;i<medicamentos.size();i++)
-<<<<<<< .mine
-		my.write(regMedicamento(&medicamentos[i]), medicamentos.size());
-	my.close();
-=======
         fwrite(&medicamentos[i], sizeof(regMedicamento), 1, f);
 
     fclose(f);
 
->>>>>>> .r132
 }
-<<<<<<< .mine
-
-int main(int argc, char *argv[])
-=======
 
 regMedicamento obtenerDato(const char *dir, long pos)
->>>>>>> .r132
 {
     FILE *f = fopen(dir,"rb+");
 	regMedicamento aux;
@@ -206,73 +170,6 @@ void cargarBinarios()
     // Paso los archivos de texto a un vector
 
 	vector<regMedicamento> medicamentos;
-<<<<<<< .mine
-    const char *dir = "./datos_medicamentos.dat";
-    medicamentos = pasarArchivo(dir);
-	
-	const char *pos = "./unicen.gridfile";
-    guardarArchivo(pos,medicamentos);
-	//for (int i  =0; i<1000;i++)
-	obtenerDato(pos,0);
-	
-	cout << "Fin parte wrtfix" << endl << endl;
-	
-	Gridfile *g = new Gridfile();
-	
-	//accion 2 forma 2 precio 2 
-	g->add(2,2,2,45);
-	Balde *b = g->get(2,2,2);
-	
-	Balde *bb = new Balde();
-	Balde *bb2 = new Balde();
-	bb->add(20,2,2,12);
-	bb->add(30,2,2,13);
-	bb->add(40,2,2,14);
-	bb->add(50,2,2,15);
-	
-	/*bb->imprimir();
-	
-	int posi = 3;
-	regBalde r1 = bb->getReg(posi);
-	cout << "posi = "<< posi << " valor " << r1.valor << endl;
-	bb-> imprimir();
-	
-	posi = 1;
-	regBalde r2 = bb->getReg(posi);
-	cout << "posi = "<< posi << " valor " << r2.valor << endl;
-	bb-> imprimir();
-	
-	regBalde r3 = bb->getReg(posi);
-	cout << "posi = "<< posi << " valor " << r3.valor << endl;
-	bb-> imprimir();
-	
-	posi = 0;
-	regBalde r4 = bb->getReg(posi);
-	cout << "posi = " << posi << " valor " << r4.valor << endl;
-	bb-> imprimir();
-	bb-> imprimir();
-	
-	short int escalaAccion[16] = {0,54,56,57,58,59,60,64,0,0,0,0,0,0,0,0};
-	short int escalaForma[16] = {0,1,2,3,4,5,11,0,0,0,0,0,0,0,0,0};
-	float escalaPrecio[16] = {0.0,9.96,19.97,29.91,39.98,49.91,59.51,69.0,102.36,199.95,269.81,335.38,493.56,590.61,786.5};
-	g->guardarEscalas(escalaAccion,escalaForma,escalaPrecio);
-	*/
-	
-/*	cout << "bb: " << endl;
-	bb->imprimir();
-	
-	short int accion;
-	cout << "ingrese ACCION: ";
-	cin >> accion;
-	bb->divAccion(bb2,accion);
-	
-	cout << "bb: " << endl;
-	bb->imprimir();
-	cout << "bb2: "	<< endl;
-	bb2->imprimir();
-*/
-   	return EXIT_SUCCESS;
-=======
     medicamentos = pasarArchivo(datos_medicamentos);
 
 	vector<regMedicamento> medicamentos1;
@@ -288,7 +185,6 @@ void cargarBinarios()
     guardarArchivo(bin_altas,medicamentos1);
 
     guardarArchivo(bin_bajas,medicamentos2);
->>>>>>> .r132
 }
 
 void imprimirReg(regMedicamento r)
