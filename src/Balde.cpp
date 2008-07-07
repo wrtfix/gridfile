@@ -1,3 +1,26 @@
+/*
+ *      Balde.cpp
+ *
+ *      Copyright 2008 	Jorge Carlos Mendiola <wrtfix@gmail.com> &
+ * 						Manuel Alonso <manuel.alonso.d@gmail.com>
+ *
+ *
+ * Este programa es de libre distribución; puedes distribuirlo y/o modificarlo
+ * bajo los términos de la GNU General Public License como se publicó por la
+ * Free Software Foundation; bien la versión 2 de la licencia o,  bajo tu
+ * criterio, cualquier versión posterior.
+ *
+ * Este programa se distribuye con la esperanza de que sea útil, pero
+ * SIN NINGUNA GARANTÏA; sin, incluso, ninguna garantía implicada por
+ * MERCANCIBILIDAD o POR ALGÜN PROPÓSITO PARTICULAR. Lee la
+ * GNU General Public License para más información.
+ *
+ * Deberías haber recibido una copia de la GNU General Public License
+ * junto con este programa. Si no es así escribe a Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ */
+
 #include "Balde.h"
 
 Balde::Balde() {
