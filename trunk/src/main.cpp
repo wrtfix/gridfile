@@ -10,13 +10,13 @@
 using namespace std;
 
 //archivos
-const char *datos_medicamentos = "C:/Documents and Settings/pirata/Escritorio/gridfile/src/datos_medicamentos.dat";
-const char *datos_altas = "C:/Documents and Settings/pirata/Escritorio/gridfile/src/altas_medicamentos.dat";
-const char *datos_bajas = "C:/Documents and Settings/pirata/Escritorio/gridfile/src/bajas_medicamentos.dat";
+const char *datos_medicamentos = "C:/Users/jorge/Desktop/Patas/src/datos_medicamentos.dat";
+const char *datos_altas = "C:/Users/jorge/Desktop/Patas/src/altas_medicamentos.dat";
+const char *datos_bajas = "C:/Users/jorge/Desktop/Patas/src/bajas_medicamentos.dat";
 
-const char *bin_medicamentos = "C:/Documents and Settings/pirata/Escritorio/gridfile/src/datos_medicamentos.gridfile";
-const char *bin_altas = "C:/Documents and Settings/pirata/Escritorio/gridfile/src/altas_medicamentos.gridfile";
-const char *bin_bajas = "C:/Documents and Settings/pirata/Escritorio/gridfile/src/bajas_medicamentos.gridfile";
+const char *bin_medicamentos = "C:/Users/jorge/Desktop/Patas/src/datos_medicamentos.gridfile";
+const char *bin_altas = "C:/Users/jorge/Desktop/Patas/src/altas_medicamentos.gridfile";
+const char *bin_bajas = "C:/Users/jorge/Desktop/Patas/src/bajas_medicamentos.gridfile";
 
 struct regMedicamento
 {
@@ -226,14 +226,15 @@ void Menu(){
                 	i++;
                 }
                 cout << "La estructura fue construida con exito"<<endl;
-                g->imprimir();
                 system("Pause");
                 
             }break;
 
             case 3:
             {
+
                 FILE *f = fopen(bin_medicamentos,"ab+");
+
                 fseek(f, 0L, SEEK_END);
                 long int final = ftell(f)/sizeof(regMedicamento);
 
@@ -246,7 +247,13 @@ void Menu(){
                 while(i<final2)
                 {
                 	regMedicamento reg = obtenerDato(bin_altas,i);
-                	g->add(reg.accion_medicamento,reg.forma_medicamento,reg.precio,final+i);
+                    cout << "Balde Antes"<<endl;
+                	Balde *b = g->getOriginal(reg.accion_medicamento,reg.forma_medicamento,reg.precio);
+                	b->imprimir();
+                    g->add(reg.accion_medicamento,reg.forma_medicamento,reg.precio,final+i);
+                    cout << "Balde Despues"<<endl;
+                	b->imprimir();
+                    system("pause");
                     fwrite(&reg, sizeof(regMedicamento), 1, f);
                 	i++;
                 }
@@ -263,7 +270,7 @@ void Menu(){
                 long int final = ftell(f)/sizeof(regMedicamento);
                 int i = 0;
 
-                FILE *f2 = fopen(bin_medicamentos,"wb+");
+                FILE *f2 = fopen(bin_medicamentos,"rb+");
 
                 int x,y,z;
                 while(i<final)
@@ -280,9 +287,7 @@ void Menu(){
                     {
                         if (b->getAccion(cont) == reg.accion_medicamento && b->getForma(cont) == reg.forma_medicamento && b->getPrecio(cont)==reg.precio)
                         {
-							cout << "antes: " << b->size() <<endl;
                             posArch = b->getReg(cont).valor;
-							cout << "dsp: " << b->size() <<endl;
                             aux = obtenerDato(bin_medicamentos,posArch);
                             aux.borrado = 1;
                            	fseek(f2,(long)(posArch*sizeof(struct regMedicamento)), SEEK_SET);
@@ -292,11 +297,12 @@ void Menu(){
                     }
                     i++;
                 }
-                const char *dir2 = "C:/Documents and Settings/pirata/Escritorio/gridfile/src/datos_medicamentos2.gridfile";
+
+                const char *dir2 = "C:/Users/jorge/Desktop/Patas/src/datos_medicamentos2.gridfile";
                 FILE *f3 = fopen(dir2,"wb+");
                 regMedicamento rrr;
-                //creo un archivo nuevo y paso todos los elementos exepto los que esten marcados con 1
 
+                //creo un archivo nuevo y paso todos los elementos exepto los que esten marcados con 1
                 rewind(f2);
                 while(!feof(f2)){
                     fread(&rrr, sizeof(struct regMedicamento), 1, f2);

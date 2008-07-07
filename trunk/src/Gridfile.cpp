@@ -52,6 +52,8 @@ Gridfile::~Gridfile() {
 	// TODO Auto-generated destructor stub
 }
 
+
+
 void Gridfile::cargarBIN(){
 	//for cada reg del archivo.
 	//this.add();
@@ -63,6 +65,11 @@ void Gridfile::cargarBIN(){
 Balde* Gridfile::get(int x,int y,int z){
 
 	return this->grid[x][y][z];
+}
+
+
+Balde* Gridfile::getOriginal(short int a, short int f, float p){
+    return (this->get(this->getPosAccion(a),this->getPosForma(f),this->getPosPrecio(p)));
 }
 
 

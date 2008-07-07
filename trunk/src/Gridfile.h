@@ -21,8 +21,6 @@ class Gridfile {
 
 		vector<Zona *> mascara;
 
-		/* getters & setters? para las escalas?
-		 */
 		short int escalaAccion[XMAX];
 		short int escalaForma[YMAX];
 		float escalaPrecio[ZMAX];
@@ -33,13 +31,15 @@ class Gridfile {
 		void cargarBIN();
 		void add(short int,short int,float,int);
 		Balde* get(int,int,int);
-
+        
 		// obtengo una zona a partir de una posicion especifica en
 		Zona* getZona(int,int,int);
 
 		int getPosAccion(short int);
 		int getPosForma(short int);
 		int getPosPrecio(float);
+
+        Balde *getOriginal(short int, short int, float);
 
 		short int getAccion(int);
 		float getPrecio(int);
