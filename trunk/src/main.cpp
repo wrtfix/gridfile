@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <set.h>
+#include <set>
 #include "Gridfile.h"
 #include "Balde.h"
 
@@ -12,6 +12,7 @@ using namespace std;
 
 struct regMedicamento
 {
+        int borrado;
 		//una secuencia de hasta 8 caracteres numéricos. (0 a 99999999)
 		long int nro_registro;
 
@@ -101,6 +102,7 @@ vector<regMedicamento> pasarArchivo(const char *dir)
 			token7 = strtok( NULL, seps);
 			med.precio = atof(token7);
 
+            med.borrado = 0;
 			//agrego el registro med en el vector medicamentos
 			medicamentos.push_back(med);
 		}
@@ -204,16 +206,20 @@ void Menu(){
             case 2:
             {
             	const char *pos = "C:/Users/jorge/Desktop/Patas/src/datos_medicamentos.gridfile";
+                FILE *f = fopen(pos,"ab+");
+                fseek(f, 0L, SEEK_END);
+                long int final = ftell(f)/sizeof(regMedicamento);
     
                  // Levanta los elementos que apunta pos
                 int i = 0;
-                while(i<1000)
+                while(i<final)
                 {
                 	regMedicamento reg = obtenerDato(pos,i);
                 	g->add(reg.accion_medicamento,reg.forma_medicamento,reg.precio,i);
                 	i++;
                 }
                 cout << "La estrucutura fue construida con exito"<<endl;
+                g->imprimir();
                 system("Pause");
             }break;
 
@@ -222,20 +228,81 @@ void Menu(){
                 //aca que onda lo guardo en el archivo de dato_medicamentos??? sino como accedo a los valores?
             	const char *pos = "C:/Users/jorge/Desktop/Patas/src/altas_medicamentos.gridfile";
 
+               	const char *dir = "C:/Users/jorge/Desktop/Patas/src/datos_medicamentos.gridfile";
+                FILE *f = fopen(dir,"ab+");
+                fseek(f, 0L, SEEK_END);
+                long int final = ftell(f)/sizeof(regMedicamento);
+
+                FILE *f2 = fopen(pos,"rb+");
+                fseek(f2, 0L, SEEK_END);
+                long int final2 = ftell(f2)/sizeof(regMedicamento);
+                fclose(f2);
+                
                 int i = 0;
-                while(i<8)
+                while(i<final2)
                 {
                 	regMedicamento reg = obtenerDato(pos,i);
-                	g->add(reg.accion_medicamento,reg.forma_medicamento,reg.precio,i);
+                	g->add(reg.accion_medicamento,reg.forma_medicamento,reg.precio,final+i);
+                    fwrite(&reg, sizeof(regMedicamento), 1, f);
                 	i++;
                 }
                 cout << "La carga culmino con exito"<<endl;
+                fclose(f);
                 system("Pause");
+            
             }break;
             case 4:
             {
                 cout << "Aca es la baja de elementos archivos"<<endl;
+            	const char *pos = "C:/Users/jorge/Desktop/Patas/src/altas_medicamentos.gridfile";
+
+                FILE *f = fopen(pos,"rb+");
+                fseek(f, 0L, SEEK_END);
+                long int final = ftell(f)/sizeof(regMedicamento);
+                int i = 0;
+
+               	const char *dir = "C:/Users/jorge/Desktop/Patas/src/datos_medicamentos.gridfile";
+                FILE *f2 = fopen(dir,"wb+");
+
+                int x,y,z;
+                while(i<final)
+                {
+                    regMedicamento reg = obtenerDato(pos,i);
+                    x = g->getPosAccion(reg.accion_medicamento);
+                    y = g->getPosForma(reg.forma_medicamento);
+                    z = g->getPosPrecio(reg.precio);
+                    int cont = 0;
+                    Balde *b = g->get(x,y,z);
+                    long posArch;
+                    regMedicamento aux;
+                    while(cont <b->size())
+                    {
+                        if (b->getAccion(cont) == reg.accion_medicamento && b->getForma(cont) == reg.forma_medicamento && b->getPrecio(cont)==reg.precio)
+                        {
+                            posArch = b->getReg(cont).valor;
+                            aux = obtenerDato(dir,posArch);
+                            aux.borrado = 1;
+                           	fseek(f2,(long)(posArch*sizeof(struct regMedicamento)), SEEK_SET);
+                   	        fwrite(&aux, sizeof(regMedicamento), 1, f2);
+                        }
+                        cont++;
+                    }
+                    i++;
+                }
+                const char *dir2 = "C:/Users/jorge/Desktop/Patas/src/datos_medicamentos2.gridfile";
+                FILE *f3 = fopen(dir2,"wb+");
+                regMedicamento rrr;
+                //creo un archivo nuevo y paso todos los elementos exepto los que esten marcados con 1
+
+                rewind(f2);
+                while(!feof(f2)){
+                    fread(&rrr, sizeof(struct regMedicamento), 1, f2);
+                    if (rrr.borrado == 0)
+                        fwrite(&rrr, sizeof(regMedicamento), 1, f3);
+                }
+
             }break;
+            
             case 6:
             {
                 const char *pos = "C:/Users/jorge/Desktop/Patas/src/datos_medicamentos.gridfile";
@@ -283,145 +350,10 @@ void Menu(){
 
                 system("pause");
 
-            }
+            }break;
             case 7:
             {
-                cout << ":: Consulta y/o :: "<<endl;
-                short int f1,f2,a1,a2;
-                int p1,p2,p3;
-
-                cout << "Acceder a forma por:"<<endl;
-                cout << "1 - Valor"<< endl;
-                cout << "2 - Rango"<< endl;
-                cout << "3 - No deseo acceder por forma"<<endl;
-                cin >> p1;
-                
-                if (p1 <3)
-                {
-                    if (p1 == 1)
-                    {
-                        cout << "Ingrese valor"<<endl;
-                        cin >> f1;
-                        f2 = f1;
-                    }
-                    else
-                    {
-                        cout << "Desde: ";
-                        cin >> f1;
-                        cout << "Hasta: ";
-                        cin >> f2;
-                    }
-                }
-                else
-                    f1 = f2 = 64;
-                
-                cout << "Acceder a Accion por:"<<endl;
-                cout << "1 - Valor"<< endl;
-                cout << "2 - Rango"<< endl;
-                cout << "3 - No deseo acceder por forma"<<endl;
-                cin >> p2;
-
-                if (p2 <3)
-                {
-                    if (p2 == 1)
-                    {
-                        cout << "Ingrese valor"<<endl;
-                        cin >> a1;
-                        a2 = a1;
-                    }
-                    else
-                    {
-                        cout << "Desde: ";
-                        cin >> a1;
-                        cout << "Hasta: ";
-                        cin >> a2;
-                    }
-                }
-                else
-                    a2 = a1 = 1000;
-                
-                cout << "Acceder a Precio por:"<<endl;
-                cout << "1 - Valor"<< endl;
-                cout << "2 - Rango"<< endl;
-                cout << "3 - No deseo acceder por forma"<<endl;
-                cin >> p3;
-                float g1,g2;
-
-                if (p3 <3)
-                {
-                    if (p3 == 1)
-                    {
-                        cout << "Ingrese valor"<<endl;
-                        cin >> g1;
-                        g2 = g1;
-                    }
-                    else
-                    {
-                        cout << "Desde: ";
-                        cin >> g1;
-                        cout << "Hasta: ";
-                        cin >> g2;
-                    }
-                }
-                else
-                    g2 = g1 = 999;
-                    
-                int x1,y1,z1,x2,y2,z2;
-                set<Balde *> conjunto;
-
-                if (p1 == 3)
-                {
-                    if (p2 == 3)
-                    {
-                        if(p3 < 3)
-                        {
-                            x1 = g->getPosAccion(a1);
-                            y1 = g->getPosForma(f1);
-                            z1 = g->getPosPrecio(g1);
-                            z2 = g->getPosPrecio(g2);
-                            for(int i = z1;i<z2;i++)
-                                conjunto.insert(g->get(x1,y1,i));
-                        } 
-                    }
-                    else
-                    {
-                        x1 = g->getPosAccion(a1);
-                        y1 = g->getPosForma(f1);
-                        y2 = g->getPosForma(f2);
-                        z1 = g->getPosPrecio(g1);
-                        for(int i = x1; i<x2;i++)
-                            conjunto.insert(g->get(x1,i,z1));
-                    }
-                }
-                else
-                {
-                    x1 = g->getPosAccion(a1);
-                    x2 = g->getPosAccion(a2);
-                    y1 = g->getPosForma(f1);
-                    z1 = g->getPosPrecio(g1);
-                    for(int i = x1; i<x2;i++)
-                        conjunto.insert(g->get(i,y1,z1));
-                }         
-                
-            const char *pos = "C:/Users/jorge/Desktop/Patas/src/datos_medicamentos.gridfile";
-            set<Balde *>::iterator it = conjunto.begin();
-            set<Balde *>::iterator it2 = conjunto.end();
-            regMedicamento aux;
-
-            while (it != it2)
-            {
-                for(int i = 0; i<(*it)->size();i++)
-                {
-                    if(((*it)->getPrecio(i) > g1 && (*it)->getPrecio(i) < g2) ||((*it)->getAccion(i)>a1 && (*it)->getAccion(i)<a2) || ((*it)->getForma(i)>f1 && (*it)->getForma(i)<f2))
-                    {
-                        aux = obtenerDato(pos,(*it)->getValor(i));
-                        cout << aux.descripcion  << " " << aux.precio <<endl;
-                    }
-                }
-                it++;
-            }
-
-            system("pause");
+             
             }break;
 
             case 9:
