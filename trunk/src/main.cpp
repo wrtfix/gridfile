@@ -34,13 +34,13 @@
 using namespace std;
 
 //archivos
-const char *datos_medicamentos = "C:/Users/jorge/Desktop/Patas/src/datos_medicamentos.dat";
-const char *datos_altas = "C:/Users/jorge/Desktop/Patas/src/altas_medicamentos.dat";
-const char *datos_bajas = "C:/Users/jorge/Desktop/Patas/src/bajas_medicamentos.dat";
+const char *datos_medicamentos = "C:/grupo21/scr/datos_medicamentos.dat";
+const char *datos_altas = "C:/grupo21/scr/altas_medicamentos.dat";
+const char *datos_bajas = "C:/grupo21/scr/src/bajas_medicamentos.dat";
 
-const char *bin_medicamentos = "C:/Users/jorge/Desktop/Patas/src/datos_medicamentos.gridfile";
-const char *bin_altas = "C:/Users/jorge/Desktop/Patas/src/altas_medicamentos.gridfile";
-const char *bin_bajas = "C:/Users/jorge/Desktop/Patas/src/bajas_medicamentos.gridfile";
+const char *bin_medicamentos = "C:/grupo21/scr/datos_medicamentos.gridfile";
+const char *bin_altas = "C:/grupo21/scr/altas_medicamentos.gridfile";
+const char *bin_bajas = "C:/grupo21/scr/src/bajas_medicamentos.gridfile";
 
 struct regMedicamento
 {
@@ -193,14 +193,16 @@ void imprimirReg(regMedicamento r)
 	cout << r.nro_registro <<" Med: " << r.descripcion  << " Lab:" << r.laboratorio << endl;
 	cout << " Acc:" << r.accion_medicamento << " Forma:" << r.forma_medicamento << " tam:" << r.tamanio_medicamento << " viaAd:" << r.via_administracion << " $" << r.precio << endl;
 }
-void Menu(){
+
+int main(int argc, char *argv[])
+{
     int op = 0;
     //Armo la escala para el gridfile
     short int escalaAccion[16] = {1,20,30,40,50,60,70,80,90,100,150,250,350,500,600,1000};
     short int escalaForma[8] = {54,56,57,58,59,60,63,64};
     float escalaPrecio[64]={2.15,2.93,3.8,4.39,5.08,5.75,6.4,6.95,7.19,7.93,8.32,8.74,9.26,9.8,10.07,10.66,11.06,11.53,12.1,12.76,13.15,13.72,14.54,14.9,15.33,15.84,16.55,17.29,18.46,19.21,19.69,20.29,21.22,22.12,22.94,
     23.83,24.53,25.12,25.6,26.32,27.35,28.7,29.79,30.8,32.19,33.7,35,36,37.9,38.5,42,45,48.14,50.42,52.86,58.15,62.8,71.97,81.58,95.01,117.11,157.25,234.86,999};
-    
+
     Gridfile *g = new Gridfile();
 
     g->guardarEscalas(escalaAccion,escalaForma,escalaPrecio);
@@ -233,14 +235,14 @@ void Menu(){
                 cargarBinarios();
                 cout << "Los archivos se pasaron a binario"<<endl;
                 system("Pause");
-                
+
             }break;
             case 2:
             {
                 FILE *f = fopen(bin_medicamentos,"ab+");
                 fseek(f, 0L, SEEK_END);
                 long int final = ftell(f)/sizeof(regMedicamento);
-    
+
                  // Levanta los elementos que apunta pos
                 int i = 0;
                 while(i<final)
@@ -251,7 +253,7 @@ void Menu(){
                 }
                 cout << "La estructura fue construida con exito"<<endl;
                 system("Pause");
-                
+
             }break;
 
             case 3:
@@ -266,7 +268,7 @@ void Menu(){
                 fseek(f2, 0L, SEEK_END);
                 long int final2 = ftell(f2)/sizeof(regMedicamento);
                 fclose(f2);
-                
+
                 int i = 0;
                 while(i<final2)
                 {
@@ -322,7 +324,7 @@ void Menu(){
                     i++;
                 }
 
-                const char *dir2 = "C:/Users/jorge/Desktop/Patas/src/datos_medicamentos2.gridfile";
+                const char *dir2 = "C:/grupo21/scr/datos_medicamentos2.gridfile";
                 FILE *f3 = fopen(dir2,"wb+");
                 regMedicamento rrr;
 
@@ -353,7 +355,7 @@ void Menu(){
                     nroreg++;
                 }
 				system("pause");
-				
+
 			}break;
             case 6:
             {
@@ -368,29 +370,29 @@ void Menu(){
                 cin >> a1;
                 cout << "hasta: ";
                 cin >> a2;
-                
+
                 cout << "Forma: " << endl;
                 cout << "desde: ";
                 cin >> f1;
                 cout << "hasta: ";
                 cin >> f2;
-               
+
                 cout << "Precio: " << endl;
                 cout << "desde: ";
                 cin >> p1;
                 cout << "hasta: ";
                 cin >> p2;
-                
+
                 vector<int> resultado = g->consulta3rangos(a1,a2,f1,f2,p1,p2);
                 regMedicamento aux;
-                
+
 				for (int i=0;i<resultado.size();i++)
                 {
                 	aux = obtenerDato(bin_medicamentos,resultado[i]);
                 	imprimirReg(aux);
                 }
                 cout << endl <<resultado.size() << " registros retornados" << endl;
-                system("pause");                
+                system("pause");
 
             }break;
             case 7:
@@ -402,10 +404,10 @@ void Menu(){
                 cin >> p1;
                 cout << "Hasta: ";
                 cin >> p2;
-                
+
                 vector<int> resultado = g->consultaPrecio(p1,p2);
                 regMedicamento aux;
-                
+
                 for (int i=0;i<resultado.size();i++)
                 {
                 	aux = obtenerDato(bin_medicamentos,resultado[i]);
@@ -413,26 +415,18 @@ void Menu(){
                 }
                 cout << endl << resultado.size() << " registros retornados" << endl;
                 system("pause");
-                
+
             }break;
 
             case 9:
             {
                 cout << "chau!!"<<endl;
-            }    
-              
-            default: 
+            }
+
+            default:
             {
             } break;
         }
-    }  
-
-}
-int main(int argc, char *argv[])
-{
-    Menu();
-    
-    system("PAUSE");
+    }
     return EXIT_SUCCESS;
 }
-
