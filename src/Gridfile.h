@@ -13,6 +13,7 @@
 
 using namespace std;
 
+
 class Gridfile {
 	private:
 		Balde* grid[XMAX][YMAX][ZMAX];
@@ -50,6 +51,7 @@ class Gridfile {
 		void eliminarZona(Zona*);
 		void asigBalde(Zona*);
 		void imprimir();
+
 };
 
 #endif /* GRIDFILE_H_ */
