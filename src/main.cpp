@@ -196,7 +196,7 @@ void Menu(){
         cout << "4 - Baja de elementos a partir de un archivo binario (baja_medicamentos.dat)"<<endl;
         cout << endl;
         cout << "----->Consultas<-----"<<endl;
-        cout << "5 - Objetener un registro al azar"<<endl;
+        cout << "5 - Obtener un registro al azar"<<endl;
         cout << "6 - Acceder a medicamentos a partir de forma y/o accion y/o precios (rangos y valores exactos)"<<endl;
         cout << endl;
         cout << "9 - Salir"<<endl;
@@ -317,10 +317,17 @@ void Menu(){
 				int nroreg;
 				cout << "Ingrese un numero de registro: ";
 				cin >> nroreg;
-				regMedicamento aux;
-				aux = obtenerDato(bin_medicamentos,nroreg);
-				imprimirReg(aux);
-				cout << endl;
+				char opcion = 's';
+				while (opcion == 's' || opcion == 'S')
+                {
+    				regMedicamento aux;
+    				aux = obtenerDato(bin_medicamentos,nroreg);
+    				imprimirReg(aux);
+    				cout << endl;
+    				cout << "Desea ver el siguiente valor? (s/n) ";
+    				cin >> opcion;
+                    nroreg++;
+                }
 				system("pause");
 				
 			}break;
