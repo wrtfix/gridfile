@@ -29,18 +29,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include "Gridfile.h"
-#include "Balde.h"
 
 using namespace std;
 
 //archivos
-const char *datos_medicamentos = "C:/grupo21/scr/datos_medicamentos.dat";
-const char *datos_altas = "C:/grupo21/scr/altas_medicamentos.dat";
-const char *datos_bajas = "C:/grupo21/scr/src/bajas_medicamentos.dat";
+const char *datos_medicamentos = "./datos_medicamentos.dat";
+const char *datos_altas = "./altas_medicamentos.dat";
+const char *datos_bajas = "./bajas_medicamentos.dat";
 
-const char *bin_medicamentos = "C:/grupo21/scr/datos_medicamentos.gridfile";
-const char *bin_altas = "C:/grupo21/scr/altas_medicamentos.gridfile";
-const char *bin_bajas = "C:/grupo21/scr/src/bajas_medicamentos.gridfile";
+const char *bin_medicamentos = "./datos_medicamentos.gridfile";
+const char *bin_altas = "./altas_medicamentos.gridfile";
+const char *bin_bajas = "./bajas_medicamentos.gridfile";
 
 struct regMedicamento
 {
@@ -87,7 +86,7 @@ vector<regMedicamento> pasarArchivo(const char *dir)
 	//vector que retornare una vez cargados los datos
 	vector<regMedicamento> medicamentos;
 
-    while (!f.eof())
+	while (!f.eof())
     {
 		f.getline(cadena,sizeof(cadena));
 		char sd[256] = "";
@@ -169,22 +168,25 @@ void cargarBinarios()
 {
     // Paso los archivos de texto a un vector
 
+	cout << "Cargando datos_medicamentos.dat... ";
 	vector<regMedicamento> medicamentos;
     medicamentos = pasarArchivo(datos_medicamentos);
+    guardarArchivo(bin_medicamentos,medicamentos);
+    cout << " CARGADO" << endl;
 
+	cout << "Cargando altas_medicamentos.dat... ";
 	vector<regMedicamento> medicamentos1;
     medicamentos1 = pasarArchivo(datos_altas);
+    guardarArchivo(bin_altas,medicamentos1);
+    cout << " CARGADO" << endl;
 
+	cout << "Cargando bajas_medicamentos.dat... ";
 	vector<regMedicamento> medicamentos2;
     medicamentos2 = pasarArchivo(datos_bajas);
-
-    // A partir de los vectores guardo un archivo binario
-
-    guardarArchivo(bin_medicamentos,medicamentos);
-
-    guardarArchivo(bin_altas,medicamentos1);
-
     guardarArchivo(bin_bajas,medicamentos2);
+	cout << " CARGADO" << endl;
+
+
 }
 
 void imprimirReg(regMedicamento r)
@@ -197,21 +199,13 @@ void imprimirReg(regMedicamento r)
 int main(int argc, char *argv[])
 {
     int op = 0;
-    //Armo la escala para el gridfile
-    short int escalaAccion[16] = {1,20,30,40,50,60,70,80,90,100,150,250,350,500,600,1000};
-    short int escalaForma[8] = {54,56,57,58,59,60,63,64};
-    float escalaPrecio[64]={2.15,2.93,3.8,4.39,5.08,5.75,6.4,6.95,7.19,7.93,8.32,8.74,9.26,9.8,10.07,10.66,11.06,11.53,12.1,12.76,13.15,13.72,14.54,14.9,15.33,15.84,16.55,17.29,18.46,19.21,19.69,20.29,21.22,22.12,22.94,
-    23.83,24.53,25.12,25.6,26.32,27.35,28.7,29.79,30.8,32.19,33.7,35,36,37.9,38.5,42,45,48.14,50.42,52.86,58.15,62.8,71.97,81.58,95.01,117.11,157.25,234.86,999};
 
     Gridfile *g = new Gridfile();
-
-    g->guardarEscalas(escalaAccion,escalaForma,escalaPrecio);
-
-
+    
     while (op !=9)
     {
-        system("cls");
-        cout << "------->Menu<--------"<<endl;
+		system("clear");
+    	cout << "------->Menu<--------"<<endl;
         cout << "1 - Pasar archivos de texto a binario"<<endl;
         cout << endl;
         cout << "------>Cargar<-------"<<endl;
@@ -233,9 +227,9 @@ int main(int argc, char *argv[])
             {
                 cout << "Carga de Binario"<<endl;
                 cargarBinarios();
-                cout << "Los archivos se pasaron a binario"<<endl;
-                system("Pause");
-
+                cout << "Los archivos se pasaron a binario" <<endl;
+                cout << "Presione una ENTER para terminar...";
+				cin.get(); 
             }break;
             case 2:
             {
@@ -252,7 +246,7 @@ int main(int argc, char *argv[])
                 	i++;
                 }
                 cout << "La estructura fue construida con exito"<<endl;
-                system("Pause");
+                system("PAUSE");
 
             }break;
 
@@ -324,7 +318,7 @@ int main(int argc, char *argv[])
                     i++;
                 }
 
-                const char *dir2 = "C:/grupo21/scr/datos_medicamentos2.gridfile";
+                const char *dir2 = "./datos_medicamentos2.gridfile";
                 FILE *f3 = fopen(dir2,"wb+");
                 regMedicamento rrr;
 
@@ -429,4 +423,5 @@ int main(int argc, char *argv[])
         }
     }
     return EXIT_SUCCESS;
+    
 }

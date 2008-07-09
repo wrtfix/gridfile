@@ -22,8 +22,11 @@
  */
 
 
-#ifndef ZONA_H
-#define ZONA_H
+#ifndef ZONA_H_
+#define ZONA_H_
+
+#include <iostream>
+#include <vector>
 
 #include "Balde.h"
 
@@ -56,7 +59,7 @@ class Zona
 		void imprimir();
 	
 	private:
-		//Desde (x1,y1) hasta (x2,y2)
+		//Desde (x1,y1,z1) hasta (x2,y2,z2)
 		int x1;
 		int y1;
 		int z1;

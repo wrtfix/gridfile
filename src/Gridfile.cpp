@@ -20,7 +20,7 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
  */
-
+ 
 #include "Gridfile.h"
 
 Gridfile::Gridfile() {
@@ -43,7 +43,7 @@ Gridfile::Gridfile() {
 	//Baldes iniciales (1 por Zona)	
 	Balde* baldex0 = new Balde();
 	Balde* baldex1 = new Balde();
-   	Balde* baldex2 = new Balde();
+	Balde* baldex2 = new Balde();
 	Balde* baldex3 = new Balde();
 	Balde* baldex4 = new Balde();
 	Balde* baldex5 = new Balde();
@@ -51,17 +51,17 @@ Gridfile::Gridfile() {
 	Balde* baldex7 = new Balde();
 
 	//Asignar baldes a las zonas
-    z0->setBalde(baldex0);
-    z1->setBalde(baldex1);
-    z2->setBalde(baldex2);
-    z3->setBalde(baldex3);
-    z4->setBalde(baldex4);
-    z5->setBalde(baldex5);
-    z6->setBalde(baldex6);
-    z7->setBalde(baldex7);
+	z0->setBalde(baldex0);
+	z1->setBalde(baldex1);
+	z2->setBalde(baldex2);
+	z3->setBalde(baldex3);
+	z4->setBalde(baldex4);
+	z5->setBalde(baldex5);
+	z6->setBalde(baldex6);
+	z7->setBalde(baldex7);
 
 	//Agregar las Zonas al Gridfile
-    this->addZona(z0);
+	this->addZona(z0);
 	this->addZona(z1);
 	this->addZona(z2);
 	this->addZona(z3);
@@ -69,6 +69,16 @@ Gridfile::Gridfile() {
 	this->addZona(z5);
 	this->addZona(z6);
 	this->addZona(z7);
+	
+    //Armo la escala para el gridfile
+    short int escalaAccion[16] = {1,20,30,40,50,60,70,80,90,100,150,250,350,500,600,1000};
+    short int escalaForma[8] = {54,56,57,58,59,60,63,64};
+    float escalaPrecio[64]={2.15,2.93,3.8,4.39,5.08,5.75,6.4,6.95,7.19,7.93,8.32,8.74,9.26,9.8,10.07,10.66,11.06,11.53,12.1,12.76,13.15,13.72,14.54,14.9,15.33,15.84,16.55,17.29,18.46,19.21,19.69,20.29,21.22,22.12,22.94,
+    23.83,24.53,25.12,25.6,26.32,27.35,28.7,29.79,30.8,32.19,33.7,35,36,37.9,38.5,42,45,48.14,50.42,52.86,58.15,62.8,71.97,81.58,95.01,117.11,157.25,234.86,999};
+    
+	this->guardarEscalas(escalaAccion,escalaForma,escalaPrecio);
+
+
 }
 
 Gridfile::~Gridfile() {

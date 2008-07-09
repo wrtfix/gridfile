@@ -43,7 +43,7 @@ class Gridfile {
 	private:
 		Balde* grid[XMAX][YMAX][ZMAX];
 
-		vector<Zona *> mascara;
+		vector<Zona*> mascara;
 
 		short int escalaAccion[XMAX];
 		short int escalaForma[YMAX];

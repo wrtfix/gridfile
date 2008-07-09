@@ -28,7 +28,8 @@ Zona::Zona(int x1,int y1,int z1, int x2,int y2,int z2) {
 	//desde			//hasta
 	this->set_x1(x1);	this->set_x2(x2);
 	this->set_y1(y1);	this->set_y2(y2);
-	this->set_z1(z1);	this->set_z2(z2);	
+	this->set_z1(z1);	this->set_z2(z2);
+	this->balde = NULL;
 }
 
 void Zona::set_x1(int x){
@@ -122,9 +123,9 @@ Zona* Zona::divPrecio(int z3) {
 
 bool Zona::pertenece(int x,int y, int z) {
 	
-	if ((this->x1<=x) && (x<=this->x2))
-		if ((this->y1<=y) && (y<=this->y2))
-			if ((this->z1<=z) && (z<=this->z2))
+	if ((this->get_x1()<=x) && (x<=this->get_x2()))
+		if ((this->get_y1()<=y) && (y<=this->get_y2()))
+			if ((this->get_z1()<=z) && (z<=this->get_z2()))
 				return true;
 	return false;
 }
