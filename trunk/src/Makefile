@@ -1,5 +1,5 @@
 gridfile: main.o Balde.o Gridfile.o Zona.o
-	g++  -o gridfile main.o Balde.o Gridfile.o
+	g++  -o gridfile main.o Balde.o Gridfile.o Zona.o
 	
 main.o: main.cpp Gridfile.o
 	g++ -o main.o -c main.cpp
@@ -13,4 +13,6 @@ Zona.o: Zona.h Zona.cpp Balde.o
 Balde.o: Balde.h Balde.cpp
 	g++ -o Balde.o -c Balde.cpp
 
-
+# cuando se ejecute el comando 'make clean' se borran todos los '.o'
+clean:
+	rm -f *.o
