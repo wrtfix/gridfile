@@ -10,10 +10,10 @@ Gridfile::Gridfile()
     Zona* z3 = new Zona();
     Zona* z4 = new Zona();
 
-    z1->setPosicion(0,0,1,1);
-    z2->setPosicion(1,0,2,1);
-    z3->setPosicion(0,1,1,2);
-    z4->setPosicion(1,1,2,2);
+    z1->setPosicion(0,0,0,0);
+    z2->setPosicion(1,0,1,0);
+    z3->setPosicion(0,1,0,1);
+    z4->setPosicion(1,1,1,1);
 
     Balde* b1 = new Balde();
     Balde* b2 = new Balde();
@@ -105,21 +105,20 @@ void Gridfile::asignarZona(Zona *nueva){
 }
 
 void Gridfile::apuntarColumnas(int x){
-    int i;
+    int i = 0;
     for(int y=0;y<(int)getsizeFila();y++){
-        i=0;
-        while(i<(int)zonas.size() && !(x == zonas[i]->getXinicial()) && !(y==zonas[i]->getYinicial()))
+        while (i<(int)zonas.size() && !zonas[i]->pertenece(x,y))
             i++;
-        matriz[y][x-1] = zonas[i]->getBalde();
+        if (i < (int)zonas.size())
+            matriz[y][x-1] = zonas[i]->getBalde();
+        i++;
     }
-
 }
+
 
 void Gridfile::sumacolumnaZona(int xinicial){
     for (int i = 0;i<zonas.size();i++){
-    //    cout << "inicial: "<<xinicial<<" zonas[i]->getXinicial(): "<<zonas[i]->getXinicial()<<endl;
-        if (xinicial <= zonas[i]->getXinicial()){
-      //      cout << "Entro"<<endl;
+        if(zonas[i]->pertenece(xinicial,zonas[i]->getYinicial())){
             zonas[i]->setXinicial(zonas[i]->getXinicial()+1);
             zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
         }
@@ -176,38 +175,31 @@ void Gridfile::addElemento(int id,int pos, int mes, int anio, int cant){
         Zona *original = getZona(x,y);
 
         int distancia = (original->getXfinal()-original->getXinicial());
-
-        //Esto quiere decir que solo hay un puntero en el balde
-        if (distancia == 1)
+        //Esto quiere decir que solo hay un puntero apuntado a el balde
+        if (distancia == 0)
         {
             agregarColumna(original->getXinicial());
-
             addescFecha(original->getXinicial());
 
             Zona * nz = new Zona();
+            cout<<"zonanueva "<<original->getXinicial()<<" "<<original->getYinicial()<<" "<<original->getXfinal()<<" "<<original->getYfinal()<<endl;
             nz->setPosicion(original->getXinicial(),original->getYinicial(),original->getXfinal(),original->getYfinal());
 
-/*            for(int i = 0; i< zonas.size();i++){
-                zonas[i]->mostrar();
-                cout << endl;
-        }*/
-
             sumacolumnaZona(original->getXinicial());
+
+            // apunto la columna a sus baldes correspondientes
+            apuntarColumnas(original->getXinicial());
 
             estirarZonas(original->getXinicial(),original);
 
             Balde * nuevo = new Balde();
             nz->setBalde(nuevo);
-
             asignarZona(nz);
+
 
             Balde *lleno = original->getBalde();
 
             lleno->divFecha(nuevo,fecha[original->getXinicial()-1].mes,fecha[original->getXinicial()-1].anio);
-
-            // apunto la columna a sus baldes correspondientes
-            apuntarColumnas(original->getXinicial());
-
         }
         else{
             //debo dividir la zona y crear un nuevo balde
