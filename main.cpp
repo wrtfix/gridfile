@@ -33,9 +33,9 @@ int main()
 
     // pruebba de rotura!!
     g.addElemento(151,90,2,499,500);
-    g.addElemento(152,90,2,159,500);
-    g.addElemento(153,90,2,49,500);
-    g.addElemento(154,90,2,4,500);
+    //g.addElemento(152,90,2,159,500);
+    //g.addElemento(153,90,2,49,500);
+   // g.addElemento(154,90,2,4,500);
 
     cout << "Muestro el nuevo balde 0,0"<<endl;
     g.mostrar(0,0);
@@ -55,7 +55,7 @@ int main()
     cout << "Muestro el nuevo balde 1,2"<<endl;
     g.mostrar(1,2);
 
-    g.addElemento(155,90,2,5,500);
+   /* g.addElemento(155,90,2,5,500);
     cout << endl<<endl;
 
     cout << "Muestro el nuevo balde 0,0"<<endl;
@@ -70,17 +70,9 @@ int main()
     cout << "Muestro el nuevo balde 0,3"<<endl;
     g.mostrar(0,3);
 
+
     cout << "Muestro el nuevo balde 1,0"<<endl;
-    g.mostrar(1,0);
-
-    cout << "Muestro el nuevo balde 1,1"<<endl;
-    g.mostrar(1,1);
-
-    cout << "Muestro el nuevo balde 1,2"<<endl;
-    g.mostrar(1,2);
-
-    cout << "Muestro el nuevo balde 1,3"<<endl;
-    g.mostrar(1,3);
+    g.mostrar(1,0);*/
 
     cout << "Hello world!" << endl;
     return 0;
