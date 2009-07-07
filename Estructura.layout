@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="Balde.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="1563" topLine="62" />
+	</File>
+	<File name="Balde.h" open="1" top="0" tabpos="3">
+		<Cursor position="74" topLine="15" />
+	</File>
+	<File name="Gridfile.cpp" open="1" top="1" tabpos="5">
+		<Cursor position="5189" topLine="174" />
+	</File>
+	<File name="Gridfile.h" open="1" top="0" tabpos="4">
+		<Cursor position="1016" topLine="34" />
+	</File>
+	<File name="Zona.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="598" topLine="37" />
+	</File>
+	<File name="Zona.h" open="1" top="0" tabpos="6">
+		<Cursor position="511" topLine="8" />
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="1711" topLine="26" />
+	</File>
+</CodeBlocks_layout_file>

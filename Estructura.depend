@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1246929256 source:c:\documents and settings\administrador\escritorio\dale\estructura\gridfile.cpp
+	"Gridfile.h"
+
+1246889961 c:\documents and settings\administrador\escritorio\dale\estructura\gridfile.h
+	"Balde.h"
+	"Zona.h"
+	<iostream>
+	<vector>
+	<math.h>
+
+1246321053 c:\documents and settings\administrador\escritorio\dale\estructura\balde.h
+	<iostream>
+	<vector>
+
+1246824599 c:\documents and settings\administrador\escritorio\dale\estructura\zona.h
+	"Balde.h"
+
+1246841193 source:c:\documents and settings\administrador\escritorio\dale\estructura\zona.cpp
+	"Zona.h"
+
+1246909781 source:c:\documents and settings\administrador\escritorio\dale\estructura\main.cpp
+	<iostream>
+	"Gridfile.h"
+
+1246340400 source:c:\documents and settings\administrador\escritorio\dale\estructura\balde.cpp
+	"Balde.h"
+
