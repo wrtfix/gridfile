@@ -103,14 +103,14 @@ void Gridfile::asignarZona(Zona *nueva){
     zonas.push_back(nueva);
     asignarBalde(nueva);
 }
-
+// seguir con el apuntar que esta mal!!!
 void Gridfile::apuntarColumnas(int x){
     int i = 0;
     for(int y=0;y<(int)getsizeFila();y++){
-        while (i<(int)zonas.size() && !zonas[i]->pertenece(x,y))
+        while (i<(int)zonas.size() && !(zonas[i]->getXinicial() == x +1) !(zonas[i]->getY))
             i++;
         if (i < (int)zonas.size())
-            matriz[y][x-1] = zonas[i]->getBalde();
+            matriz[y][x] = zonas[i]->getBalde();
         i++;
     }
 }
