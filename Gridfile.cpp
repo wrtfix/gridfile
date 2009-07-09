@@ -10,10 +10,10 @@ Gridfile::Gridfile()
     Zona* z3 = new Zona();
     Zona* z4 = new Zona();
 
-    z1->setPosicion(0,0,0,0);
-    z2->setPosicion(1,0,1,0);
-    z3->setPosicion(0,1,0,1);
-    z4->setPosicion(1,1,1,1);
+    z1->setPosicion(0,0,1,1);
+    z2->setPosicion(1,0,2,1);
+    z3->setPosicion(0,1,1,2);
+    z4->setPosicion(1,1,2,2);
 
     Balde* b1 = new Balde();
     Balde* b2 = new Balde();
@@ -116,13 +116,12 @@ void Gridfile::apuntarColumnas(int x){
 }
 
 
-void Gridfile::sumacolumnaZona(int xinicial){
+void Gridfile::sumacolumnaZona(int xfinal){
     for (int i = 0;i<zonas.size();i++){
-        if(zonas[i]->pertenece(xinicial,zonas[i]->getYinicial())){
-            zonas[i]->setXinicial(zonas[i]->getXinicial()+1);
+        if(xfinal >= zonas[i]->getXinicial()){
             zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
+            zonas[i]->setXinicial(zonas[i]->getXinicial()+1);
         }
-
     }
 }
 
@@ -146,8 +145,8 @@ void Gridfile::addescFecha(int x)
 
 
 }
-
-void Gridfile::estirarZonas(int x,Zona * menos){
+/*
+void Gridfile::estirarZonas(Zona * menos){
 
     for(int y=0; y<(int)getsizeFila();y++){
     int i = 0;
@@ -157,7 +156,7 @@ void Gridfile::estirarZonas(int x,Zona * menos){
             i++;
         }
     }
-}
+}*/
 //recursivo!!
 void Gridfile::addElemento(int id,int pos, int mes, int anio, int cant){
     // obtenemos la posicion en las escalas correspondientes
@@ -176,26 +175,82 @@ void Gridfile::addElemento(int id,int pos, int mes, int anio, int cant){
 
         int distancia = (original->getXfinal()-original->getXinicial());
         //Esto quiere decir que solo hay un puntero apuntado a el balde
-        if (distancia == 0)
+        if (distancia == 1)
         {
             agregarColumna(original->getXinicial());
             addescFecha(original->getXinicial());
 
             Zona * nz = new Zona();
-            cout<<"zonanueva "<<original->getXinicial()<<" "<<original->getYinicial()<<" "<<original->getXfinal()<<" "<<original->getYfinal()<<endl;
             nz->setPosicion(original->getXinicial(),original->getYinicial(),original->getXfinal(),original->getYfinal());
 
-            sumacolumnaZona(original->getXinicial());
+            if(original->getXinicial() > 0 && original->getYfinal() < getsizeColumna())
+            {
+                for (int i = 0 ; i< zonas.size();i++){
+                    if(original->getXfinal() >= zonas[i]->getXinicial()){
+                        zonas[i]->setXinicial(zonas[i]->getXinicial()+1);
+                        zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
 
+                    }
+                    if (original->getXfinal() == zonas[i]->getXfinal() && !zonas[i]->iguales(original))
+                        zonas[i]->setXinicial(zonas[i]->getXinicial()+1);
+                    if (zonas[i]->iguales(original)){
+                        zonas[i]->setXinicial(zonas[i]->getXinicial()+1);
+                        zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
+                    }
+                }
+            }
+            else
+            if(original->getXinicial() == 0)
+            {
+                for(int i = 0; i<zonas.size();i++){
+                    if(zonas[i]->getXinicial() == 0 && !zonas[i]->iguales(original))
+                        zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
+                    if(zonas[i]->getXinicial() > 0){
+                        zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
+                        zonas[i]->setXinicial(zonas[i]->getXinicial()+1);
+                        }
+                    if (zonas[i]->iguales(original)){
+                        zonas[i]->setXinicial(zonas[i]->getXinicial()+1);
+                        zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
+                    }
+                }
+
+            }
+            else
+            if (original->getYfinal() == getsizeColumna())
+            {
+                for(int i = 0; i<zonas.size();i++){
+                    if(zonas[i]->getXfinal() == getsizeColumna() && !zonas[i]->iguales(original))
+                        zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
+                if (zonas[i]->iguales(original)){
+                        zonas[i]->setXinicial(zonas[i]->getXinicial()+1);
+                        zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
+                    }
+                }
+            }
+
+            //sumacolumnaZona(original->getXfinal());
+
+            for(int i = 0; i<zonas.size();i++){
+                zonas[i]->mostrar();
+                cout << endl;
+            }
             // apunto la columna a sus baldes correspondientes
             apuntarColumnas(original->getXinicial());
 
-            estirarZonas(original->getXinicial(),original);
+            //estirarZonas(original);
+
 
             Balde * nuevo = new Balde();
             nz->setBalde(nuevo);
-            asignarZona(nz);
 
+            asignarZona(nz);
+            cout << endl;
+
+            for(int i = 0; i<zonas.size();i++){
+                zonas[i]->mostrar();
+                cout << endl;
+            }
 
             Balde *lleno = original->getBalde();
 

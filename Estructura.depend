@@ -26,3 +26,30 @@
 1246340400 source:c:\documents and settings\administrador\escritorio\dale\estructura\balde.cpp
 	"Balde.h"
 
+1246979398 source:c:\documents and settings\administrador\escritorio\grid\zona.cpp
+	"Zona.h"
+
+1246979398 c:\documents and settings\administrador\escritorio\grid\zona.h
+	"Balde.h"
+
+1246979398 c:\documents and settings\administrador\escritorio\grid\balde.h
+	<iostream>
+	<vector>
+
+1247118945 source:c:\documents and settings\administrador\escritorio\grid\main.cpp
+	<iostream>
+	"Gridfile.h"
+
+1247004721 c:\documents and settings\administrador\escritorio\grid\gridfile.h
+	"Balde.h"
+	"Zona.h"
+	<iostream>
+	<vector>
+	<math.h>
+
+1247118203 source:c:\documents and settings\administrador\escritorio\grid\balde.cpp
+	"Balde.h"
+
+1247118796 source:c:\documents and settings\administrador\escritorio\grid\gridfile.cpp
+	"Gridfile.h"
+
