@@ -52,7 +52,7 @@ class Gridfile
         void agregarFila(int pos);
         void sumacolumnaZona(int);
         void apuntarColumnas(int);
-        void estirarZonas(int,Zona*);
+        void estirarZonas(Zona*);
 
 };
 
