@@ -103,27 +103,6 @@ void Gridfile::asignarZona(Zona *nueva){
     zonas.push_back(nueva);
     asignarBalde(nueva);
 }
-// seguir con el apuntar que esta mal!!!
-void Gridfile::apuntarColumnas(int x){
-    int i = 0;
-    for(int y=0;y<(int)getsizeFila();y++){
-        while (i<(int)zonas.size() && !(zonas[i]->getXinicial() == x +1) !(zonas[i]->getY))
-            i++;
-        if (i < (int)zonas.size())
-            matriz[y][x] = zonas[i]->getBalde();
-        i++;
-    }
-}
-
-
-void Gridfile::sumacolumnaZona(int xfinal){
-    for (int i = 0;i<zonas.size();i++){
-        if(xfinal >= zonas[i]->getXinicial()){
-            zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
-            zonas[i]->setXinicial(zonas[i]->getXinicial()+1);
-        }
-    }
-}
 
 //aca agregamos nuevo valor a la escala
 void Gridfile::addescFecha(int x)
@@ -145,18 +124,18 @@ void Gridfile::addescFecha(int x)
 
 
 }
-/*
-void Gridfile::estirarZonas(Zona * menos){
 
-    for(int y=0; y<(int)getsizeFila();y++){
+void Gridfile::apuntarColumnas(int x){
     int i = 0;
-        while(i<(int)zonas.size()){
-            if(zonas[i]->pertenece(x,y) && !zonas[i]->iguales(menos))
-                zonas[i]->setXinicial(zonas[i]->getXinicial()-1);
+    for(int y=0;y<(int)getsizeFila();y++){
+        i = 0;
+        while (i<(int)zonas.size() && (zonas[i]->getXinicial()!= x) && (zonas[i]->getYinicial() != y))
             i++;
-        }
+        if (i < (int)zonas.size())
+            matriz[y][x-1] = zonas[i]->getBalde();
     }
-}*/
+}
+
 //recursivo!!
 void Gridfile::addElemento(int id,int pos, int mes, int anio, int cant){
     // obtenemos la posicion en las escalas correspondientes
@@ -183,7 +162,7 @@ void Gridfile::addElemento(int id,int pos, int mes, int anio, int cant){
             Zona * nz = new Zona();
             nz->setPosicion(original->getXinicial(),original->getYinicial(),original->getXfinal(),original->getYfinal());
 
-            if(original->getXinicial() > 0 && original->getYfinal() < getsizeColumna())
+            if(original->getXinicial() > 0 && original->getXfinal() < getsizeColumna())
             {
                 for (int i = 0 ; i< zonas.size();i++){
                     if(original->getXfinal() >= zonas[i]->getXinicial()){
@@ -217,7 +196,7 @@ void Gridfile::addElemento(int id,int pos, int mes, int anio, int cant){
 
             }
             else
-            if (original->getYfinal() == getsizeColumna())
+            if (original->getXfinal() == getsizeColumna())
             {
                 for(int i = 0; i<zonas.size();i++){
                     if(zonas[i]->getXfinal() == getsizeColumna() && !zonas[i]->iguales(original))
@@ -229,12 +208,6 @@ void Gridfile::addElemento(int id,int pos, int mes, int anio, int cant){
                 }
             }
 
-            //sumacolumnaZona(original->getXfinal());
-
-            for(int i = 0; i<zonas.size();i++){
-                zonas[i]->mostrar();
-                cout << endl;
-            }
             // apunto la columna a sus baldes correspondientes
             apuntarColumnas(original->getXinicial());
 
@@ -246,7 +219,7 @@ void Gridfile::addElemento(int id,int pos, int mes, int anio, int cant){
 
             asignarZona(nz);
             cout << endl;
-
+            cout << "Las zonas son: " << endl;
             for(int i = 0; i<zonas.size();i++){
                 zonas[i]->mostrar();
                 cout << endl;

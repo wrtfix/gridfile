@@ -50,9 +50,7 @@ class Gridfile
 
         void agregarColumna(int pos);
         void agregarFila(int pos);
-        void sumacolumnaZona(int);
         void apuntarColumnas(int);
-        void estirarZonas(Zona*);
 
 };
 

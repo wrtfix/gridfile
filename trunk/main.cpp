@@ -70,8 +70,18 @@ int main()
     cout << "Muestro el nuevo balde 0,3"<<endl;
     g.mostrar(0,3);
 
-   /* cout << "Muestro el nuevo balde 1,0"<<endl;
-    g.mostrar(1,0);*/
+    cout << "Muestro el nuevo balde 1,0"<<endl;
+    g.mostrar(1,0);
+
+    cout << "Muestro el nuevo balde 1,1"<<endl;
+    g.mostrar(1,1);
+
+    cout << "Muestro el nuevo balde 1,2"<<endl;
+    g.mostrar(1,2);
+
+    cout << "Muestro el nuevo balde 1,3"<<endl;
+    g.mostrar(1,3);
+
 
     cout << "Hello world!" << endl;
     return 0;
