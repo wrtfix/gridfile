@@ -36,11 +36,11 @@
 	<iostream>
 	<vector>
 
-1247118945 source:c:\documents and settings\administrador\escritorio\grid\main.cpp
+1247154747 source:c:\documents and settings\administrador\escritorio\grid\main.cpp
 	<iostream>
 	"Gridfile.h"
 
-1247004721 c:\documents and settings\administrador\escritorio\grid\gridfile.h
+1247154129 c:\documents and settings\administrador\escritorio\grid\gridfile.h
 	"Balde.h"
 	"Zona.h"
 	<iostream>
@@ -50,6 +50,6 @@
 1247118203 source:c:\documents and settings\administrador\escritorio\grid\balde.cpp
 	"Balde.h"
 
-1247118796 source:c:\documents and settings\administrador\escritorio\grid\gridfile.cpp
+1247154632 source:c:\documents and settings\administrador\escritorio\grid\gridfile.cpp
 	"Gridfile.h"
 
