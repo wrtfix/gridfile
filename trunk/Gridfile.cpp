@@ -129,10 +129,14 @@ void Gridfile::apuntarColumnas(int x){
     int i = 0;
     for(int y=0;y<(int)getsizeFila();y++){
         i = 0;
-        while (i<(int)zonas.size() && (zonas[i]->getXinicial()!= x) && (zonas[i]->getYinicial() != y))
+        while (i<(int)zonas.size() && !(zonas[i]->pertenece(x,y)))
             i++;
-        if (i < (int)zonas.size())
+
+        if (i < (int)zonas.size() && !zonas[i]->pertenece(x,y))
             matriz[y][x-1] = zonas[i]->getBalde();
+        else
+            matriz[y][x-1] = matriz[y][x];
+
     }
 }
 
