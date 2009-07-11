@@ -166,25 +166,30 @@ void Gridfile::addElemento(int id,int pos, int mes, int anio, int cant){
             Zona * nz = new Zona();
             nz->setPosicion(original->getXinicial(),original->getYinicial(),original->getXfinal(),original->getYfinal());
 
+            cout << original->getXinicial()<<" "<<original->getXfinal()<<" "<<getsizeColumna()<<endl;
+
             if(original->getXinicial() > 0 && original->getXfinal() < getsizeColumna())
             {
+                cout << "mayores y menores"<<endl;
                 for (int i = 0 ; i< zonas.size();i++){
-                    if(original->getXfinal() >= zonas[i]->getXinicial()){
-                        zonas[i]->setXinicial(zonas[i]->getXinicial()+1);
+                    if(!zonas[i]->iguales(original) && original->getXinicial() == zonas[i]->getXinicial() && original->getXfinal() == zonas[i]->getXfinal()){
                         zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
 
                     }
                     if (original->getXfinal() == zonas[i]->getXfinal() && !zonas[i]->iguales(original))
-                        zonas[i]->setXinicial(zonas[i]->getXinicial()+1);
+                        zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
                     if (zonas[i]->iguales(original)){
                         zonas[i]->setXinicial(zonas[i]->getXinicial()+1);
                         zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
                     }
+                    zonas[i]->mostrar();
+                    cout<<endl;
                 }
             }
             else
             if(original->getXinicial() == 0)
             {
+                cout << "iguales a cero"<<endl;
                 for(int i = 0; i<zonas.size();i++){
                     if(zonas[i]->getXinicial() == 0 && !zonas[i]->iguales(original))
                         zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
@@ -197,20 +202,23 @@ void Gridfile::addElemento(int id,int pos, int mes, int anio, int cant){
                         zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
                     }
                 }
-
             }
             else
-            if (original->getXfinal() == getsizeColumna())
+            if (original->getXfinal() == x)
             {
+                cout << "iguales a full"<< endl;
                 for(int i = 0; i<zonas.size();i++){
                     if(zonas[i]->getXfinal() == getsizeColumna() && !zonas[i]->iguales(original))
                         zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
-                if (zonas[i]->iguales(original)){
+                    if (zonas[i]->iguales(original)){
                         zonas[i]->setXinicial(zonas[i]->getXinicial()+1);
                         zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
                     }
                 }
             }
+
+
+
 
             // apunto la columna a sus baldes correspondientes
             apuntarColumnas(original->getXinicial());
@@ -223,11 +231,11 @@ void Gridfile::addElemento(int id,int pos, int mes, int anio, int cant){
 
             asignarZona(nz);
             cout << endl;
-            cout << "Las zonas son: " << endl;
+            /*cout << "Las zonas son: " << endl;
             for(int i = 0; i<zonas.size();i++){
                 zonas[i]->mostrar();
                 cout << endl;
-            }
+            }*/
 
             Balde *lleno = original->getBalde();
 
