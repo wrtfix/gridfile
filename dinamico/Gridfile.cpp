@@ -160,36 +160,33 @@ void Gridfile::addElemento(int id,int pos, int mes, int anio, int cant){
         //Esto quiere decir que solo hay un puntero apuntado a el balde
         if (distancia == 1)
         {
+
             agregarColumna(original->getXinicial());
             addescFecha(original->getXinicial());
 
             Zona * nz = new Zona();
             nz->setPosicion(original->getXinicial(),original->getYinicial(),original->getXfinal(),original->getYfinal());
 
-            cout << original->getXinicial()<<" "<<original->getXfinal()<<" "<<getsizeColumna()<<endl;
-
-            if(original->getXinicial() > 0 && original->getXfinal() < getsizeColumna())
+            if(original->getXinicial() > 0)
             {
-                cout << "mayores y menores"<<endl;
                 for (int i = 0 ; i< zonas.size();i++){
-                    if(!zonas[i]->iguales(original) && original->getXinicial() == zonas[i]->getXinicial() && original->getXfinal() == zonas[i]->getXfinal()){
+                    if(!zonas[i]->iguales(original) && (original->getXinicial() == zonas[i]->getXinicial() && original->getXfinal() == zonas[i]->getXfinal()||original->getXfinal()==zonas[i]->getXfinal()))
                         zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
-
+                    else
+                    if (!zonas[i]->iguales(original) && original->getXfinal() == zonas[i]->getXinicial()){
+                        zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
+                        zonas[i]->setXinicial(zonas[i]->getXinicial()+1);
                     }
-                    if (original->getXfinal() == zonas[i]->getXfinal() && !zonas[i]->iguales(original))
-                        zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
+                    else
                     if (zonas[i]->iguales(original)){
                         zonas[i]->setXinicial(zonas[i]->getXinicial()+1);
                         zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
                     }
-                    zonas[i]->mostrar();
-                    cout<<endl;
                 }
             }
             else
             if(original->getXinicial() == 0)
             {
-                cout << "iguales a cero"<<endl;
                 for(int i = 0; i<zonas.size();i++){
                     if(zonas[i]->getXinicial() == 0 && !zonas[i]->iguales(original))
                         zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
@@ -203,39 +200,14 @@ void Gridfile::addElemento(int id,int pos, int mes, int anio, int cant){
                     }
                 }
             }
-            else
-            if (original->getXfinal() == x)
-            {
-                cout << "iguales a full"<< endl;
-                for(int i = 0; i<zonas.size();i++){
-                    if(zonas[i]->getXfinal() == getsizeColumna() && !zonas[i]->iguales(original))
-                        zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
-                    if (zonas[i]->iguales(original)){
-                        zonas[i]->setXinicial(zonas[i]->getXinicial()+1);
-                        zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
-                    }
-                }
-            }
-
-
-
 
             // apunto la columna a sus baldes correspondientes
             apuntarColumnas(original->getXinicial());
-
-            //estirarZonas(original);
-
 
             Balde * nuevo = new Balde();
             nz->setBalde(nuevo);
 
             asignarZona(nz);
-            cout << endl;
-            /*cout << "Las zonas son: " << endl;
-            for(int i = 0; i<zonas.size();i++){
-                zonas[i]->mostrar();
-                cout << endl;
-            }*/
 
             Balde *lleno = original->getBalde();
 
@@ -247,9 +219,7 @@ void Gridfile::addElemento(int id,int pos, int mes, int anio, int cant){
         addElemento(id,pos,mes,anio,cant);
     }
 }
-
 void Gridfile::mostrar(int y,int x)
-
 {
     matriz[y][x]->mostrar();
 }
@@ -262,16 +232,16 @@ int Gridfile::getsizeFila(){
     return matriz.size();
 }
 
-
 void Gridfile::agregarColumna(int pos){
     vector<Balde*>::iterator it;
     for(int i = 0; i<getsizeFila(); i++){
         it = matriz[i].begin();
         matriz[i].insert(it+pos,NULL);
     }
-
 }
-void Gridfile::agregarFila(int pos){
+
+void Gridfile::agregarFila(int pos)
+{
     vector<Balde*> aux;
     vector<vector<Balde*> >::iterator it;
     it = matriz.begin();
@@ -281,4 +251,3 @@ void Gridfile::agregarFila(int pos){
 
     matriz.insert(it+pos,aux);
 }
-
