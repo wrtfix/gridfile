@@ -8,7 +8,7 @@
 		<Cursor position="74" topLine="15" />
 	</File>
 	<File name="Gridfile.cpp" open="1" top="1" tabpos="5">
-		<Cursor position="4824" topLine="171" />
+		<Cursor position="1443" topLine="66" />
 	</File>
 	<File name="Gridfile.h" open="1" top="0" tabpos="4">
 		<Cursor position="929" topLine="39" />
@@ -20,6 +20,6 @@
 		<Cursor position="511" topLine="8" />
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="7">
-		<Cursor position="346" topLine="9" />
+		<Cursor position="2310" topLine="81" />
 	</File>
 </CodeBlocks_layout_file>
