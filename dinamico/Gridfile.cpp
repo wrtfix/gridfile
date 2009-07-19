@@ -86,7 +86,7 @@ Balde * Gridfile::getBalde(int x, int y){
 Zona * Gridfile::getZona(int x,int y){
     int max = zonas.size();
     for(int i = 0; i < max;i++){
-        if(zonas[i]->getXinicial()==x && zonas[i]->getYinicial()==y)
+        if(zonas[i]->getXinicial()== x && zonas[i]->getYinicial()==y)
             return zonas[i];
     }
     return NULL;
@@ -149,75 +149,119 @@ void Gridfile::addxCantidad(int id,int pos, int mes, int anio, int cant){
 
     int x = getposFecha(mes,anio);
     int y = getposCantidad(cant);
-    cout<<"agrego en " <<x<<" "<<y<<endl;
 
-    Balde *b = matriz[y][x];
-
+    Zona * original = getZona(x,y);
+    Balde * b = matriz[y][x];
     if(!b->completo()){
         b->agregarBalde(id,pos,mes,anio,cant);
     }
     else
     {
         int pro = b->promedioCantidad(cant);
-
-        if( pro > cant)
+        if( pro != cant)
         {
-            insertCantidad(pro);
             Zona *original = getZona(x,y);
-            agregarFila(original->getYinicial());
-
-            Zona * nz = new Zona();
-            int xi = original->getXinicial();
-            int yi = original->getYinicial();
-            int xf = original->getXfinal();
-            int yf = original->getYfinal();
-            nz->setPosicion(xi,yi,xf,yf);
-            nz->mostrar();
-            // corro y estiro :P
-            cout << "La escala"<<endl;
-            for(int i =0; i<cantidad.size();i++)
-                cout << cantidad[i]<<" ";
-
-            cout << endl;
-            for(int i =0; i<zonas.size();i++)
+            int distacia = original->getYfinal()-original->getYinicial();
+            cout << distacia << endl;
+            if( distacia == 1)
             {
-                if(zonas[i]->getYfinal() >= nz->getYfinal() && zonas[i]->getYinicial()<= nz->getYinicial() && !zonas[i]->iguales(nz))
-                    zonas[i]->setYfinal(zonas[i]->getYfinal()+1);
-                else
-                if(zonas[i]->getYinicial() >= nz->getYfinal()){
-                    zonas[i]->setYfinal(zonas[i]->getYfinal()+1);
-                    zonas[i]->setYinicial(zonas[i]->getYinicial()+1);
+                insertCantidad(pro);
+                agregarFila(original->getYinicial());
+
+                Zona * nz = new Zona();
+                int xi = original->getXinicial();
+                int yi = original->getYinicial();
+                int xf = original->getXfinal();
+                int yf = original->getYfinal();
+                nz->setPosicion(xi,yi,xf,yf);
+                for(int i =0; i<zonas.size();i++)
+                {
+                    if(zonas[i]->getYfinal() >= nz->getYfinal() && zonas[i]->getYinicial()<= nz->getYinicial() && !zonas[i]->iguales(nz))
+                        zonas[i]->setYfinal(zonas[i]->getYfinal()+1);
+                    else
+                    if(zonas[i]->getYinicial() >= nz->getYfinal()){
+                        zonas[i]->setYfinal(zonas[i]->getYfinal()+1);
+                        zonas[i]->setYinicial(zonas[i]->getYinicial()+1);
+                    }
+                    else
+                    if(zonas[i]->iguales(nz)){
+                        zonas[i]->setYfinal(zonas[i]->getYfinal()+1);
+                        zonas[i]->setYinicial(zonas[i]->getYinicial()+1);
+                    }
+                }
+                Balde *nb = new Balde();
+
+                b->divCantidad(nb,pro);
+
+                nz->setBalde(nb);
+
+                zonas.push_back(nz);
+
+                int tos = 0;
+                while(tos<zonas.size())
+                {
+                    for(int b=zonas[tos]->getXinicial();b<zonas[tos]->getXfinal();b++)
+                        for(int a=zonas[tos]->getYinicial();a<zonas[tos]->getYfinal();a++){
+                            matriz[a][b] = zonas[tos]->getBalde();
+                    }
+                    tos++;
+                }
                 }
                 else
-                if(zonas[i]->iguales(nz)){
-                    zonas[i]->setYfinal(zonas[i]->getYfinal()+1);
-                    zonas[i]->setYinicial(zonas[i]->getYinicial()+1);
-                }
+                    {
+                        int tas = 1;
+
+                        b = original->getBalde();
+
+                        Balde *nb = new Balde();
+
+                        Zona *nz = new Zona();
+
+                        int xi = original->getXinicial();
+                        int yi = original->getYinicial();
+                        int xf = original->getXfinal();
+                        int yf = original->getYinicial() + tas;
+                        nz->setPosicion(xi,yi,xf,yf);
+
+                        int can = cantidad[y];
+
+                        b->divCantidad(nb,can);
+
+                        while(tas < original->getYfinal()-1 && nb->completo()){
+                            Zona *nz = new Zona();
+                            int xi = original->getXinicial();
+                            int yi = original->getYinicial() + tas;
+                            int xf = original->getXfinal();
+                            int yf = original->getYfinal();
+                            nz->setPosicion(xi,yi,xf,yf);
+                            nz->setPosicion(xi,yi,xf,yf);
+                            int can = getposCantidad(original->getYinicial()+tas);
+                            b->divCantidad(nb,can);
+                            tas++;
+                        }
+                        if(!nb->completo()){
+                            original->setYinicial(original->getYinicial()+tas);
+
+                            nz->setBalde(nb);
+
+                            zonas.push_back(nz);
+
+                            int tos = 0;
+                            while(tos<zonas.size())
+                            {
+                                for(int b=zonas[tos]->getXinicial();b<zonas[tos]->getXfinal();b++)
+                                    for(int a=zonas[tos]->getYinicial();a<zonas[tos]->getYfinal();a++){
+                                        matriz[a][b] = zonas[tos]->getBalde();
+                                }
+                                tos++;
+                            }
+                        }
+
+                    }
             }
-            Balde *nb = new Balde();
-
-            b->divCantidad(nb,pro);
-
-            nz->setBalde(nb);
-
-            zonas.push_back(nz);
-            for(int i=0 ; i<zonas.size(); i++){
-                zonas[i]->mostrar();
-                }
-
-            int tos = 0;
-            while(tos<zonas.size())
-            {
-                for(int b=zonas[tos]->getXinicial();b<zonas[tos]->getXfinal();b++)
-                    for(int a=zonas[tos]->getYinicial();a<zonas[tos]->getYfinal();a++){
-                        matriz[a][b] = zonas[tos]->getBalde();
-                }
-                tos++;
-            }
-        }
         else
-            {// tengo que llamar a dividir por fecha ya que todos los elementos son igualitos!!
-            cout << "nada"<<endl;
+            {
+                //diividir por fecha si o si!!
             }
         addxCantidad(id,pos, mes, anio, cant);
     }
