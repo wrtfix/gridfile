@@ -12,18 +12,49 @@ int main()
     g.addCantidad(1000);
     g.addCantidad(2000);
 
-    g.addElemento(10,10,2,350,500);
-    g.addElemento(11,20,5,600,500);
-    g.addElemento(12,30,5,700,500);
-    g.addElemento(13,40,5,597,500);
+    g.addxCantidad(10,1,2,350,500);
+    g.addxCantidad(11,2,2,350,500);
+    g.addxCantidad(12,3,2,350,500);
+    g.addxCantidad(13,4,2,350,500);
+    g.addxCantidad(14,5,2,350,500);
+    g.addxCantidad(15,6,2,350,200);
+
+    /*g.addxCantidad(20,7,7,1350,150);
+    g.addxCantidad(21,8,7,1350,50);
+    g.addxCantidad(22,9,7,1350,40);
+    g.addxCantidad(23,10,7,1350,70);
+    g.addxCantidad(24,11,7,1350,80);
+    g.addxCantidad(25,12,7,1350,45);
+
+    /*g.addxCantidad(17,13,2,350,900);
+
+
+    g.addxCantidad(26,14,2,350,300);
+    g.addxCantidad(27,15,2,350,320);
+    g.addxCantidad(28,16,2,350,350);
+    g.addxCantidad(29,17,2,350,400);
+
+
+    g.addxCantidad(30,18,7,1350,1500);
+    g.addxCantidad(31,19,7,1350,1500);
+    g.addxCantidad(32,20,7,1350,1500);
+    g.addxCantidad(33,21,7,1350,1500);
+    g.addxCantidad(34,22,7,1350,1500);
+    g.addxCantidad(35,23,7,1350,1400);
+
+    /*g.addElemento(10,10,2,350,500);
+    g.addElemento(11,20,5,400,500);
+    g.addElemento(12,30,5,450,500);
+    g.addElemento(13,40,5,500,500);
     g.addElemento(14,50,5,550,500);
 
-    g.addElemento(15,30,5,704,500);
-    g.addElemento(16,40,5,598,500);
-    g.addElemento(17,50,5,551,500);
+    g.addElemento(15,30,5,600,500);
+    g.addElemento(16,40,5,700,500);
+    g.addElemento(17,50,5,325,500);
+    g.addElemento(18,50,5,324,500);
+    g.addElemento(19,50,5,322,500);*/
 
-
-    g.addElemento(21,60,5,1500,500);
+    /*g.addElemento(21,60,5,1500,500);
     g.addElemento(22,60,6,1400,500);
     g.addElemento(23,60,7,1300,500);
     g.addElemento(24,60,8,1200,500);
@@ -46,29 +77,44 @@ int main()
     g.addElemento(158,90,2,2,500);
     g.addElemento(159,90,2,1,500);
 
-    g.addElemento(160,90,2,1,499);
+    g.addElemento(160,90,2,1,499);*/
 
-    cout << endl<<endl;
 
     cout << "Muestro el nuevo balde 0,0"<<endl;
     g.mostrar(0,0);
 
-    cout << "Muestro el nuevo balde 0,1"<<endl;
-    g.mostrar(0,1);
+    cout << "Muestro el nuevo balde 1,0"<<endl;
+    g.mostrar(1,0);
 
-    cout << "Muestro el nuevo balde 0,2"<<endl;
-    g.mostrar(0,2);
+    /*cout << "Muestro el nuevo balde 2,1"<<endl;
+    g.mostrar(2,1);
 
-    cout << "Muestro el nuevo balde 0,3"<<endl;
-    g.mostrar(0,3);
+    cout << "Muestro el nuevo balde 3,1"<<endl;
+    g.mostrar(3,1);*/
 
-    cout << "Muestro el nuevo balde 0,4"<<endl;
+    /*cout << "Muestro el nuevo balde 2,0"<<endl;
+    g.mostrar(2,1);
+
+    cout << "Muestro el nuevo balde 3,0"<<endl;
+    g.mostrar(3,1);
+
+    cout << "Muestro el nuevo balde 3,1"<<endl;
+    g.mostrar(3,1);
+
+
+    cout << "Muestro el nuevo balde 4,0"<<endl;
+    g.mostrar(4,0);
+
+    cout << "Muestro el nuevo balde 6,1"<<endl;
+    g.mostrar(6,1);
+
+    /*cout << "Muestro el nuevo balde 0,4"<<endl;
     g.mostrar(0,4);
 
     cout << "Muestro el nuevo balde 0,5"<<endl;
     g.mostrar(0,5);
 
-    cout << "Muestro el nuevo balde 0,6"<<endl;
+    /*cout << "Muestro el nuevo balde 0,6"<<endl;
     g.mostrar(0,6);
 
     cout << "Muestro el nuevo balde 1,0"<<endl;
@@ -90,7 +136,7 @@ int main()
     g.mostrar(1,5);
 
     cout << "Muestro el nuevo balde 1,3"<<endl;
-    g.mostrar(1,6);
+    g.mostrar(1,6);*/
 
     cout << "Hello world!" << endl;
     return 0;

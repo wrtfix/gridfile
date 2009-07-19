@@ -37,6 +37,8 @@ class Gridfile
 
         void addElemento(int,int,int,int,int);
 
+        void addxCantidad(int,int,int,int,int);
+
     protected:
     private:
         vector<vector<Balde*> > matriz;
@@ -44,6 +46,8 @@ class Gridfile
         vector<int> cantidad;
         vector<Zona*> zonas;
 
+
+        void insertCantidad(int);
 
         int getsizeColumna();
         int getsizeFila();

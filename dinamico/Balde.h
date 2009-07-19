@@ -30,7 +30,8 @@ class Balde
         int getMaximo();
         bool completo();
         void divFecha(Balde*& nuevo, int,int);
-        void divCantidad(Balde * nuevo, int);
+        void divCantidad(Balde *& nuevo, int);
+        int promedioCantidad(int);
     protected:
     private:
         vector<regBalde> elementos;
