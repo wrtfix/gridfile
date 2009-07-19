@@ -22,6 +22,7 @@ class Zona
         bool iguales(Zona*);
         void mostrar();
     protected:
+
     private:
         int xini;
         int yini;

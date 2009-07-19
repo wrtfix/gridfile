@@ -48,8 +48,10 @@ void Zona::setYfinal(int yfinal){
 }
 
 bool Zona::iguales(Zona *acomp){
-    if(xini == acomp->getXinicial() &&yini == acomp->getYinicial() && xfin == acomp->getXfinal() && yfin == acomp->getYfinal())
+    if( (xini == acomp->getXinicial()) && (yini == acomp->getYinicial()) && (xfin == acomp->getXfinal()) && (yfin == acomp->getYfinal()))
         return true;
+    else
+        return false;
     return false;
 }
 

@@ -53,3 +53,30 @@
 1247280878 source:c:\documents and settings\administrador\escritorio\grid\gridfile.cpp
 	"Gridfile.h"
 
+1247839993 source:c:\documents and settings\administrador\escritorio\ultimate\dinamico\zona.cpp
+	"Zona.h"
+
+1247840664 c:\documents and settings\administrador\escritorio\ultimate\dinamico\zona.h
+	"Balde.h"
+
+1248016337 c:\documents and settings\administrador\escritorio\ultimate\dinamico\balde.h
+	<iostream>
+	<vector>
+
+1248038499 source:c:\documents and settings\administrador\escritorio\ultimate\dinamico\main.cpp
+	<iostream>
+	"Gridfile.h"
+
+1248016159 c:\documents and settings\administrador\escritorio\ultimate\dinamico\gridfile.h
+	"Balde.h"
+	"Zona.h"
+	<iostream>
+	<vector>
+	<math.h>
+
+1248032520 source:c:\documents and settings\administrador\escritorio\ultimate\dinamico\balde.cpp
+	"Balde.h"
+
+1248039287 source:c:\documents and settings\administrador\escritorio\ultimate\dinamico\gridfile.cpp
+	"Gridfile.h"
+
