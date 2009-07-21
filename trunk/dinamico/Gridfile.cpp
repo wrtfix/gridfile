@@ -145,8 +145,21 @@ void Gridfile::insertCantidad(int cant){
     cantidad.insert(it+i,cant);
 }
 
-void Gridfile::addxCantidad(int id,int pos, int mes, int anio, int cant){
+void Gridfile::insertFecha(int mes, int anio){
+    vector<regFecha>::iterator it = fecha.begin();
+    int i =0;
+    while(i<fecha.size() && fecha[i].anio<anio)
+        i++;
+    while(fecha[i].anio == anio && fecha[i].mes < mes)
+        i++;
+    regFecha aux;
+    aux.anio = anio;
+    aux.mes = mes;
+    fecha.insert(it+i,aux);
+}
 
+void Gridfile::addxCantidad(int id,int pos, int mes, int anio, int cant){
+    bool agregado = false;
     int x = getposFecha(mes,anio);
     int y = getposCantidad(cant);
 
@@ -248,102 +261,149 @@ void Gridfile::addxCantidad(int id,int pos, int mes, int anio, int cant){
                             }
                             tos++;
                         }
+                }
 
-                    }
             }
-        else
-            {
-                //diividir por fecha si o si!!
+        else{
+            if(pro==cant){
+                agregado = true;
+                cout<<"tiene todos los valores iguales putos"<<endl;
+                addElemento(id,pos,mes,anio,cant);
             }
-        addxCantidad(id,pos, mes, anio, cant);
+        }
+        if(!agregado){
+            addxCantidad(id,pos, mes, anio, cant);
+        }
     }
 }
 //recursivo!!
 void Gridfile::addElemento(int id,int pos, int mes, int anio, int cant){
-    // obtenemos la posicion en las escalas correspondientes
+
     int x = getposFecha(mes,anio);
     int y = getposCantidad(cant);
 
-    // obtengo el balde en donde tengo que agregar el valor
-    Balde *b = matriz[y][x];
+    Zona * original = getZona(x,y);
+    Balde * b = matriz[y][x];
 
-    // consulto si el balde no se encuentra completo
+
     if(!b->completo()){
         b->agregarBalde(id,pos,mes,anio,cant);
-    }else{
-        //Si esta lleno obtengo la zona correspondiente a el punto
-        Zona *original = new Zona();
-        original = getZona(x,y);
-
-        int distancia = (original->getXfinal()-original->getXinicial());
-        //Esto quiere decir que solo hay un puntero apuntado a el balde
-        if (distancia == 1)
+    }
+    else
+    {
+        int proanio = 0;
+        int promes = 0;
+        b->promedioFecha(anio,mes,proanio,promes);
+        if( proanio != anio)
         {
+            Zona *original = getZona(x,y);
+            int distacia = original->getXfinal()-original->getXinicial();
+            if( distacia == 1)
+            {
+                insertFecha(promes,proanio);
+                agregarColumna(original->getXinicial());
 
-            agregarColumna(original->getXinicial());
-            addescFecha(original->getXinicial());
+                Zona * nz = new Zona();
+                int xi = original->getXinicial();
+                int yi = original->getYinicial();
+                int xf = original->getXfinal();
+                int yf = original->getYfinal();
+                nz->setPosicion(xi,yi,xf,yf);
+                for(int i =0; i<zonas.size();i++)
+                {
+                    if(zonas[i]->getXfinal() >= nz->getXfinal() && zonas[i]->getXinicial()<= nz->getXinicial() && !zonas[i]->iguales(nz))
+                        zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
+                    else
+                    if(zonas[i]->getXinicial() >= nz->getXfinal()){
+                        zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
+                        zonas[i]->setXinicial(zonas[i]->getXinicial()+1);
+                    }
+                    else
+                    if(zonas[i]->iguales(nz)){
+                        zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
+                        zonas[i]->setXinicial(zonas[i]->getXinicial()+1);
+                    }
+                }
+                Balde *nb = new Balde();
 
-            Zona * nz = new Zona();
-            int xi = original->getXinicial();
-            int yi = original->getYinicial();
-            int xf = original->getXfinal();
-            int yf = original->getYfinal();
-            nz->setPosicion(xi,yi,xf,yf);
+                b->divFecha(nb,promes,proanio);
 
-            // AGRANDO Y CORRO LAS ZONAS
-            for(int i = 0; i<zonas.size(); i++){
-                if (zonas[i]->getXinicial() == nz->getXinicial() && zonas[i]->getYinicial() == nz->getYinicial() && zonas[i]->getXfinal() == nz->getXfinal() && zonas[i]->getYfinal() == nz->getYfinal()){
-                    //cout << "zonas[i]->iguales(original)"<<endl;
-                    zonas[i]->setXinicial(zonas[i]->getXinicial()+1);
-                    zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
+                nz->setBalde(nb);
+
+                zonas.push_back(nz);
+
+                int tos = 0;
+
+                while(tos<zonas.size())
+                {
+                    for(int a=zonas[tos]->getYinicial();a<zonas[tos]->getYfinal();a++){
+                        for(int b=zonas[tos]->getXinicial();b<zonas[tos]->getXfinal();b++)
+                            matriz[a][b] = zonas[tos]->getBalde();
+                    }
+                    tos++;
+                }
+
                 }
                 else
-                if(nz->getXfinal() <=zonas[i]->getXinicial()) {
-                   // cout << "original->getXfinal()> zonas[i]->getXinicial()"<<endl;
-                    zonas[i]->setXinicial(zonas[i]->getXinicial()+1);
-                    zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
-                }
-                else{
-                if(nz->getXinicial() == zonas[i]->getXinicial() && !zonas[i]->iguales(nz)){
-                    //cout<<"nz->getXinicial() == zonas[i]->getXinicial() && !zoas[i]->iguales(nz"<<endl;
-                    zonas[i]->setXfinal(zonas[i]->getXfinal()+1);
-                }
-                }
+                    {
+
+                        int tas = 1;
+
+                        Balde *nb = new Balde();
+
+                        Zona *nz = new Zona();
+
+                        int i = 0;
+                        while(i<fecha.size() && fecha[i].anio<=proanio)
+                            i++;
+
+                        b->divFecha(nb,fecha[i-1].mes, fecha[i-1].anio);
+
+                        int xi = original->getXinicial();
+                        int yi = original->getYinicial();
+                        int xf = i;
+                        int yf = original->getXfinal();
+
+                        nz->setPosicion(xi,yi,xf,yf);
+
+                        original->setYinicial(i);
+
+                        nz->setBalde(nb);
+
+                        zonas.push_back(nz);
+
+                        int tos = 0;
+
+                        while(tos<zonas.size())
+                        {
+                            for(int p=zonas[tos]->getXinicial();p<zonas[tos]->getXfinal();p++)
+                                for(int a=zonas[tos]->getYinicial();a<zonas[tos]->getYfinal();a++){
+                                    matriz[a][p] = zonas[tos]->getBalde();
+                            }
+                            tos++;
+                        }
+
+                    }
             }
-
-
-            // apunto la columna a sus baldes correspondientes
-            apuntarColumnas(nz->getXfinal());
-
-            Balde * nuevo = new Balde();
-
-            nz->setBalde(nuevo);
-
-            asignarZona(nz);
-
-           /* cout << "--------------------------------------"<<endl;
-            for(int i=0; i<zonas.size();i++)
-                zonas[i]->mostrar();
-
-            cout << "--------------------------------------"<<endl;
-*/
-            b->mostrar();
-
-            cout<<fecha[nz->getXinicial()].mes<<" ";
-            cout<<fecha[nz->getXinicial()].anio<<endl;
-            nz->mostrar();
-            cin.get();
-            b->divFecha(nuevo,fecha[nz->getXinicial()].mes,fecha[nz->getXinicial()].anio);
-        }
-        else{
-            //debo dividir la zona y crear un nuevo balde
-        }
-        addElemento(id,pos,mes,anio,cant);
+            else
+            {
+                cout << "La desidad de datos no es soportada por el gridfile lo sentimos ERROR"<<endl;
+                b->mostrar();
+                cin.get();
+                //cin.get();
+            }
+        addElemento(id,pos, mes, anio, cant);
     }
 }
-void Gridfile::mostrar(int y,int x)
+void Gridfile::mostrar()
 {
-    matriz[y][x]->mostrar();
+    for(int y=0;y<getsizeFila();y++)
+    {
+        for(int x=0;x<getsizeColumna();x++){
+            cout << "El balde que estoy mostrando es y = "<<y<<" x = "<<x<<endl;
+            matriz[y][x]->mostrar();
+        }
+    }
 }
 
 int Gridfile::getsizeColumna(){
