@@ -73,6 +73,16 @@ int Balde::promedioCantidad(int cantidad){
     return res;
 }
 
+void Balde::promedioFecha(int anio, int mes, int &anior, int &mesr){
+    anior = anio;
+    mesr = mes;
+    for (int i=0; i<elementos.size();i++){
+        anior += elementos[i].anio;
+        mesr += elementos[i].mes;
+        }
+    anior = anior / 6;
+    mesr = mesr / 6;
+}
 
 void Balde::divFecha(Balde *&nuevo, int mes, int anio){
     int i = 0;
@@ -94,7 +104,6 @@ void Balde::divFecha(Balde *&nuevo, int mes, int anio){
         }
         i++;
     }
-
     for (i=0; i<pos.size();i++)
         eliminarElemento(pos[i]);
 
