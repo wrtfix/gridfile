@@ -31,7 +31,7 @@ class Gridfile
 
         void asignarBalde(Zona*);
         void asignarZona(Zona*);
-        void mostrar();
+        void mostrar(int,int);
 
         void addescFecha(int);
 
@@ -39,7 +39,10 @@ class Gridfile
 
         void addxCantidad(int,int,int,int,int);
 
-        vector<int> getConsulta(int,int,int,int,int,int);
+        vector<int>* consultar(int,int,int,int,int,int);
+
+        void todos();
+
     protected:
     private:
         vector<vector<Balde*> > matriz;
