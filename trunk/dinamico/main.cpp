@@ -185,8 +185,10 @@ int main()
         cout << "4 - Baja de elementos a partir de un archivo binario (baja_medicamentos.dat)"<<endl;
         cout << endl;
         cout << "----->Consultas<-----"<<endl;
-        cout << "5 - Obtener un registro al azar"<<endl;
-        cout << "6 - Acceder a medicamentos a partir de forma y/o accion y/o precios (rangos y valores exactos)"<<endl;
+        cout << "5 - Mostrar estructura"<<endl;
+        cout << "6 - Obtener un registro al azar"<<endl;
+        cout << "7 - Acceder a medicamentos a partir de forma y/o accion y/o precios (rangos y valores exactos)"<<endl;
+
         cout << endl;
         cout << "9 - Salir"<<endl;
         cin >> op;
@@ -201,19 +203,11 @@ int main()
                   //              cin.get();
             }break;
             case 2:
-            {
-                FILE *f = fopen(binario,"ab+");
+            {   FILE *f = fopen(binario,"ab+");
                 fseek(f, 0L, SEEK_END);
                 long int final = ftell(f)/sizeof(reg);
 
-                /*g->addFecha(3,1994);
-                g->addFecha(12,2008);
-
-                g->addCantidad(55240);
-
-                g->addCantidad(99519);
-*/
-                g->addFecha(3,1994);
+                g->addFecha(6,1994);
                 g->addFecha(12,2008);
                 g->addCantidad(55240);
                 g->addCantidad(99519);
@@ -316,6 +310,10 @@ int main()
             }break;*/
             case 5:
             {
+                g->todos();
+            }break;
+            case 6:
+            {
                 int nroreg;
                 cout << "Ingrese un numero de registro: ";
                 cin >> nroreg;
@@ -333,9 +331,10 @@ int main()
                 system("pause");
 
             }break;
-            case 6:
+            case 7:
             {
                 int c1,c2,m1,m2,a1, a2;
+
                 cout << "@  Consultas  @"<<endl;
                 cout << " Nota: - para buscar por un velor exacto, ingrese el mismo valor en 'desde' y 'hasta'" << endl;
                 cout << "       - Si no desea utilizar un criterio, ingrese desde=-1 y hasta=-1" << endl << endl;
@@ -357,23 +356,23 @@ int main()
                 cin >> a1;
                 cout << "hasta: ";
                 cin >> a2;
-/*
-                vector<int> resultado = g->consultar(a1,a2,m1,m2,c1,c2);
+
+                vector<int> * resultado = g->consultar(a1,a2,m1,m2,c1,c2);
 
                 reg aux;
 
-                for (int i=0;i<resultado.size();i++)
+                for (int i=0;i<resultado->size();i++)
                 {
-                        aux = obtenerDato(binario,resultado[i]);
+                        aux = obtenerDato(binario,(*resultado)[i]);
                         imprimirReg(aux);
                 }
 
-                cout << endl <<resultado.size() << " registros retornados" << endl;*/
+                cout << endl <<resultado->size() << " registros retornados" << endl;
 
                 system("pause");
 
             }break;
-            case 7:
+            case 8:
             {
                 int c1,c2;
                 cout << "@  Consulta de elementos SOLO por intervalo de cantidad @"<<endl;

@@ -86,11 +86,11 @@
 1248181246 c:\documents and settings\administrador\escritorio\trilolli\dinamico\zona.h
 	"Balde.h"
 
-1248208350 c:\documents and settings\administrador\escritorio\trilolli\dinamico\balde.h
+1248301029 c:\documents and settings\administrador\escritorio\trilolli\dinamico\balde.h
 	<iostream>
 	<vector>
 
-1248208109 source:c:\documents and settings\administrador\escritorio\trilolli\dinamico\main.cpp
+1248299900 source:c:\documents and settings\administrador\escritorio\trilolli\dinamico\main.cpp
 	<cstdlib>
 	<iostream>
 	<fstream>
@@ -99,16 +99,16 @@
 	<string.h>
 	"Gridfile.h"
 
-1248208004 c:\documents and settings\administrador\escritorio\trilolli\dinamico\gridfile.h
+1248292607 c:\documents and settings\administrador\escritorio\trilolli\dinamico\gridfile.h
 	"Balde.h"
 	"Zona.h"
 	<iostream>
 	<vector>
 	<math.h>
 
-1248204547 source:c:\documents and settings\administrador\escritorio\trilolli\dinamico\gridfile.cpp
+1248300941 source:c:\documents and settings\administrador\escritorio\trilolli\dinamico\gridfile.cpp
 	"Gridfile.h"
 
-1248183474 source:c:\documents and settings\administrador\escritorio\trilolli\dinamico\balde.cpp
+1248298301 source:c:\documents and settings\administrador\escritorio\trilolli\dinamico\balde.cpp
 	"Balde.h"
 

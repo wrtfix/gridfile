@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 
-#define CAPACIDAD_BALDE 99
+#define CAPACIDAD_BALDE 5
 
 using namespace std;
 // se agrego mes anio y cantidad para mejorar la distribucion de los elementos en el balde
@@ -33,10 +33,10 @@ class Balde
         void divCantidad(Balde *& nuevo, int);
         int promedioCantidad(int);
         void promedioFecha(int,int,int&,int&);
-
+        vector<int>* getElementos();
     protected:
     private:
-        vector<regBalde> elementos;
+        vector<regBalde> * elementos;
         void eliminarElemento(int pos);
 };
 
