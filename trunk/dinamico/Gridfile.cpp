@@ -277,6 +277,7 @@ void Gridfile::addxCantidad(int id,int pos, int mes, int anio, int cant){
 }
 //recursivo!!
 void Gridfile::addElemento(int id,int pos, int mes, int anio, int cant){
+    bool agregar = false;
     int x = getposFecha(mes,anio);
     int y = getposCantidad(cant);
 
@@ -392,8 +393,11 @@ void Gridfile::addElemento(int id,int pos, int mes, int anio, int cant){
 
             }
         else
+            {
             cout<<"La densidad del archivo no es soportada por la estructa ERROR!!"<<endl;
-
+            agregar = true;
+            }
+        if(!agregar)
         addElemento(id,pos,mes,anio,cant);
     }
 
