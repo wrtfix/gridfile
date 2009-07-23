@@ -17,9 +17,9 @@ En caso de que tambien los elementos posean repeticiones en cuanto al indice fec
 Vector de vectores 
 
 === Clases ===
-Clase gridfile
-Clase Balde
-Clase Zona
+====Clase gridfile====
+====Clase Balde====
+====Clase Zona====
 
 === Manejo de Archivos ===
 Archivo de texto
