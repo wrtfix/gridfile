@@ -63,10 +63,9 @@ int Gridfile::getposFecha(int mes,int anio){
     int i =0;
     int max = fecha.size();
 
-    while ((i < max)&& (fecha[i].anio < anio)){
-          cout <<"entra132456"<<endl;
+    while ((i < max)&& (fecha[i].anio < anio))
           i++;
-    }
+
     while ((i < max)&& (fecha[i].anio == anio)&& (fecha[i].mes < mes)){
 
           i++;
