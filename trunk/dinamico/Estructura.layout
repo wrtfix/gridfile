@@ -4,22 +4,22 @@
 	<File name="Balde.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="2344" topLine="0" />
 	</File>
-	<File name="Balde.h" open="1" top="1" tabpos="3">
-		<Cursor position="370" topLine="2" />
+	<File name="Balde.h" open="1" top="0" tabpos="3">
+		<Cursor position="284" topLine="13" />
 	</File>
 	<File name="Gridfile.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="11671" topLine="387" />
+		<Cursor position="1273" topLine="49" />
 	</File>
 	<File name="Gridfile.h" open="1" top="0" tabpos="4">
-		<Cursor position="822" topLine="26" />
+		<Cursor position="822" topLine="0" />
 	</File>
 	<File name="Zona.cpp" open="1" top="0" tabpos="1">
 		<Cursor position="359" topLine="29" />
 	</File>
 	<File name="Zona.h" open="1" top="0" tabpos="6">
-		<Cursor position="150" topLine="11" />
+		<Cursor position="150" topLine="7" />
 	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="7">
-		<Cursor position="102" topLine="0" />
+	<File name="main.cpp" open="1" top="1" tabpos="7">
+		<Cursor position="13582" topLine="384" />
 	</File>
 </CodeBlocks_layout_file>

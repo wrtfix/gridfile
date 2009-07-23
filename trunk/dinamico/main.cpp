@@ -398,9 +398,7 @@ int main()
 
             case 9:
             {
-
                 cout << "chau!!"<<endl;
-
             }
 
             default:
