@@ -9,3 +9,6 @@ La catedra de Estructuras y Almacenamiento de Datos de la Facultad de Ciencias E
 == Implementacion ==
 === Clases ===
 === Manejo de Archivos ===
+=== Ayuda ===
+=== Mejoras ===
+=== Conclusion ===
