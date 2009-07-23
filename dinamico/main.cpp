@@ -357,7 +357,7 @@ int main()
                 cout << "hasta: ";
                 cin >> a2;
 
-                vector<int> * resultado = g->consultar(a1,a2,m1,m2,c1,c2);
+                vector<int> * resultado = g->consultar(-1,-1,-1,-1,-1,-1);/*(a1,a2,m1,m2,c1,c2);*/
 
                 reg aux;
 

@@ -29,8 +29,6 @@ class Gridfile
         Balde* getBalde(int,int);
         Zona* getZona(int,int);
 
-        void asignarBalde(Zona*);
-        void asignarZona(Zona*);
         void mostrar(int,int);
 
         void addescFecha(int);
@@ -59,7 +57,6 @@ class Gridfile
 
         void agregarColumna(int pos);
         void agregarFila(int pos);
-        void apuntarColumnas(int);
 
 };
 

@@ -90,7 +90,7 @@
 	<iostream>
 	<vector>
 
-1248299900 source:c:\documents and settings\administrador\escritorio\trilolli\dinamico\main.cpp
+1248375622 source:c:\documents and settings\administrador\escritorio\trilolli\dinamico\main.cpp
 	<cstdlib>
 	<iostream>
 	<fstream>
@@ -99,14 +99,14 @@
 	<string.h>
 	"Gridfile.h"
 
-1248292607 c:\documents and settings\administrador\escritorio\trilolli\dinamico\gridfile.h
+1248359824 c:\documents and settings\administrador\escritorio\trilolli\dinamico\gridfile.h
 	"Balde.h"
 	"Zona.h"
 	<iostream>
 	<vector>
 	<math.h>
 
-1248300941 source:c:\documents and settings\administrador\escritorio\trilolli\dinamico\gridfile.cpp
+1248375377 source:c:\documents and settings\administrador\escritorio\trilolli\dinamico\gridfile.cpp
 	"Gridfile.h"
 
 1248298301 source:c:\documents and settings\administrador\escritorio\trilolli\dinamico\balde.cpp
