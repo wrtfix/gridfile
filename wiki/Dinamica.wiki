@@ -6,6 +6,13 @@ La catedra de Estructuras y Almacenamiento de Datos de la Facultad de Ciencias E
 
 == Solucion ==
 
+Para la realizacion del motor de busqueda utilizamos una estructura de multiclave llamada gridfile.
+La cual tiene indices dinamicos determinados por fecha y cantidad. Para almacenar en forma correcta los datos, el gridfile comienza con una matriz de dos dimensiones y 4 baldes, lo cuales pueden contener hasta 5 elementos cada uno. El criterio para actualizar y consultar elementos en los baldes, sera dado atraves de los indices mencionados anteriormente.
+En el caso de que se posea una gran densidad de datos concentrada sobre un criterio, se procedera a utilizar otro criterio para la redistribucion de los datos.
+Si ocurre el caso en que el balde esta completo por elementos donde estos se repiten concidiendo  el indice cantidad en todos ellos se utiliza como segundo criterio el indice fecha. 
+En caso de que tambien los elementos posean repeticiones en cuanto al indice fecha se creeara un arreglo de overfloat.
+
+
 == Implementacion ==
 === Clases ===
 === Manejo de Archivos ===
