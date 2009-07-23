@@ -2,10 +2,10 @@
 
 La catedra de Estructuras y Almacenamiento de Datos de la Facultad de Ciencias Exactas nos contacto con el fin de construir un motor de busqueda para la organizacion y actualizacion de productos para un almaen de dispositvos electronicos.
 
-==  ==
-= Details =
+== Planteo del Problema ==
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+== Solucion ==
+
+== Implementacion ==
+=== Clases ===
+=== Manejo de Archivos ===
