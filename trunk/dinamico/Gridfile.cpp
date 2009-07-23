@@ -63,11 +63,15 @@ int Gridfile::getposFecha(int mes,int anio){
     int i =0;
     int max = fecha.size();
 
-    while ((i < max)&& (fecha[i].anio < anio))
+    while ((i < max)&& (fecha[i].anio < anio)){
+          cout <<"entra132456"<<endl;
+          i++;
+    }
+    while ((i < max)&& (fecha[i].anio == anio)&& (fecha[i].mes < mes)){
+
           i++;
 
-    while ((i < max)&&(fecha[i].mes < mes )&& (fecha[i].anio == anio))
-          i++;
+    }
 
     return i;
 }
@@ -92,20 +96,6 @@ Zona * Gridfile::getZona(int x,int y){
     return NULL;
 }
 
-//Asigna ese balde a todas las celdas que pertenecen a la Zona.
-void Gridfile::asignarBalde(Zona *nueva) {
-        for(int j = nueva->getYinicial();j<nueva->getYfinal();j++)
-            for(int i = nueva->getXinicial();i<nueva->getXfinal();i++)
-                matriz[j][i] = nueva->getBalde();
-}
-
-void Gridfile::asignarZona(Zona *nueva){
-    zonas.push_back(nueva);
-    matriz[nueva->getYinicial()][nueva->getXinicial()] = nueva->getBalde();
-    //asignarBalde(nueva);
-}
-
-
 //aca agregamos nuevo valor a la escala
 void Gridfile::addescFecha(int x)
 {
@@ -127,16 +117,6 @@ void Gridfile::addescFecha(int x)
 
 }
 
-void Gridfile::apuntarColumnas(int x){
-    int i = 0;
-    for(int y=0;y<(int)getsizeFila()-1;y++){
-        i = 0;
-        while (i<(int)zonas.size() && (zonas[i]->getXinicial() != x) && (zonas[i]->getYinicial() != y) )
-            i++;
-
-         matriz[y][x-1] = zonas[i]->getBalde();
-    }
-}
 void Gridfile::insertCantidad(int cant){
     vector<int>::iterator it = cantidad.begin();
     int i =0;
@@ -292,15 +272,13 @@ void Gridfile::addElemento(int id,int pos, int mes, int anio, int cant){
         int prom;
         int proa;
         b->promedioFecha(anio,mes,proa,prom);
-        if(proa != anio)
+        if((proa != anio)||(proa == anio && prom != mes))
         {
 
             int distancia = original->getXfinal() - original->getXinicial();
 
             if( distancia == 1)
             {
-                cout << "Flash!!!!!!!!!!"<<endl;
-                cin.get();
                 insertFecha(prom,proa);
                 agregarColumna(original->getXinicial());
 
@@ -329,11 +307,8 @@ void Gridfile::addElemento(int id,int pos, int mes, int anio, int cant){
                 }
 
                 Balde *nb = new Balde();
-                cout << prom<<"  "<<proa<<endl;
                 b->divFecha(nb,prom,proa);
 
-                b->mostrar();
-                cin.get();
                 nz->setBalde(nb);
 
                 zonas.push_back(nz);
@@ -410,6 +385,7 @@ void Gridfile::todos()
 {
     for(int i =0;i<cantidad.size();i++)
         cout << cantidad[i]<< " ";
+        cin.get();cin.get();
     for(int i=0;i<getsizeColumna();i++)
         for(int j=0; j<getsizeFila();j++){
             cout<< " en x "<<i<<" en y "<<j << endl;
@@ -418,21 +394,45 @@ void Gridfile::todos()
 }
 vector<int> * Gridfile::consultar(int anio1,int anio2, int mes1,int mes2,int cant1,int cant2){
 
-    int yi = getposCantidad(cant1);
-    int xi = getposFecha(mes1,anio1);
+    int xi,yi,xf,yf;
 
-    int yf = getposCantidad(cant2);
-    int xf = getposFecha(mes2,anio2);
+    if ((anio1 == -1) && (mes1 == -1))
+        xi = 0;
+    else
+        xi = getposFecha(mes1,anio1);
+
+    if ((anio2 == -1) && (mes2 == -1))
+        xf = getsizeColumna();
+    else
+        xf = getposFecha(mes2,anio2);
+
+    if (cant1 == -1)
+        yi = 0;
+    else
+        yi = getposCantidad(cant1);
+
+    if (cant2 == -1)
+        yf = getsizeFila();
+    else
+        yf = getposCantidad(cant2);
 
     vector<int> *aux = new vector<int>();
     vector<int> *obtiene = new vector<int>();
-
-    for(yi;yi<yf;yi++)
-        for(xi;xi<xf;xi++){
+    cout << xi <<" " << yi<< " " <<endl;
+    cout << xf <<" "<<yf<<"  "<<endl;
+    int ini = xi;
+    while(yi<yf){
+        xi = ini;
+        while(xi<xf){
+            cout << yi << xi << endl;
+            mostrar(yi,xi);
             obtiene = matriz[yi][xi]->getElementos();
             for(int i=0; i<(*obtiene).size();i++)
                 aux->push_back((*obtiene)[i]);
-            }
+            xi++;
+        }
+        yi++;
+    }
 
     return aux;
 }
