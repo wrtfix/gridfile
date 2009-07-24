@@ -31,8 +31,7 @@ La misma se utiliza para que el gridfile sepa a que balde apuntar en el momento 
 
 
 === Manejo de Archivos ===
-Archivo de texto
-Archivo binario
+El archivo que se nos fue otorgado es un archivo de texto plano el cual es pasado a un registro y luego a una archivo binario para facilitar el accesos a la informacion.
 
 === Ayuda ===
 
