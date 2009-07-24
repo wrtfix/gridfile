@@ -14,12 +14,21 @@ En caso de que tambien los elementos posean repeticiones en cuanto al indice fec
 
 
 == Implementacion ==
-Vector de vectores 
+Para la misma se utilizo C++ en complemento con librerias stl. Se requiere para la implmentacion plantear 3 clases tales como balde gridfile y zona, que detallaremos mas adelante.
 
 === Clases ===
+Como mensionamos anteriormente requeriremos la clase gridfile la que se encargara de la manipulacion de las esctructuras. La calse balde que la misma 
+
+
 ====Clase gridfile====
+Consta de una matriz armada por vector de vectores de punteros a balde que nos permite el agregado denamico a de filas y columnas.
+
 ====Clase Balde====
+El  mismo consta de vector con registros en el cual se guarda id_productor, posicion, mes, anio, cantidad, borrado. Estos 3 ultimos registros se utilizaron para que el alta y baja de datas sea un poco mas dinamico.
+
 ====Clase Zona====
+La misma se utiliza para que el gridfile sepa a que balde apuntar en el momento de estirar una zona. La zona consta de 4 enteros que seria las posicion iniciales y finales en x,y.º
+
 
 === Manejo de Archivos ===
 Archivo de texto
