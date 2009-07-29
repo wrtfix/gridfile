@@ -27,11 +27,19 @@ Consta de una matriz armada por vector de vectores de punteros a balde que nos p
 El  mismo consta de vector con registros en el cual se guarda id_productor, posicion, mes, anio, cantidad, borrado. Estos 3 ultimos registros se utilizaron para que el alta y baja de datas sea un poco mas dinamico.
 
 ====Clase Zona====
-La misma se utiliza para que el gridfile sepa a que balde apuntar en el momento de estirar una zona. La zona consta de 4 enteros que seria las posicion iniciales y finales en x,y.º
+La misma se utiliza para que el gridfile sepa a que balde apuntar en el momento de estirar una zona. La zona consta de 4 enteros que seria las posicion iniciales y finales en x,y.
 
 
 === Manejo de Archivos ===
 El archivo que se nos fue otorgado es un archivo de texto plano el cual es pasado a un registro y luego a una archivo binario para facilitar el accesos a la informacion.
+
+====Consulta====
+En la consulta se debe especificar los indices cantidad y fecha de los cuales en el caso de no tener conociminto de alguno de ellos se ingresara un -1. En el caso de que se hayan especificados los numero se buscara en la escala desde que numero a que numero se realizara la consulta realizando un filtrado extra ya que no podemos hacegurar que exista solo un balde que pertenesca a una consulta.
+
+====Alta====
+Para la realizacion del alta de un elemento en un balde lo primero que se debe hacer es obtener el balde en que pertenece esa zona. 
+
+====Baja====
 
 === Ayuda ===
 
