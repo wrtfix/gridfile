@@ -26,7 +26,15 @@ struct fecha{
 };
 }}}
 
-y el otro cantidades.
+y el otro cantidades de integer.
+
+====Consulta====
+En la consulta se debe especificar los indices cantidad y fecha de los cuales en el caso de no tener conociminto de alguno de ellos se ingresara un -1. En el caso de que se hayan especificados los numero se buscara en la escala desde que numero a que numero se realizara la consulta realizando un filtrado extra ya que no podemos hacegurar que exista solo un balde que pertenesca a una consulta.
+
+====Alta/Cargar====
+Para la realizacion del alta de un elemento en un balde lo primero que se debe hacer es obtener el balde en que pertenece ese elemento, verficar que el balde no este completo y en el caso de no estarlo inserta el elemento. En el caso en que el balde se encuentra lleno se consideraran diferentes aspectos que describiremos a continuacion. El tamaño de la zona, es decir en el caso en que la zona sea de 1 x 1 debemos insertar una nueva escala y columna dentro de la matriz estirando asi las zonas que no corresponden al elemento a insertar. En el caso de que el tamaño sea mayor que uno lo que se debe considerar es la forma de 
+
+====Baja====
 
 ====Clase Balde====
 El  mismo consta de vector con registros en el cual se guarda id_productor, posicion, mes, anio, cantidad, borrado. Estos 3 ultimos registros se utilizaron para que el alta y baja de datas sea un poco mas dinamico.
@@ -37,14 +45,6 @@ La misma se utiliza para que el gridfile sepa a que balde apuntar en el momento 
 
 === Manejo de Archivos ===
 El archivo que se nos fue otorgado es un archivo de texto plano el cual es pasado a un registro y luego a una archivo binario para facilitar el accesos a la informacion.
-
-====Consulta====
-En la consulta se debe especificar los indices cantidad y fecha de los cuales en el caso de no tener conociminto de alguno de ellos se ingresara un -1. En el caso de que se hayan especificados los numero se buscara en la escala desde que numero a que numero se realizara la consulta realizando un filtrado extra ya que no podemos hacegurar que exista solo un balde que pertenesca a una consulta.
-
-====Alta/Cargar====
-Para la realizacion del alta de un elemento en un balde lo primero que se debe hacer es obtener el balde en que pertenece ese elemento, verficar que el balde no este completo y en el caso de no estarlo inserta el elemento. En el caso en que el balde se encuentra lleno se consideraran diferentes aspectos que describiremos a continuacion. El tamaño de la zona, es decir en el caso en que la zona sea de 1 x 1 debemos insertar una nueva escala y columna dentro de la matriz estirando asi las zonas que no corresponden al elemento a insertar. En el caso de que el tamaño sea mayor que uno lo que se debe considerar es la forma de 
-
-====Baja====
 
 === Ayuda ===
 
