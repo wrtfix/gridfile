@@ -28,7 +28,7 @@ struct fecha{
 
 y el otro cantidades de integer.
 
-====*Alta/Cargar*====
+====_italic_Alta/Cargar_italic_====
 Para la realizacion del alta de un elemento en un balde lo primero que se debe hacer es obtener el balde en que pertenece ese elemento, verficar que el balde no este completo y en el caso de no estarlo inserta el elemento. En el caso en que el balde se encuentra lleno se consideraran diferentes aspectos que describiremos a continuacion. El tamaño de la zona, es decir en el caso en que la zona sea de 1 x 1 debemos insertar una nueva escala y columna dentro de la matriz estirando asi las zonas que no corresponden al elemento a insertar. En el caso de que el tamaño sea mayor que uno lo que se debe considerar es la forma de 
 
 ====*Baja*====
