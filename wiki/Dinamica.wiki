@@ -18,12 +18,15 @@ Como mensionamos anteriormente requeriremos la clase gridfile la que se encargar
 
 ====Clase gridfile====
 Consta de una matriz armada por vector de vectores de punteros a balde que nos permite el agregado dinamico de filas y columnas. Tambien cuenta con dos vectores los cuales cumplen el papel de escala en dicha matriz dinamica. Uno de estos vectores contiene fechas exprezadas como
+
 {{{
 struct fecha{
        int mes;
        int año;
-}
-}}}y el otro cantidades.
+};
+}}}
+
+y el otro cantidades.
 
 ====Clase Balde====
 El  mismo consta de vector con registros en el cual se guarda id_productor, posicion, mes, anio, cantidad, borrado. Estos 3 ultimos registros se utilizaron para que el alta y baja de datas sea un poco mas dinamico.
