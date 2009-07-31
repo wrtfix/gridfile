@@ -1,27 +1,29 @@
-= Introduccion =
-
+== Planteo del Problema ==
 La catedra de Estructuras y Almacenamiento de Datos de la Facultad de Ciencias Exactas nos contacto con el fin de construir un motor de busqueda para la organizacion y actualizacion de productos para un almaen de dispositvos electronicos.
 
-== Planteo del Problema ==
-
-== Solucion ==
-
+== Solución ==
 Para la realizacion del motor de busqueda utilizamos una estructura de multiclave llamada gridfile.
-La cual tiene indices dinamicos determinados por fecha y cantidad. Para almacenar en forma correcta los datos, el gridfile comienza con una matriz de dos dimensiones y 4 baldes, lo cuales pueden contener hasta 5 elementos cada uno. El criterio para actualizar y consultar elementos en los baldes, sera dado atraves de los indices mencionados anteriormente.
+La cual tiene indices dinamicos determinados por fecha y cantidad. Para almacenar en forma correcta los datos, el gridfile comienza con una matriz de dos dimensiones y 4 baldes, los cuales pueden contener hasta 5 elementos cada uno. El criterio para actualizar y consultar elementos en los baldes, sera dado a través de los indices mencionados anteriormente.
 En el caso de que se posea una gran densidad de datos concentrada sobre un criterio, se procedera a utilizar otro criterio para la redistribucion de los datos.
-Si ocurre el caso en que el balde esta completo por elementos donde estos se repiten concidiendo  el indice cantidad en todos ellos se utiliza como segundo criterio el indice fecha. 
-En caso de que tambien los elementos posean repeticiones en cuanto al indice fecha se creeara un arreglo de overfloat.
+Si ocurre el caso en que el balde esta completo por elementos donde estos se repiten coincidiendo el indice cantidad en todos ellos se utiliza como segundo criterio el indice fecha. 
+En caso de que tambien los elementos posean repeticiones en cuanto al indice fecha se producira un overflow en el balde.
 
 
-== Implementacion ==
-Para la misma se utilizo C++ en complemento con librerias stl. Se requiere para la implmentacion plantear 3 clases tales como balde gridfile y zona, que detallaremos mas adelante.
+== Implementación ==
+Para la misma se utilizo C++ en complemento con librerias stl. Se requiere para la implmentacion plantear 3 clases tales como balde gridfile y zona, que detallaremos a continuación.
 
 === Clases ===
-Como mensionamos anteriormente requeriremos la clase gridfile la que se encargara de la manipulacion de las esctructuras. La calse balde que la misma 
+Como mensionamos anteriormente requeriremos la clase gridfile la que se encargara de la manipulacion de las esctructuras. La clase balde que la misma se encarga de guardar datos. Y por ultimo la clase zona que es de gran ayuda en el momento de apuntar una casilla de la matriz a un balde.
 
 
 ====Clase gridfile====
-Consta de una matriz armada por vector de vectores de punteros a balde que nos permite el agregado denamico a de filas y columnas.
+Consta de una matriz armada por vector de vectores de punteros a balde que nos permite el agregado dinamico de filas y columnas. Tambien cuenta con dos vectores los cuales cumplen el papel de escala en dicha matriz dinamica. Uno de estos vectores contiene fechas exprezadas como
+{{{
+struct fecha{
+       int mes;
+       int año;
+}
+}}}y el otro cantidades.
 
 ====Clase Balde====
 El  mismo consta de vector con registros en el cual se guarda id_productor, posicion, mes, anio, cantidad, borrado. Estos 3 ultimos registros se utilizaron para que el alta y baja de datas sea un poco mas dinamico.
@@ -36,7 +38,7 @@ El archivo que se nos fue otorgado es un archivo de texto plano el cual es pasad
 ====Consulta====
 En la consulta se debe especificar los indices cantidad y fecha de los cuales en el caso de no tener conociminto de alguno de ellos se ingresara un -1. En el caso de que se hayan especificados los numero se buscara en la escala desde que numero a que numero se realizara la consulta realizando un filtrado extra ya que no podemos hacegurar que exista solo un balde que pertenesca a una consulta.
 
-====Alta====
+====Alta/Cargar====
 Para la realizacion del alta de un elemento en un balde lo primero que se debe hacer es obtener el balde en que pertenece ese elemento, verficar que el balde no este completo y en el caso de no estarlo inserta el elemento. En el caso en que el balde se encuentra lleno se consideraran diferentes aspectos que describiremos a continuacion. El tamaño de la zona, es decir en el caso en que la zona sea de 1 x 1 debemos insertar una nueva escala y columna dentro de la matriz estirando asi las zonas que no corresponden al elemento a insertar. En el caso de que el tamaño sea mayor que uno lo que se debe considerar es la forma de 
 
 ====Baja====
