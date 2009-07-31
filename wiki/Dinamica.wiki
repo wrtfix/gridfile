@@ -26,16 +26,39 @@ struct fecha{
 };
 }}}
 
-y el otro cantidades de integer.
+y el otro cantidades de 'vector<integer>'. 
+A su vez el gridfile posee zonas, que seran detallados mas adelante, que son guardadas en un vector.
 
-==== _italic_ Alta/Cargar _italic_ ====
-Para la realizacion del alta de un elemento en un balde lo primero que se debe hacer es obtener el balde en que pertenece ese elemento, verficar que el balde no este completo y en el caso de no estarlo inserta el elemento. En el caso en que el balde se encuentra lleno se consideraran diferentes aspectos que describiremos a continuacion. El tamaño de la zona, es decir en el caso en que la zona sea de 1 x 1 debemos insertar una nueva escala y columna dentro de la matriz estirando asi las zonas que no corresponden al elemento a insertar. En el caso de que el tamaño sea mayor que uno lo que se debe considerar es la forma de 
+====Alta/Cargar====
+Para la realizacion del alta de un elemento en un balde lo primero que se debe hacer es obtener el balde en que pertenece ese elemento mediante las escalas, verificar que el balde no este completo y en el caso de no estarlo inserta el elemento. En caso en que el balde se encuentra lleno se consideraran diferentes aspectos que describiremos a continuacion: 
+El tamaño de la zona, es decir en el caso en que la zona sea de 1 x 1 debemos insertar un nuevo valor dentro de la escala y columna/fila dentro de la matriz estirando asi las zonas que no corresponden al elemento a insertar y crear una zona nueva que ocupe el casillero donde se inserto el nuevo balde.
 
-====*Baja*====
+{{{
+// Forma de estirar zona en caso de agregar un valor utilizando el criterio cantidad
+for(int i =0; i<zonas.size();i++)
+{
+    if(zonas[i]->getYfinal() >= nz->getYfinal() && zonas[i]->getYinicial()<= nz->getYinicial() && !zonas[i]->iguales(nz))
+       zonas[i]->setYfinal(zonas[i]->getYfinal()+1);
+    else
+    if(zonas[i]->getYinicial() >= nz->getYfinal()){
+       zonas[i]->setYfinal(zonas[i]->getYfinal()+1);
+       zonas[i]->setYinicial(zonas[i]->getYinicial()+1);
+    }
+    else
+    if(zonas[i]->iguales(nz)){
+       zonas[i]->setYfinal(zonas[i]->getYfinal()+1);
+       zonas[i]->setYinicial(zonas[i]->getYinicial()+1);
+    }
+}
+}}}
+En el caso de que el tamaño es decir una zona de por ejemplo distancia igual a 3 (1 x 3) sea mayor que uno lo que se debe considerar es la forma de disminuir el tamaño de la zona para poder obtener una buena redistribucion de los datos. En este caso se crea una nueva zona que ocupa un casillero y la vieja zona se la achica a dos casilleros, si no se logra una distribucion la nueva zona ocupara 
+
+
+====Baja====
 
 
 
-====*Consulta*====
+====Consulta====
 En la consulta se debe especificar los indices cantidad y fecha de los cuales en el caso de no ser necesario alguno de ellos se ingresara un -1. En el caso de que se hayan especificados los numeros, se buscara en la escala desde que numero a que numero se realizara la consulta realizando un filtrado extra ya que no podemos asegurar que exista solo un balde que pertenesca a una consulta.
 
 ====Clase Balde====
