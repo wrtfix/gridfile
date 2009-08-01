@@ -26,7 +26,7 @@ struct fecha{
 };
 }}}
 
-y el otro cantidades de vector<integer>. 
+y el otro cantidades de vector integer. 
 A su vez el gridfile posee zonas, que seran detallados mas adelante, que son guardadas en un vector.
 
 ====Alta/Cargar====
