@@ -51,7 +51,7 @@ for(int i =0; i<zonas.size();i++)
     }
 }
 }}}
-En el caso de que el tamaño es decir una zona de por ejemplo distancia igual a 3 (1 x 3) sea mayor que uno lo que se debe considerar es la forma de disminuir el tamaño de la zona para poder obtener una buena redistribucion de los datos. En este caso se crea una nueva zona que ocupa un casillero y la vieja zona se la achica a dos casilleros, si no se logra una distribucion la nueva zona ocupara 
+En el caso de que el tamaño de una zona sea, por ejemplo, distancia igual a 3 (1 x 3), mayor que uno lo que se debe considerar es la forma de disminuir el tamaño de la zona para poder obtener una buena redistribucion de los datos. En este caso se crea una nueva zona que estara delimitada por el promedio de los valores del balde. En el caso que los elementos tengan que ser ubicados en un extremo de la zona 
 
 
 ====Baja====
