@@ -1,23 +1,23 @@
 == Planteo del Problema ==
-La catedra de Estructuras y Almacenamiento de Datos de la Facultad de Ciencias Exactas nos contacto con el fin de construir un motor de busqueda para la organizacion y actualizacion de productos para un almaen de dispositvos electronicos.
+La cátedra de Estructuras y Almacenamiento de Datos de la Facultad de Ciencias Exactas nos contacto con el fin de construir un motor de búsqueda para la organización y actualización de productos para un almacén de dispositivos electrónicos.
 
 == Solución ==
-Para la realizacion del motor de busqueda utilizamos una estructura de multiclave llamada gridfile.
-La cual tiene indices dinamicos determinados por fecha y cantidad. Para almacenar en forma correcta los datos, el gridfile comienza con una matriz de dos dimensiones y 4 baldes, los cuales pueden contener hasta 5 elementos cada uno. El criterio para actualizar y consultar elementos en los baldes, sera dado a través de los indices mencionados anteriormente.
-En el caso de que se posea una gran densidad de datos concentrada sobre un criterio, se procedera a utilizar otro criterio para la redistribucion de los datos.
-Si ocurre el caso en que el balde esta completo por elementos donde estos se repiten coincidiendo el indice cantidad en todos ellos se utiliza como segundo criterio el indice fecha. 
-En caso de que tambien los elementos posean repeticiones en cuanto al indice fecha se producira un overflow en el balde.
+Para la realización del motor de búsqueda utilizamos una estructura de multiclave llamada gridfile.
+La cual tiene índices dinámicos determinados por fecha y cantidad. Para almacenar en forma correcta los datos, el gridfile comienza con una matriz de dos dimensiones y 4 baldes, los cuales pueden contener hasta 5 elementos cada uno. El criterio para actualizar y consultar elementos en los baldes, será dado a través de los índices mencionados anteriormente.
+En el caso de que se posea una gran densidad de datos concentrada sobre un criterio, se procederá a utilizar otro criterio para la redistribución de los datos.
+Si ocurre el caso en que el balde esta completo por elementos donde estos se repiten coincidiendo el índice cantidad en todos ellos se utiliza como segundo criterio el índice fecha. 
+En caso de que también los elementos posean repeticiones en cuanto al índice fecha se producirá un overflow en el balde.
 
 
 == Implementación ==
-Para la misma se utilizo C++ en complemento con librerias stl. Se requiere para la implmentacion plantear 3 clases tales como balde gridfile y zona, que detallaremos a continuación.
+Para la misma se utilizo C++ en complemento con librerías stl. Se requiere para la implementación plantear 3 clases tales como balde gridfile y zona, que detallaremos a continuación.
 
 === Clases ===
 Como mensionamos anteriormente requeriremos la clase gridfile la que se encargara de la manipulacion de las esctructuras. La clase balde que la misma se encarga de guardar datos. Y por ultimo la clase zona que es de gran ayuda en el momento de apuntar una casilla de la matriz a un balde.
 
 
 ====Clase gridfile====
-Consta de una matriz armada por vector de vectores de punteros a balde que nos permite el agregado dinamico de filas y columnas. Tambien cuenta con dos vectores los cuales cumplen el papel de escala en dicha matriz dinamica. Uno de estos vectores contiene fechas exprezadas como
+Consta de una matriz armada por vector de vectores de punteros a balde que nos permite el agregado dinámico de filas y columnas. También cuenta con dos vectores los cuales cumplen el papel de escala en dicha matriz dinámica. Uno de estos vectores contiene fechas expresadas como
 
 {{{
 struct fecha{
@@ -27,11 +27,11 @@ struct fecha{
 }}}
 
 y el otro cantidades de vector integer. 
-A su vez el gridfile posee zonas, que seran detallados mas adelante, que son guardadas en un vector.
+A su vez el gridfile posee zonas, que serán detallados más adelante, que son guardadas en un vector.
 
 ====Alta/Cargar====
-Para la realizacion del alta de un elemento en un balde lo primero que se debe hacer es obtener el balde en que pertenece ese elemento mediante las escalas, verificar que el balde no este completo y en el caso de no estarlo inserta el elemento. En caso en que el balde se encuentra lleno se consideraran diferentes aspectos que describiremos a continuacion: 
-El tamaño de la zona, es decir en el caso en que la zona sea de 1 x 1 debemos insertar un nuevo valor dentro de la escala y columna/fila dentro de la matriz estirando asi las zonas que no corresponden al elemento a insertar y crear una zona nueva que ocupe el casillero donde se inserto el nuevo balde.
+Para la realización del alta de un elemento en un balde lo primero que se debe hacer es obtener el balde en que pertenece ese elemento mediante las escalas, verificar que el balde no esté completo y en el caso de no estarlo inserta el elemento. En caso en que el balde se encuentra lleno se consideraran diferentes aspectos que describiremos a continuación: 
+El tamaño de la zona, es decir en el caso en que la zona sea de 1 x 1 debemos insertar un nuevo valor dentro de la escala y columna/fila dentro de la matriz estirando así las zonas que no corresponden al elemento a insertar y crear una zona nueva que ocupe el casillero donde se inserto el nuevo balde.
 
 {{{
 // Forma de estirar zona en caso de agregar un valor utilizando el criterio cantidad
@@ -51,7 +51,7 @@ for(int i =0; i<zonas.size();i++)
     }
 }
 }}}
-En el caso de que el tamaño de una zona sea, por ejemplo, distancia igual a 3 (1 x 3), mayor que uno lo que se debe considerar es la forma de disminuir el tamaño de la zona para poder obtener una buena redistribucion de los datos. En este caso se crea una nueva zona que estara delimitada por el promedio de los valores del balde. En el caso que los elementos tengan que ser ubicados en un extremo de la zona 
+En el caso de que el tamaño de una zona sea, por ejemplo, distancia igual a 3 (1 x 3), mayor que uno lo que se debe considerar es la forma de disminuir el tamaño de la zona para poder obtener una buena redistribución de los datos. En este caso se crea una nueva zona que estará delimitada por el promedio de los valores del balde. En el caso que los elementos tengan que ser ubicados en un extremo de la zona
 
 
 ====Baja====
@@ -59,20 +59,19 @@ En el caso de que el tamaño de una zona sea, por ejemplo, distancia igual a 3 (
 
 
 ====Consulta====
-En la consulta se debe especificar los indices cantidad y fecha de los cuales en el caso de no ser necesario alguno de ellos se ingresara un -1. En el caso de que se hayan especificados los numeros, se buscara en la escala desde que numero a que numero se realizara la consulta realizando un filtrado extra ya que no podemos asegurar que exista solo un balde que pertenesca a una consulta.
+En la consulta se debe especificar los índices cantidad y fecha de los cuales en el caso de no ser necesario alguno de ellos se ingresara un -1. En el caso de que se hayan especificados los números, se buscara en la escala desde que numero a que numero se realizara la consulta realizando un filtrado extra ya que no podemos asegurar que exista solo un balde que pertenezca a una consulta.
 
 ====Clase Balde====
-El  mismo consta de vector con registros en el cual se guarda id_productor, posicion, mes, anio, cantidad, borrado. Estos 3 ultimos registros se utilizaron para que el alta y baja de datas sea un poco mas dinamico.
+El  mismo consta de vector con registros en el cual se guarda id_productor, posición, mes, anio, cantidad, borrado. Estos 3 últimos registros se utilizaron para que el alta y baja de datas sea un poco más dinámico.
 
 ====Clase Zona====
-La misma se utiliza para que el gridfile sepa a que balde apuntar en el momento de estirar una zona. La zona consta de 4 enteros que seria las posicion iniciales y finales en x,y.
-
+La misma se utiliza para que el gridfile sepa a qué balde apuntar en el momento de estirar una zona. La zona consta de 4 enteros que seria las posición iníciales y finales en x,y.
 
 === Manejo de Archivos ===
-El archivo que se nos fue otorgado es un archivo de texto plano el cual es pasado a un registro y luego a una archivo binario para facilitar el accesos a la informacion.
+El archivo que se nos fue otorgado es un archivo de texto plano el cual es pasado a un registro y luego a una archivo binario para facilitar el accesos a la información.
 
 === Ayuda ===
 
 === Mejoras ===
 
-=== Conclusion ===
+=== Conclusión ===
