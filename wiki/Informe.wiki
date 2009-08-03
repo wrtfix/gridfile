@@ -22,10 +22,10 @@ struct fecha{
 y el otro cantidades de vector integer. A su vez el gridfile posee zonas, que serán detallados más adelante, que son guardadas en un vector.
 En un principio, la matriz tiene una configuración inicial de 2 baldes por dimensión (4 baldes en total) y las escalas cargadas en una primera instancia a mano, con 2 valores iníciales, el segundo valor será el más grande encontrado en los datos, y el primero, el promedio entre el valor más grande y más chico. Cabe destacar que la escala se encuentra ordenada de forma ascendente e indica hasta qué valor alcanza el gridfile en cada una de sus posiciones. 
 
-DIBUJO
+http://code.google.com/p/gridfile/source/browse/trunk/Imagenes/Dibujo1.PNG
 
 En el dibujo podemos observar la ubicación de las zonas, representadas por diferentes colores, en primer instancia se ubica una por cada casillero. Al insertar valores, la zona amarilla contendrá las ventas anteriores al mes de junio del año 1994 y cantidades menores que 55246.
- Para la realización del alta de un elemento en un balde lo primero que se debe hacer es obtener el balde en que pertenece ese elemento mediante las escalas, verificar que el balde no esté completo y en el caso de no estarlo inserta el elemento. En caso en que el balde se encuentra lleno se consideraran diferentes aspectos que describiremos a continuación:
+Para la realización del alta de un elemento en un balde lo primero que se debe hacer es obtener el balde en que pertenece ese elemento mediante las escalas, verificar que el balde no esté completo y en el caso de no estarlo inserta el elemento. En caso en que el balde se encuentra lleno se consideraran diferentes aspectos que describiremos a continuación:
 1- El tamaño de la zona. Es decir en el caso en que la zona sea de 1 x 1 debemos insertar un nuevo valor dentro de la escala y columna/fila dentro de la matriz, estirando así las zonas que no corresponden al elemento a insertar y crear una zona nueva que ocupe el casillero donde se inserto el nuevo balde.  A continuación vemos el código para estirar las zonas verticalmente
 {{{
 // Forma de estirar zona en caso de agregar un valor utilizando el criterio cantidad
