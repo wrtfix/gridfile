@@ -137,7 +137,7 @@ Pantalla inicial del programa:
 
 Opción deseada:
 }}}
-<Recomendacion:> Para un buen funcionamiento del programa se debe considerar  en un principio realizar el pasaje del archivo de texto a binario (opción 1) luego cargar el gridfile a partir del archivo binario (opción 2) y luego podrá elegir el resto de las opciones.
+Recomendacion: Para un buen funcionamiento del programa se debe considerar  en un principio realizar el pasaje del archivo de texto a binario (opción 1) luego cargar el gridfile a partir del archivo binario (opción 2) y luego podrá elegir el resto de las opciones.
 
 =Posibles Mejoras=
 
