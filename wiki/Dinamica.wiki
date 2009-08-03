@@ -1,10 +1,11 @@
 =Planteo del Problema=
 La cátedra de Estructuras de Almacenamiento de Datos de la Facultad de Ciencias Exactas nos contacto con el fin de construir un motor de búsqueda para la organización y actualización de productos para un almacén de dispositivos electrónicos. 
-Solución
+=Solución=
 Para la realización del motor de búsqueda utilizamos una estructura de multiclave llamada gridfile. La cual tiene índices dinámicos determinados por fecha y cantidad. Para almacenar en forma correcta los datos, el gridfile comienza con una matriz de dos dimensiones y 4 baldes, los cuales pueden contener hasta 5 elementos cada uno. El criterio para actualizar y consultar elementos en los baldes, será dado a través de los índices mencionados anteriormente. En el caso de que se posea una gran densidad de datos concentrada sobre un criterio, se procederá a utilizar otro criterio para la redistribución de los datos. Si ocurre el caso en que el balde esta completo por elementos donde estos se repiten coincidiendo el índice cantidad en todos ellos se utiliza como segundo criterio el índice fecha. En caso de que también los elementos posean repeticiones en cuanto al índice fecha se producirá un overflow en el balde. 
 Implementación
 Para la misma se utilizo C++ en complemento con librerías stl. Se requiere para la implementación plantear 3 clases tales como balde gridfile y zona, que detallaremos a continuación. 
-==Clases==
+
+=Clases=
 Como mencionamos anteriormente requeriremos la clase gridfile la que se encargara de la manipulación de las estructuras. La clase balde que la misma se encarga de guardar datos. Y por último la clase zona que es de gran ayuda en el momento de apuntar una casilla de la matriz a un balde.
  
 ===Clase gridfile===
@@ -17,7 +18,7 @@ struct fecha{
 y el otro cantidades de vector integer. A su vez el gridfile posee zonas, que serán detallados más adelante, que son guardadas en un vector.
 En un principio, la matriz tiene una configuración inicial de 2 baldes por dimensión (4 baldes en total) y las escalas cargadas en una primera instancia a mano, con 2 valores iníciales, el segundo valor será el más grande encontrado en los datos, y el primero, el promedio entre el valor más grande y más chico. Cabe destacar que la escala se encuentra ordenada de forma ascendente e indica hasta qué valor alcanza el gridfile en cada una de sus posiciones. 
 
-<Dibujo>
+Dibujo
 
 En el dibujo podemos observar la ubicación de las zonas, representadas por diferentes colores, en primer instancia se ubica una por cada casillero. Al insertar valores, la zona amarilla contendrá las ventas anteriores al mes de junio del año 1994 y cantidades menores que 55246.
  Para la realización del alta de un elemento en un balde lo primero que se debe hacer es obtener el balde en que pertenece ese elemento mediante las escalas, verificar que el balde no esté completo y en el caso de no estarlo inserta el elemento. En caso en que el balde se encuentra lleno se consideraran diferentes aspectos que describiremos a continuación:
@@ -41,7 +42,7 @@ for(int i =0; i<zonas.size();i++)
 }
 }}}
 
-<Dibujo>
+Dibujo
 
 Podemos observar que al querer insertar el elemento 6, en la zona violeta, la cual ya tenia su balde lleno, se creó una fila estirando la zona amarilla. Y redistribuyendo los valores de la zona violeta. En este caso particular, los valores de cantidad de la zona violeta eran mayores a 16495, y el elemento 6 tenía un valor de cantidad menor a este.
 2- En el caso de que el tamaño de una zona sea, por ejemplo, distancia igual a  2 (1 x 2), mayor que uno, lo que se debe considerar es la forma de disminuir el tamaño de la zona para poder obtener una buena redistribución de los datos. En este caso se crea una nueva zona que estará delimitada por el promedio de los valores del balde.
@@ -49,10 +50,11 @@ Existe un caso en el cual los elementos tienen  que ser ubicados en un extremo d
 Ejemplo:
 Supongamos que los elementos pertenecientes a la zona amarilla tienen el valor cantidad mayor que 16495
 
-<Dibujo>
+Dibujo
 
 Si ahora se necesita agregar el  12, con cantidad mayor a 20500 Lo que se hace es agregar una nueva fila, y un valor en la escala igual al promedio de los seis elementos.
-<Dibujo>
+
+Dibujo
 
 	
 3- En el caso en el que el balde se encuentra completo, y las cantidades son todas iguales debemos utilizar el otro criterio para la inserción de un nuevo elemento, esto producirá la inserción de una nueva columna dentro del gridfile. 
@@ -61,13 +63,14 @@ Ejemplo:
 En este caso al querer insertar el 13, correspondiente a la zona violeta, como  las cantidades de los valores 1, 2, 3, 4, 5 y 13 son iguales, se agrega una columna con un nuevo promedio de fecha.
 4- Si el balde se encuentra completo y a su vez los valores de cantidad y fecha están repetidos. La solución para este problema es agregar elementos de overflow al balde. 
 Ejemplo.
-<Dibujo>
+
+Dibujo
 
 ===Bajas===
 A partir del archivo “bajas.txt”, lo que se hace es obtener la posición a la que pertenece el elemento dentro del gridfile, ubicarlo dentro del balde y marcárlo como eliminado. Una vez realizado este paso se creara un nuevo documento con los registros que no se encuentran marcados como eliminados. A su vez para no encontrarnos en la próxima consulta con elementos marcados como eliminados el gridfile se actualiza, es decir se eliminan físicamente los punteros a los elementos marcados como eliminados.
 Consulta
 En la consulta se debe especificar los índices cantidad y fecha, de no ser necesario alguno de ellos se ingresara un -1. En el caso de que se hayan especificados los números, se buscara en la escala desde que numero a que numero se realizara la consulta realizando un filtrado extra ya que no podemos asegurar que exista solo un balde que pertenezca a una consulta. 
-Ejemplo con la figura anterior.
+Ejemplo con la figura anterior.{{{
 Cantidad:
 Desde:-1
 Hasta: 55246
@@ -76,8 +79,9 @@ Mes: 3
 Anio: 2002
 Fecha de fin:
 Mes: -1
-Anio: -1
+Anio: -1}}}
 Esto retornara los elementos de de las zonas verde, violeta claro y violeta oscuro. Ordenados primero por cantidad y luego por fecha.
+
 ===Clase Balde===
 El mismo consta de vector con registros:{{{
 typedef struct regBalde{
@@ -97,15 +101,16 @@ int yini;
 int xfin;
 int yfin;
 Balde *mibalde;}}}
-<Dibujo>
+
+Dibujo
  
 
-===Manejo de Archivos===
+=Manejo de Archivos=
 
 Cuando trabajamos con archivos, decidimos hacerlo a través de archivos binarios de registros de ventas. Para esto, construimos un binario con todos los registros a indexar y luego realizamos la carga, alta, bajas y modificaciones correspondientes. Esto nos permite trabajar con registros enteros y no con lineas de texto, acercándonos de esta forma a cómo funciona realmente un gridfile. En este caso sólo se trata de datos ficticios, pero en la realidad, muchas veces se busca encriptar los datos de un archivo de modo que no sean legibles tan fácilmente por los usuarios ajenos al sistema. Esto genera una menor tolerancia a corrupciones en los datos.No se consideró necesario ordenar dicho archivo ya que se accede a sus registros a partir del gridfile.
 Respecto al almacenamiento del índice, lo ideal sería guardarlo en un archivo binario para luego cargarlo de modo tal de no tener que reconstruirlo en cada ejecución del sistema.
 
-==Ayuda==
+=Ayuda=
 
 Pantalla inicial del programa:
 ------->Menú<--------
@@ -126,16 +131,16 @@ Pantalla inicial del programa:
 9 – Salir
 
 Opción deseada:
-<Recomendacion:> Para un buen funcionamiento del programa se debe considerar  en un principio realizar el pasaje del archivo de texto a binario (opción 1) luego cargar el gridfile a partir del archivo binario (opción 2) y luego podrá elegir el resto de las opciones.
+Recomendacion: Para un buen funcionamiento del programa se debe considerar  en un principio realizar el pasaje del archivo de texto a binario (opción 1) luego cargar el gridfile a partir del archivo binario (opción 2) y luego podrá elegir el resto de las opciones.
 
-==Posibles Mejoras==
+=Posibles Mejoras=
 
 •	A la hora de eliminar elementos nos encontramos con baldes vacíos. Sería bueno fusionarlos con balde vecinos para disminuir el tamaño del índice y evitar baldes vacios.
 •	Al insertar los elementos como primer criterio se eligió la cantidad, y en el caso en que los elemento se encuentre repetidos se divide por el criterio fecha. Vemos como una buena mejora realizar la división de la matriz una vez por cada criterio o teniendo encueta el tamaño de la zona, haciendo que el gridfile quede de una forma más proporcional en cuanto a sus dos dimensiones (alto y ancho).
 •	Una interfaz grafica nos ayudaría a ver la forma en que los datos fueron cargados en el gridfile y la existencia de baldes vacíos, en el caso de que los haya. A su vez también nos permitiría la carga de diferentes archivos de texto tanto para el alta como baja de elementos.
  
 
-==Conclusión==
+=Conclusión=
 
 Los objetivos se cumplieron satisfactoriamente, se desarrollo con éxito un índice gridfile capaz de soportar eficientemente la información contenida en los archivos. Luego se agregaron los datos del archivo altas.txt y finalmente se dieron de baja los datos contenidos en bajas.txt.
 Se ha observado y corroborado la disminución de accesos a disco, y la importancia de implementar índices para manejar grandes volúmenes de información como lo son las enormes bases de datos que nos rodean en la vida cotidiana.
