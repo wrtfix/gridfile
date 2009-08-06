@@ -1,9 +1,10 @@
 =Planteo del Problema=
-La cátedra de Estructuras de Almacenamiento de Datos de la Facultad de Ciencias Exactas nos contacto con el fin de construir un motor de búsqueda para la organización y actualización de productos para un almacén de dispositivos electrónicos. 
-=Solución=
-Para la realización del motor de búsqueda utilizamos una estructura de multiclave llamada gridfile. La cual tiene índices dinámicos determinados por fecha y cantidad. Para almacenar en forma correcta los datos, el gridfile comienza con una matriz de dos dimensiones y 4 baldes, los cuales pueden contener hasta 5 elementos cada uno. El criterio para actualizar y consultar elementos en los baldes, será dado a través de los índices mencionados anteriormente. En el caso de que se posea una gran densidad de datos concentrada sobre un criterio, se procederá a utilizar otro criterio para la redistribución de los datos. Si ocurre el caso en que el balde esta completo por elementos donde estos se repiten coincidiendo el índice cantidad en todos ellos se utiliza como segundo criterio el índice fecha. En caso de que también los elementos posean repeticiones en cuanto al índice fecha se producirá un overflow en el balde. 
-Implementación
-Para la misma se utilizo C++ en complemento con librerías stl. Se requiere para la implementación plantear 3 clases tales como balde gridfile y zona, que detallaremos a continuación. 
+La asociación de Productores y Consumidores requiere que se le provea de modo muy eficiente búsquedas conformadas por los datos de los proveedores y los consumidores, también es necesario realizar consultas asociativas por claves compuestas completas o puntuales y búsquedas por claves compuestas incompletas o por rangos. 
+Como requisito principal debíamos utilizar un gridfile con índices dinámicos determinados por fecha y cantidad, con una matriz de dos dimensiones y cuatro baldes, los cuales pueden contener hasta cinco elementos cada uno.
+
+=Implementación=
+
+Para la misma se utilizo C++ en complemento con librerías stl. Se requiere para la implementación plantear 3 clases tales como balde, gridfile y zona, que detallaremos a continuación. 
 
 =Clases=
 
