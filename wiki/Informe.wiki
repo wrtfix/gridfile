@@ -7,8 +7,10 @@ Para la misma se utilizo C++ en complemento con librerías stl. Se requiere para
 
 =Clases=
 
+
 || http://gridfile.googlecode.com/svn/trunk/Imagenes/Dibujo8.JPG ||
  
+
 Como mencionamos anteriormente requeriremos la clase gridfile la que se encargara de la manipulación de las estructuras. La clase balde que la misma se encarga de guardar datos. Y por último la clase zona que es de gran ayuda en el momento de apuntar una casilla de la matriz a un balde.
 
 ===Clase gridfile===
