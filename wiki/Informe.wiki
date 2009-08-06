@@ -6,10 +6,11 @@ Implementación
 Para la misma se utilizo C++ en complemento con librerías stl. Se requiere para la implementación plantear 3 clases tales como balde gridfile y zona, que detallaremos a continuación. 
 
 =Clases=
-Como mencionamos anteriormente requeriremos la clase gridfile la que se encargara de la manipulación de las estructuras. La clase balde que la misma se encarga de guardar datos. Y por último la clase zona que es de gran ayuda en el momento de apuntar una casilla de la matriz a un balde.
 
 || http://gridfile.googlecode.com/svn/trunk/Imagenes/Dibujo8.JPG ||
  
+Como mencionamos anteriormente requeriremos la clase gridfile la que se encargara de la manipulación de las estructuras. La clase balde que la misma se encarga de guardar datos. Y por último la clase zona que es de gran ayuda en el momento de apuntar una casilla de la matriz a un balde.
+
 ===Clase gridfile===
 Consta de una matriz armada por vector de vectores de punteros a balde que nos permite el agregado dinámico de filas y columnas. También cuenta con dos vectores los cuales cumplen el papel de escala en dicha matriz dinámica. Uno de estos vectores contiene fechas expresadas como 
 
