@@ -80,17 +80,17 @@
 1248045225 source:c:\documents and settings\administrador\escritorio\ultimate\dinamico\gridfile.cpp
 	"Gridfile.h"
 
-1248181246 source:c:\documents and settings\administrador\escritorio\trilolli\dinamico\zona.cpp
+1248181248 source:c:\documents and settings\administrador\escritorio\trilolli\dinamico\zona.cpp
 	"Zona.h"
 
-1248181246 c:\documents and settings\administrador\escritorio\trilolli\dinamico\zona.h
+1248181248 c:\documents and settings\administrador\escritorio\trilolli\dinamico\zona.h
 	"Balde.h"
 
-1248301029 c:\documents and settings\administrador\escritorio\trilolli\dinamico\balde.h
+1249251534 c:\documents and settings\administrador\escritorio\trilolli\dinamico\balde.h
 	<iostream>
 	<vector>
 
-1248375622 source:c:\documents and settings\administrador\escritorio\trilolli\dinamico\main.cpp
+1249595724 source:c:\documents and settings\administrador\escritorio\trilolli\dinamico\main.cpp
 	<cstdlib>
 	<iostream>
 	<fstream>
@@ -99,16 +99,71 @@
 	<string.h>
 	"Gridfile.h"
 
-1248359824 c:\documents and settings\administrador\escritorio\trilolli\dinamico\gridfile.h
+1249137318 c:\documents and settings\administrador\escritorio\trilolli\dinamico\gridfile.h
 	"Balde.h"
 	"Zona.h"
 	<iostream>
 	<vector>
 	<math.h>
 
-1248375377 source:c:\documents and settings\administrador\escritorio\trilolli\dinamico\gridfile.cpp
+1249596677 source:c:\documents and settings\administrador\escritorio\trilolli\dinamico\gridfile.cpp
 	"Gridfile.h"
 
-1248298301 source:c:\documents and settings\administrador\escritorio\trilolli\dinamico\balde.cpp
+1249251580 source:c:\documents and settings\administrador\escritorio\trilolli\dinamico\balde.cpp
 	"Balde.h"
+
+1248181248 source:e:\jorge\facu\estructura\trilolli\dinamico\zona.cpp
+	"Zona.h"
+
+1248181248 e:\jorge\facu\estructura\trilolli\dinamico\zona.h
+	"Balde.h"
+
+1248825372 e:\jorge\facu\estructura\trilolli\dinamico\balde.h
+	<iostream>
+	<vector>
+
+1248825438 source:e:\jorge\facu\estructura\trilolli\dinamico\balde.cpp
+	"Balde.h"
+
+1249137599 source:e:\jorge\facu\estructura\trilolli\dinamico\gridfile.cpp
+	"Gridfile.h"
+
+1249137318 e:\jorge\facu\estructura\trilolli\dinamico\gridfile.h
+	"Balde.h"
+	"Zona.h"
+	<iostream>
+	<vector>
+	<math.h>
+
+1248181248 source:c:\bajados\trilolli2\trilolli\dinamico\zona.cpp
+	"Zona.h"
+
+1248181248 c:\bajados\trilolli2\trilolli\dinamico\zona.h
+	"Balde.h"
+
+1249251534 c:\bajados\trilolli2\trilolli\dinamico\balde.h
+	<iostream>
+	<vector>
+
+1249251580 source:c:\bajados\trilolli2\trilolli\dinamico\balde.cpp
+	"Balde.h"
+
+1249251685 source:c:\bajados\trilolli2\trilolli\dinamico\gridfile.cpp
+	"Gridfile.h"
+
+1249137318 c:\bajados\trilolli2\trilolli\dinamico\gridfile.h
+	"Balde.h"
+	"Zona.h"
+	<iostream>
+	<vector>
+	<math.h>
+
+1249251518 source:c:\bajados\trilolli2\trilolli\dinamico\main.cpp
+	<cstdlib>
+	<iostream>
+	<fstream>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Gridfile.h"
 

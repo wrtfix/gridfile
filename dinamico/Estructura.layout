@@ -2,24 +2,24 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
 	<File name="Balde.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="2344" topLine="0" />
+		<Cursor position="960" topLine="0" />
 	</File>
 	<File name="Balde.h" open="1" top="0" tabpos="3">
-		<Cursor position="284" topLine="13" />
+		<Cursor position="1144" topLine="24" />
 	</File>
 	<File name="Gridfile.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="1273" topLine="49" />
+		<Cursor position="10433" topLine="379" />
 	</File>
-	<File name="Gridfile.h" open="1" top="0" tabpos="4">
-		<Cursor position="822" topLine="0" />
+	<File name="Gridfile.h" open="1" top="1" tabpos="4">
+		<Cursor position="1020" topLine="0" />
 	</File>
 	<File name="Zona.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="359" topLine="29" />
+		<Cursor position="538" topLine="25" />
 	</File>
 	<File name="Zona.h" open="1" top="0" tabpos="6">
-		<Cursor position="150" topLine="7" />
+		<Cursor position="578" topLine="0" />
 	</File>
-	<File name="main.cpp" open="1" top="1" tabpos="7">
-		<Cursor position="13582" topLine="384" />
+	<File name="main.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="7030" topLine="271" />
 	</File>
 </CodeBlocks_layout_file>

@@ -63,11 +63,10 @@ int Gridfile::getposFecha(int mes,int anio){
     int i =0;
     int max = fecha.size();
 
-    while ((i < max)&& (fecha[i].anio < anio))
+    while ((i < max)&& (fecha[i].anio < anio)){
           i++;
-
+    }
     while ((i < max)&& (fecha[i].anio == anio)&& (fecha[i].mes < mes)){
-
           i++;
 
     }
@@ -90,6 +89,7 @@ Zona * Gridfile::getZona(int x,int y){
     int max = zonas.size();
     for(int i = 0; i < max;i++){
         if(zonas[i]->getXinicial()<= x && x<zonas[i]->getXfinal() && zonas[i]->getYinicial()<=y && y<zonas[i]->getYfinal())
+        //  if(zonas[i]->getXinicial() == x && zonas[i]->getYinicial()==y)
             return zonas[i];
     }
     return NULL;
@@ -127,7 +127,7 @@ void Gridfile::insertCantidad(int cant){
 void Gridfile::insertFecha(int mes, int anio){
     vector<regFecha>::iterator it = fecha.begin();
     int i =0;
-    while(i<fecha.size() && fecha[i].anio<anio)
+    while(i<fecha.size() && fecha[i].anio<=anio)
         i++;
     while(fecha[i].anio == anio && fecha[i].mes < mes)
         i++;
@@ -136,6 +136,19 @@ void Gridfile::insertFecha(int mes, int anio){
     aux.mes = mes;
     fecha.insert(it+i,aux);
 }
+
+void Gridfile::asignarBaldes(){
+    int tos = 0;
+    while(tos<zonas.size())
+    {
+        for(int p=zonas[tos]->getXinicial();p<zonas[tos]->getXfinal();p++)
+            for(int a=zonas[tos]->getYinicial();a<zonas[tos]->getYfinal();a++){
+                matriz[a][p] = zonas[tos]->getBalde();
+            }
+            tos++;
+    }
+}
+
 
 void Gridfile::addxCantidad(int id,int pos, int mes, int anio, int cant){
     bool agregado = false;
@@ -152,14 +165,26 @@ void Gridfile::addxCantidad(int id,int pos, int mes, int anio, int cant){
     {
 
         int pro = b->promedioCantidad(cant);
-        if( pro != cant)
+
+        if(!b->igualesCantidad(cant))
         {
+
             Zona *original = getZona(x,y);
+
             int distancia = original->getYfinal() - original->getYinicial();
 
             if( distancia == 1)
             {
-                insertCantidad(pro);
+
+                if(pro == cant-1){
+                  insertCantidad(cant-1);
+                  pro = cant;
+                }
+                else{
+                    insertCantidad(pro);
+
+                }
+
                 agregarFila(original->getYinicial());
 
                 Zona * nz = new Zona();
@@ -193,30 +218,28 @@ void Gridfile::addxCantidad(int id,int pos, int mes, int anio, int cant){
 
                 zonas.push_back(nz);
 
-                int tos = 0;
-
-                while(tos<zonas.size())
-                {
-                    for(int p=zonas[tos]->getXinicial();p<zonas[tos]->getXfinal();p++)
-                        for(int a=zonas[tos]->getYinicial();a<zonas[tos]->getYfinal();a++){
-                            matriz[a][p] = zonas[tos]->getBalde();
-                    }
-                    tos++;
-                }
+                asignarBaldes();
 
                 }
                 else
                 {
+
 
                     Balde *nb = new Balde();
 
                     Zona *nz = new Zona();
 
                     int i = 0;
-                    while(i<cantidad.size() && cantidad[i-1]<=pro)
-                        i++;
 
+                    while(i<cantidad.size() && cantidad[i]<=pro)
+                        i++;
+                    if (i == original->getYfinal())
+                        i=i-1;
+                    else
+                        if(i==original->getYinicial())
+                            i=i+1;
                     b->divCantidad(nb,cantidad[i-1]);
+
 
                     int xi = original->getXinicial();
                     int yi = original->getYinicial();
@@ -231,30 +254,23 @@ void Gridfile::addxCantidad(int id,int pos, int mes, int anio, int cant){
 
                     zonas.push_back(nz);
 
-                    int tos = 0;
-
-                    while(tos<zonas.size())
-                    {
-                        for(int p=zonas[tos]->getXinicial();p<zonas[tos]->getXfinal();p++)
-                            for(int a=zonas[tos]->getYinicial();a<zonas[tos]->getYfinal();a++){
-                                matriz[a][p] = zonas[tos]->getBalde();
-                        }
-                           tos++;
-                        }
-
+                    asignarBaldes();
                 }
 
+
             }
-        else{
+            else{
                 addElemento(id,pos,mes,anio,cant);
                 agregado = true;
-        }
+            }
         if(!agregado){
             addxCantidad(id,pos, mes, anio, cant);
         }
     }
 }
-//recursivo!!
+
+// Inserto los elementos con respecto a la fecha
+
 void Gridfile::addElemento(int id,int pos, int mes, int anio, int cant){
     bool agregar = false;
     int x = getposFecha(mes,anio);
@@ -265,21 +281,47 @@ void Gridfile::addElemento(int id,int pos, int mes, int anio, int cant){
 
     if(!b->completo()){
         b->agregarBalde(id,pos,mes,anio,cant);
+        agregar = true;
     }
     else
     {
         int prom;
         int proa;
+        // Obtengo la fecha promedio
         b->promedioFecha(anio,mes,proa,prom);
-        if((proa != anio)||(proa == anio && prom != mes))
+
+        //verifico que las fechas no sean todas iguales
+        if(!b->igualesFecha(mes,anio))
         {
-
             int distancia = original->getXfinal() - original->getXinicial();
-
+            // obtengo el tamaño de la casilla
             if( distancia == 1)
             {
-                insertFecha(prom,proa);
+
+                if(proa == anio-1){
+                    insertFecha(mes,anio-1);
+                    proa = anio;
+                    prom = mes;
+                }
+                else{
+                    if(prom == mes){
+                        insertFecha(mes-1, anio);
+                        prom = mes;
+                    }
+
+                    else{
+                        if(prom == mes-1){
+                            insertFecha(mes-1, anio);
+                            prom = mes;
+                        }
+                        else
+
+                            insertFecha(prom,proa);
+                    }
+                }
+
                 agregarColumna(original->getXinicial());
+                // Creo una nueva zona
 
                 Zona * nz = new Zona();
                 int xi = original->getXinicial();
@@ -289,6 +331,7 @@ void Gridfile::addElemento(int id,int pos, int mes, int anio, int cant){
 
                 nz->setPosicion(xi,yi,xf,yf);
 
+                // Estiramos las zonas de con respecto a las columnas
                 for(int i =0; i<zonas.size();i++)
                 {
                     if(zonas[i]->getXfinal() >= nz->getXfinal() && zonas[i]->getXinicial()<= nz->getXinicial() && !zonas[i]->iguales(nz))
@@ -306,26 +349,20 @@ void Gridfile::addElemento(int id,int pos, int mes, int anio, int cant){
                 }
 
                 Balde *nb = new Balde();
+
+                //redistribuyo los elementos dentro del balde
                 b->divFecha(nb,prom,proa);
 
                 nz->setBalde(nb);
 
                 zonas.push_back(nz);
 
-                int tos = 0;
-
-                while(tos<zonas.size())
-                {
-                    for(int p=zonas[tos]->getXinicial();p<zonas[tos]->getXfinal();p++)
-                        for(int a=zonas[tos]->getYinicial();a<zonas[tos]->getYfinal();a++){
-                            matriz[a][p] = zonas[tos]->getBalde();
-                    }
-                    tos++;
-                }
+                asignarBaldes();
 
             }
             else
             {
+
 
                 Balde *nb = new Balde();
 
@@ -334,45 +371,47 @@ void Gridfile::addElemento(int id,int pos, int mes, int anio, int cant){
                 int i = 0;
                 while(i<fecha.size() && fecha[i].anio<=proa)
                     i++;
-                while(i<fecha.size() && fecha[i].anio==proa && fecha[i].mes<=mes)
+                while(i<fecha.size() && fecha[i].anio==proa && fecha[i].mes<=prom)
                     i++;
 
-                b->divFecha(nb,fecha[i].mes,fecha[i].anio);
+                if (i == original->getXfinal())
+                    i=i-1;
+                else
+                    if(i==original->getXinicial())
+                        i=i+1;
 
-                    int xi = original->getXinicial();
-                    int yi = original->getYinicial();
-                    int xf = i;
-                    int yf = original->getYfinal();
+                //nz->mostrar();
 
-                    nz->setPosicion(xi,yi,xf,yf);
+                //redistribuyo los elementos dentro del balde
 
-                    original->setXinicial(i);
+                b->divFecha(nb,fecha[i-1].mes,fecha[i-1].anio);
 
-                    nz->setBalde(nb);
+                int xi = original->getXinicial();
+                int yi = original->getYinicial();
+                int xf = i;
+                int yf = original->getYfinal();
 
-                    zonas.push_back(nz);
+                nz->setPosicion(xi,yi,xf,yf);
 
-                    int tos = 0;
+                original->setXinicial(i);
 
-                    while(tos<zonas.size())
-                    {
-                        for(int p=zonas[tos]->getXinicial();p<zonas[tos]->getXfinal();p++)
-                            for(int a=zonas[tos]->getYinicial();a<zonas[tos]->getYfinal();a++){
-                                matriz[a][p] = zonas[tos]->getBalde();
-                            }
-                        tos++;
-                    }
+                nz->setBalde(nb);
+
+                zonas.push_back(nz);
+
+                asignarBaldes();
 
                 }
 
             }
         else
             {
-            cout<<"La densidad del archivo no es soportada por la estructa ERROR!!"<<endl;
-            agregar = true;
+
+                b->agregarBalde(id,pos,mes,anio,cant);
+                agregar = true;
             }
         if(!agregar)
-        addElemento(id,pos,mes,anio,cant);
+            addElemento(id,pos,mes,anio,cant);
     }
 
 }
@@ -382,56 +421,82 @@ void Gridfile::mostrar(int y,int x)
 }
 void Gridfile::todos()
 {
-    for(int i =0;i<cantidad.size();i++)
-        cout << cantidad[i]<< " ";
-        cin.get();cin.get();
     for(int i=0;i<getsizeColumna();i++)
         for(int j=0; j<getsizeFila();j++){
             cout<< " en x "<<i<<" en y "<<j << endl;
             mostrar(j,i);
         }
 }
+
+bool Gridfile::contiene(vector<int> *v,int num){
+    int pos = 0;
+    while(pos < v->size()){
+        if( (*v)[pos] == num)
+            return true;
+    pos++;
+    }
+
+    return false;
+
+
+}
+
 vector<int> * Gridfile::consultar(int anio1,int anio2, int mes1,int mes2,int cant1,int cant2){
 
     int xi,yi,xf,yf;
 
-    if ((anio1 == -1) && (mes1 == -1))
+    if ((anio1 == -1) || (mes1 == -1))
         xi = 0;
-    else
+    else{
         xi = getposFecha(mes1,anio1);
-
-    if ((anio2 == -1) && (mes2 == -1))
+    }
+    if ((anio2 == -1) || (mes2 == -1)){
         xf = getsizeColumna();
-    else
-        xf = getposFecha(mes2,anio2);
+        anio2=fecha[xf-1].anio;
+        mes2=12;
+    }
+    else{
+        xf = getposFecha(mes2,anio2)+1;
 
-    if (cant1 == -1)
+    }
+    if (cant1 == -1){
         yi = 0;
+        cant1 = 0;
+    }
     else
         yi = getposCantidad(cant1);
 
-    if (cant2 == -1)
+    if (cant2 == -1){
         yf = getsizeFila();
+        cant2 = cantidad[yf-1];
+    }
     else
-        yf = getposCantidad(cant2);
+        yf = getposCantidad(cant2)+1;
+
+    Balde *baux = new Balde();
 
     vector<int> *aux = new vector<int>();
-    vector<int> *obtiene = new vector<int>();
-    cout << xi <<" " << yi<< " " <<endl;
-    cout << xf <<" "<<yf<<"  "<<endl;
+    vector<regBalde> *obtiene;
+
     int ini = xi;
-    while(yi<yf){
+    do{
         xi = ini;
         while(xi<xf){
-            cout << yi << xi << endl;
-            mostrar(yi,xi);
+
             obtiene = matriz[yi][xi]->getElementos();
-            for(int i=0; i<(*obtiene).size();i++)
-                aux->push_back((*obtiene)[i]);
+
+            baux = matriz[yi][xi];
+            for(int i = 0; i<(int)(*obtiene).size();i++){
+                  if((*obtiene)[i].cantidad>=cant1 && (*obtiene)[i].cantidad<=cant2)
+                        if((*obtiene)[i].anio >= anio1 && (*obtiene)[i].anio <= anio2 )
+                        if(!contiene(aux,(*obtiene)[i].pos) && (*obtiene)[i].borrado != 1)
+                            aux->push_back((*obtiene)[i].pos);
+            }
             xi++;
         }
         yi++;
-    }
+    }while(yi<yf);
+
 
     return aux;
 }
@@ -465,4 +530,10 @@ void Gridfile::agregarFila(int pos)
         aux.push_back(b);
     }
     matriz.insert(it+pos,aux);
+}
+void Gridfile::actualizar(){
+    for(int i=0;i<zonas.size();i++){
+        zonas[i]->getBalde()->actualizar();
+    }
+
 }
