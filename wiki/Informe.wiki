@@ -2,14 +2,19 @@
 La asociación de Productores y Consumidores requiere que se le provea de modo muy eficiente búsquedas conformadas por los datos de los proveedores y los consumidores, también es necesario realizar consultas asociativas por claves compuestas completas o puntuales y búsquedas por claves compuestas incompletas o por rangos. 
 Como requisito principal debíamos utilizar un gridfile con índices dinámicos determinados por fecha y cantidad, con una matriz de dos dimensiones y cuatro baldes, los cuales pueden contener hasta cinco elementos cada uno.
 
+
 =Implementación=
 
 Para la misma se utilizo C++ en complemento con librerías stl. Se requiere para la implementación plantear 3 clases tales como balde, gridfile y zona, que detallaremos a continuación. 
 
+
 =Diagrama de Clases=
+
 
 || http://gridfile.googlecode.com/svn/trunk/Imagenes/Dibujo8.JPG ||
  
+
+
 =Descripción de Clases=
 
 Como mencionamos anteriormente requeriremos la clase gridfile la que se encargara de la manipulación de las estructuras. La clase balde que la misma se encarga de guardar datos. Y por último la clase zona que es de gran ayuda en el momento de apuntar una casilla de la matriz a un balde.
