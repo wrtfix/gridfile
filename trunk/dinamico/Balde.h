@@ -13,6 +13,7 @@ typedef struct regBalde{
         int anio;
         int id_productor;
         int pos;
+        int borrado;
 };
 
 class Balde
@@ -21,11 +22,15 @@ class Balde
         Balde();
         virtual ~Balde();
         void agregarBalde(int id, int posicion,int mes, int anio,int cantidad);
+        bool overflow();
+        bool igualesCantidad(int);
+        bool igualesFecha(int,int);
         int getPos(int pos);
         int getId(int pos);
         int getMes(int pos);
         int getAnio(int pos);
         int getCantidad(int pos);
+        bool getBorrado(int pos);
         void mostrar();
         int getMaximo();
         bool completo();
@@ -33,7 +38,9 @@ class Balde
         void divCantidad(Balde *& nuevo, int);
         int promedioCantidad(int);
         void promedioFecha(int,int,int&,int&);
-        vector<int>* getElementos();
+        void actualizar();
+        void setBorrado(int);
+        vector<regBalde>* getElementos();
     protected:
     private:
         vector<regBalde> * elementos;

@@ -1,4 +1,3 @@
-
 #include <cstdlib>
 #include <iostream>
 #include <fstream>
@@ -12,13 +11,13 @@ using namespace std;
 //archivos
 
 
-const char *datos = "./ventas.txt";
-/*const char *datos_altas = "./altas_medicamentos.dat";
-const char *datos_bajas = "./bajas_medicamentos.dat";
-*/
+const char *datos = "./datos_b.txt";
+const char *datos_altas = "./altas_b.txt";
+const char *datos_bajas = "./bajas_b.txt";
+
 const char *binario = "./datos.gridfile";
-/*const char *bin_altas = "./altas_medicamentos.gridfile";
-const char *bin_bajas = "./bajas_medicamentos.gridfile";*/
+const char *bin_altas = "./altas.gridfile";
+const char *bin_bajas = "./bajas.gridfile";
 
 struct reg
 {
@@ -34,7 +33,7 @@ struct reg
         char calidad[10];
 };
 
-//esta funcion debuelbe toda la info de un archivo de texto en un vector de tipo regMedicamento
+
 vector<reg> pasarArchivo(const char *dir)
 {
     // creo un flujo de datos con una nombre (dir)
@@ -43,7 +42,7 @@ vector<reg> pasarArchivo(const char *dir)
         cout << "fallo/n";
 
         // Declaramos un array con suficiente tamaño para leer las líneas del archivo
-    char cadena[500];
+        char cadena[500];
 
         //variable auxiliar para ir cargando los dato que seran guardado en un vector
         reg pro;
@@ -102,7 +101,7 @@ vector<reg> pasarArchivo(const char *dir)
                         strcpy(pro.calidad,token8);
 
                         pro.borrado = 0;
-                        //agrego el registro pro en el vector medicamentos
+
                         ventas.push_back(pro);
                 }
         }
@@ -136,23 +135,29 @@ void cargarBinarios()
 {
     // Paso los archivos de texto a un vector
 
-        cout << "Cargando datos_medicamentos.dat... ";
+        cout << "Cargando ventas.txt.";
         vector<reg> ventas;
         ventas = pasarArchivo(datos);
+        cout << ".";
         guardarArchivo(binario,ventas);
+        cout << ".";
         cout << " CARGADO" << endl;
 
-        /*cout << "Cargando altas_medicamentos.dat... ";
-        vector<regMedicamento> medicamentos1;
-    medicamentos1 = pasarArchivo(datos_altas);
-    guardarArchivo(bin_altas,medicamentos1);
-    cout << " CARGADO" << endl;
+        cout << "Cargando altas.txt.";
+        vector<reg> altas;
+        altas = pasarArchivo(datos_altas);
+        cout << ".";
+        guardarArchivo(bin_altas,altas);
+        cout << ".";
+        cout << " CARGADO" << endl;
 
-        cout << "Cargando bajas_medicamentos.dat... ";
-        vector<regMedicamento> medicamentos2;
-    medicamentos2 = pasarArchivo(datos_bajas);
-    guardarArchivo(bin_bajas,medicamentos2);
-        cout << " CARGADO" << endl;*/
+        cout << "Cargando bajas.txt.";
+        vector<reg> bajas;
+        bajas = pasarArchivo(datos_bajas);
+        cout << ".";
+        guardarArchivo(bin_bajas,bajas);
+        cout << ".";
+        cout << " CARGADO" << endl;
 
 
 }
@@ -173,7 +178,7 @@ int main()
 
     while (op !=9)
     {
-                system("clear");
+        system("cls");
         cout << "------->Menu<--------"<<endl;
         cout << "1 - Pasar archivos de texto a binario"<<endl;
         cout << endl;
@@ -181,16 +186,17 @@ int main()
         cout << "2 - Cargar Gridfile a partir de archivo binario (unicen.gridfile)"<<endl;
         cout << endl;
         cout << "--->Actualizaciones<---"<<endl;
-        cout << "3 - Alta de elementos a partir de un archivo binario (alta_medicamentos.dat)"<<endl;
-        cout << "4 - Baja de elementos a partir de un archivo binario (baja_medicamentos.dat)"<<endl;
+        cout << "3 - Alta de elementos a partir de un archivo binario (altas.txt)"<<endl;
+        cout << "4 - Baja de elementos a partir de un archivo binario (bajas.txt)"<<endl;
         cout << endl;
         cout << "----->Consultas<-----"<<endl;
-        cout << "5 - Mostrar estructura"<<endl;
+        cout << "5 - Descripcion"<<endl;
         cout << "6 - Obtener un registro al azar"<<endl;
-        cout << "7 - Acceder a medicamentos a partir de forma y/o accion y/o precios (rangos y valores exactos)"<<endl;
+        cout << "7 - Acceder a ventas a partir de fecha y/o cantidad"<<endl;
 
         cout << endl;
-        cout << "9 - Salir"<<endl;
+        cout << "9 - Salir"<<endl<<endl;
+        cout << "Opcion desada: ";
         cin >> op;
         switch (op)
         {
@@ -199,18 +205,18 @@ int main()
                 cout << "Carga de Binario"<<endl;
                 cargarBinarios();
                 cout << "Los archivos se pasaron a binario" <<endl;
-                cout << "Presione una ENTER para terminar...";
-                  //              cin.get();
+                system("pause");
             }break;
             case 2:
             {   FILE *f = fopen(binario,"ab+");
                 fseek(f, 0L, SEEK_END);
                 long int final = ftell(f)/sizeof(reg);
 
-                g->addFecha(6,1994);
-                g->addFecha(12,2008);
-                g->addCantidad(55240);
-                g->addCantidad(99519);
+                //escala definida a ojo
+                g->addFecha(6,2000);
+                g->addFecha(12,2010);
+                g->addCantidad(50);
+                g->addCantidad(99);
 
                  // Levanta los elementos que apunta pos
                 int i = 0;
@@ -221,39 +227,35 @@ int main()
                         g->addxCantidad(registro.id_productor,i,registro.mes,registro.anio,registro.cantidad_entregar);
                         i++;
                 }
+                cout<<"Se insertaron "<<i<<" en total"<<endl;
                 cout << "La estructura fue construida con exito"<<endl;
                 system("PAUSE");
 
             }break;
-/*
             case 3:
             {
-
-                FILE *f = fopen(bin_medicamentos,"ab+");
+                cout<<"Altas de elmentos"<<endl;;
+                FILE *f = fopen(binario,"ab+");
 
                 fseek(f, 0L, SEEK_END);
-                long int final = ftell(f)/sizeof(regMedicamento);
+                long int final = ftell(f)/sizeof(reg);
 
                 FILE *f2 = fopen(bin_altas,"rb+");
                 fseek(f2, 0L, SEEK_END);
-                long int final2 = ftell(f2)/sizeof(regMedicamento);
+                long int final2 = ftell(f2)/sizeof(reg);
                 fclose(f2);
 
                 int i = 0;
                 while(i<final2)
                 {
-                        regMedicamento reg = obtenerDato(bin_altas,i);
-                    cout << "Balde Antes"<<endl;
-                        Balde *b = g->getOriginal(reg.accion_medicamento,reg.forma_medicamento,reg.precio);
-                        b->imprimir();
-                    g->add(reg.accion_medicamento,reg.forma_medicamento,reg.precio,final+i);
-                    cout << "Balde Despues"<<endl;
-                        b->imprimir();
-                    system("pause");
-                    fwrite(&reg, sizeof(regMedicamento), 1, f);
+                        reg registro = obtenerDato(bin_altas,i);
+                        imprimirReg(registro);
+                        g->addxCantidad(registro.id_productor,final+i,registro.mes,registro.anio,registro.cantidad_entregar);
+                        fwrite(&registro, sizeof(reg), 1, f);
                         i++;
                 }
                 cout << "La carga culmino con exito"<<endl;
+                cout<<"Se insertaron "<<i<<" en total"<<endl;
                 fclose(f);
                 system("Pause");
             }break;
@@ -261,56 +263,60 @@ int main()
             {
                 cout << "Baja de elementos"<<endl;
 
-                FILE *f = fopen(bin_altas,"rb+");
+                FILE *f = fopen(bin_bajas,"rb+");
                 fseek(f, 0L, SEEK_END);
-                long int final = ftell(f)/sizeof(regMedicamento);
+
+                long int final = ftell(f)/sizeof(reg);
+
                 int i = 0;
 
-                FILE *f2 = fopen(bin_medicamentos,"rb+");
+                FILE *f2 = fopen(binario,"rb+");
 
-                int x,y,z;
+                int x,y;
                 while(i<final)
                 {
-                    regMedicamento reg = obtenerDato(bin_bajas,i);
-                    x = g->getPosAccion(reg.accion_medicamento);
-                    y = g->getPosForma(reg.forma_medicamento);
-                    z = g->getPosPrecio(reg.precio);
+                    reg registro = obtenerDato(bin_bajas,i);
+                    x = g->getposFecha(registro.mes,registro.anio);
+                    y = g->getposCantidad(registro.cantidad_entregar);
                     int cont = 0;
-                    Balde *b = g->get(x,y,z);
+                    Balde *b = g->getZona(x,y)->getBalde();
                     long posArch;
-                    regMedicamento aux;
-                    while(cont <b->size())
+                    reg aux;
+                    while(cont < b->getMaximo())
                     {
-                        if (b->getAccion(cont) == reg.accion_medicamento && b->getForma(cont) == reg.forma_medicamento && b->getPrecio(cont)==reg.precio)
+                        if (b->getBorrado(cont) != 1 &&b->getAnio(cont) == registro.anio && b->getMes(cont) == registro.mes && b->getCantidad(cont)==registro.cantidad_entregar)
                         {
-                            posArch = b->getReg(cont).valor;
-                            aux = obtenerDato(bin_medicamentos,posArch);
+                            posArch = b->getPos(cont);
+                            aux = obtenerDato(binario,posArch);
                             aux.borrado = 1;
-                                fseek(f2,(long)(posArch*sizeof(struct regMedicamento)), SEEK_SET);
-                                fwrite(&aux, sizeof(regMedicamento), 1, f2);
+                            b->setBorrado(cont);
+                            fseek(f2,(long)(posArch*sizeof(struct reg)), SEEK_SET);
+                            fwrite(&aux, sizeof(reg), 1, f2);
                         }
                         cont++;
                     }
                     i++;
                 }
 
-                const char *dir2 = "./datos_medicamentos2.gridfile";
+                const char *dir2 = "./sin_borrados.gridfile";
                 FILE *f3 = fopen(dir2,"wb+");
-                regMedicamento rrr;
+                reg rrr;
 
                 //creo un archivo nuevo y paso todos los elementos exepto los que esten marcados con 1
                 rewind(f2);
                 while(!feof(f2)){
-                    fread(&rrr, sizeof(struct regMedicamento), 1, f2);
+                    fread(&rrr, sizeof(struct reg), 1, f2);
                     if (rrr.borrado == 0)
-                        fwrite(&rrr, sizeof(regMedicamento), 1, f3);
+                        fwrite(&rrr, sizeof(reg), 1, f3);
                 }
+                g->actualizar();
                 system("pause");
 
-            }break;*/
+            }break;
             case 5:
             {
                 g->todos();
+                system("pause");
             }break;
             case 6:
             {
@@ -345,19 +351,19 @@ int main()
                 cout << "hasta: ";
                 cin >> c2;
 
-                cout << "Mes: " << endl;
-                cout << "desde: ";
+                cout << "Fecha de inicio: " << endl;
+                cout << "mes: ";
                 cin >> m1;
-                cout << "hasta: ";
-                cin >> m2;
-
-                cout << "Anio: " << endl;
-                cout << "desde: ";
+                cout << "anio: ";
                 cin >> a1;
-                cout << "hasta: ";
+
+                cout << "Fecha de fin: " << endl;
+                cout << "mes: ";
+                cin >> m2;
+                cout << "anio: ";
                 cin >> a2;
 
-                vector<int> * resultado = g->consultar(-1,-1,-1,-1,-1,-1);/*(a1,a2,m1,m2,c1,c2);*/
+                vector<int> * resultado = g->consultar(a1,a2,m1,m2,c1,c2);
 
                 reg aux;
 
@@ -369,36 +375,20 @@ int main()
 
                 cout << endl <<resultado->size() << " registros retornados" << endl;
 
-                system("pause");
-
-            }break;
-            case 8:
-            {
-                int c1,c2;
-                cout << "@  Consulta de elementos SOLO por intervalo de cantidad @"<<endl;
-                cout << "Ingrese rango cantidad: ";
-                cout << "Desde: ";
-                cin >> c1;
-                cout << "Hasta: ";
-                cin >> c2;
-
-                //vector<int> resultado = g->consultaCantidad(c1,c2);
-                reg aux;
-
-
-/*                for (int i=0;i<resultado.size();i++)
-                {
-                        aux = obtenerDato(binario,resultado[i]);
-                        imprimirReg(aux);
+                for (int i=0;i<resultado->size();i++)
+                {   resultado->pop_back();
                 }
-                cout << endl << resultado.size() << " registros retornados" << endl;
-                system("pause");
-*/
-            }break;
 
+
+
+                system("pause");
+
+            }break;
             case 9:
             {
+
                 cout << "chau!!"<<endl;
+
             }
 
             default:

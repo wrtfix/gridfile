@@ -39,6 +39,8 @@ class Gridfile
 
         vector<int>* consultar(int,int,int,int,int,int);
 
+        void actualizar();
+
         void todos();
 
     protected:
@@ -51,13 +53,14 @@ class Gridfile
 
         void insertCantidad(int);
         void insertFecha(int,int);
-
+        void asignarBaldes();
         int getsizeColumna();
         int getsizeFila();
 
         void agregarColumna(int pos);
         void agregarFila(int pos);
 
+        bool contiene(vector<int>*,int num);
 };
 
 #endif // GRIDFILE_H
